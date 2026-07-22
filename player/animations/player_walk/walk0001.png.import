@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmfqti1ul7dkm"
-path="res://.godot/imported/hand.png-fd487b4a49287c76f45dad06e7d9708b.ctex"
+uid="uid://dnu5gm7a1wscn"
+path="res://.godot/imported/walk0001.png-8c17fc1cee667c11bc8c66dde85e0573.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/hand.png"
-dest_files=["res://.godot/imported/hand.png-fd487b4a49287c76f45dad06e7d9708b.ctex"]
+source_file="res://player/animations/player_walk/walk0001.png"
+dest_files=["res://.godot/imported/walk0001.png-8c17fc1cee667c11bc8c66dde85e0573.ctex"]
 
 [params]
 

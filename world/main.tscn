@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d0s7flavngvkg"]
 
-[ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
 
 [node name="Node2D" type="Node2D" unique_id=2078986703]
 
-[node name="Player" parent="." unique_id=1088654542 instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." unique_id=1088654542 instance=ExtResource("1_gjxf3")]
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=555529656]
 
