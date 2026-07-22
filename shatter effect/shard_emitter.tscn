@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bbdcedro31itg"]
+
+[ext_resource type="Script" uid="uid://bsj8c56fctt6c" path="res://shard_emitter.gd" id="1_8xebj"]
+
+[node name="ShardEmitter" type="Node2D" unique_id=1312431340]
+script = ExtResource("1_8xebj")
+nbr_of_shards = 3
+min_impulse = 150.0
+max_impulse = 500.0
+
+[node name="DeleteTimer" type="Timer" parent="." unique_id=439050360]
