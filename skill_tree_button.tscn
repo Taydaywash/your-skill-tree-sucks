@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c0mdbd7win22j"]
+
+[ext_resource type="Script" uid="uid://v0ufwmn8uqkd" path="res://skill_tree_button.gd" id="2_3okbx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehp47"]
+bg_color = Color(0.8750217, 0.16538504, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3okbx"]
+bg_color = Color(0.8750217, 0.16538504, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="Button" type="Button" unique_id=1033491040]
+modulate = Color(0.50928617, 0.5092862, 0.509286, 1)
+offset_left = -28.0
+offset_top = -28.0
+offset_right = 84.0
+offset_bottom = 84.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehp47")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ehp47")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3okbx")
+script = ExtResource("2_3okbx")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

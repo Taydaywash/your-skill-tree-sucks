@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://cmv42cdy1g5op"]
+
+[ext_resource type="Script" path="res://player_movement.gd" id="1_ivps1"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_idle/idle.png" id="2_b26j0"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_walk/walk0000.png" id="3_n7ghd"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_walk/walk0001.png" id="4_nvl01"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_walk/walk0002.png" id="5_ivps1"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_walk/walk0003.png" id="6_urp6f"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_walk/walk0004.png" id="7_bwjto"]
+[ext_resource type="Texture2D" path="res://assets/animations/player_walk/walk0005.png" id="8_606se"]
+[ext_resource type="Texture2D" path="res://assets/animations/hand.png" id="9_b26j0"]
+[ext_resource type="Texture2D" path="res://assets/animations/spear.png" id="10_urp6f"]
+[ext_resource type="Texture2D" path="res://assets/animations/sword.png" id="11_bwjto"]
+[ext_resource type="Script" path="res://player_hand.gd" id="12_606se"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
+size = Vector2(28, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl8pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b26j0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n7ghd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nvl01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n7ghd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n7ghd")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58i6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_b26j0")
+}],
+"loop": 1,
+"name": &"fist_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_urp6f")
+}],
+"loop": 1,
+"name": &"spear_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_bwjto")
+}],
+"loop": 1,
+"name": &"sword_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rajix"]
+radius = 29.999996
+
+[node name="Player" type="CharacterBody2D" unique_id=1088654542 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_ivps1")
+move_speed = 250
+sprite = NodePath("Body")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=97123581]
+z_index = 1
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_nl8pl")
+
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1514913778]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_nl8pl")
+animation = &"walk"
+
+[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541]
+position = Vector2(19.999998, 0)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_58i6i")
+animation = &"sword_idle"
+script = ExtResource("12_606se")
+
+[node name="Area2D" type="Area2D" parent="Hand" unique_id=604919790]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D" unique_id=195259210]
+shape = SubResource("CircleShape2D_rajix")

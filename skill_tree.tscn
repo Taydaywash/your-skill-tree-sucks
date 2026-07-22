@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://dfpb6agb07u30"]
+
+[ext_resource type="Script" uid="uid://crwmdnktf1wmr" path="res://skill_tree_controller.gd" id="1_fmctd"]
+[ext_resource type="PackedScene" uid="uid://c0mdbd7win22j" path="res://skill_tree_button.tscn" id="1_t5gwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8pl"]
+bg_color = Color(0, 0, 0, 0.6313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58i6i"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Skill Tree" type="Node2D" unique_id=604634100]
+script = ExtResource("1_fmctd")
+
+[node name="Panel2" type="Panel" parent="." unique_id=408639439]
+z_index = -2
+z_as_relative = false
+offset_left = -648.0
+offset_top = -392.0
+offset_right = 600.0
+offset_bottom = 424.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
+
+[node name="0" parent="." unique_id=1868352893 instance=ExtResource("1_t5gwv")]
+offset_left = -272.0
+offset_top = 0.0
+offset_right = -160.0
+offset_bottom = 112.0
+
+[node name="sword" parent="." unique_id=2123755487 instance=ExtResource("1_t5gwv")]
+offset_left = -120.0
+offset_top = -64.0
+offset_right = -8.0
+offset_bottom = 48.0
+
+[node name="gun" parent="." unique_id=674653445 instance=ExtResource("1_t5gwv")]
+offset_left = -424.0
+offset_top = -64.0
+offset_right = -312.0
+offset_bottom = 48.0
+
+[node name="Line2D" type="Line2D" parent="gun" unique_id=2011083327]
+z_index = -1
+position = Vector2(304, 128)
+points = PackedVector2Array(-208, -64, 16, 48)
+
+[node name="dash" parent="." unique_id=587108644 instance=ExtResource("1_t5gwv")]
+offset_left = -352.0
+offset_top = -144.0
+offset_right = -240.0
+offset_bottom = -32.0
+
+[node name="shield" parent="." unique_id=737432396 instance=ExtResource("1_t5gwv")]
+offset_left = -192.0
+offset_top = -144.0
+offset_right = -80.0
+offset_bottom = -32.0
+
+[node name="spear" parent="." unique_id=702021512 instance=ExtResource("1_t5gwv")]
+offset_left = -72.0
+offset_top = -200.0
+offset_right = 40.0
+offset_bottom = -88.0
+
+[node name="harpoon" parent="." unique_id=1804277764 instance=ExtResource("1_t5gwv")]
+offset_left = -472.0
+offset_top = -200.0
+offset_right = -360.0
+offset_bottom = -88.0
+
+[node name="final" parent="." unique_id=1629203100 instance=ExtResource("1_t5gwv")]
+offset_left = -272.0
+offset_top = -256.0
+offset_right = -160.0
+offset_bottom = -144.0
+
+[node name="gun_neg" parent="." unique_id=708947290 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -123.5
+offset_top = 68.5
+offset_right = -11.5
+offset_bottom = 180.5
+
+[node name="sword_neg" parent="." unique_id=889722661 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -427.5
+offset_top = 68.5
+offset_right = -315.5
+offset_bottom = 180.5
+
+[node name="shield_neg" parent="." unique_id=1173175324 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -355.5
+offset_top = 148.5
+offset_right = -243.5
+offset_bottom = 260.5
+
+[node name="dash_neg" parent="." unique_id=1850195603 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -195.5
+offset_top = 148.5
+offset_right = -83.5
+offset_bottom = 260.5
+
+[node name="harpoon_neg" parent="." unique_id=378092300 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -75.5
+offset_top = 196.5
+offset_right = 36.5
+offset_bottom = 308.5
+
+[node name="spear_neg" parent="." unique_id=190082843 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -475.5
+offset_top = 196.5
+offset_right = -363.5
+offset_bottom = 308.5
+
+[node name="final_neg" parent="." unique_id=523013159 instance=ExtResource("1_t5gwv")]
+visible = false
+offset_left = -272.0
+offset_top = 256.0
+offset_right = -160.0
+offset_bottom = 368.0
+
+[node name="Panel" type="Panel" parent="." unique_id=481681843]
+offset_left = 16.0
+offset_top = -272.0
+offset_right = 496.0
+offset_bottom = 280.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_58i6i")
