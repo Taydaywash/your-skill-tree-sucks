@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c0mdbd7win22j"]
 
-[ext_resource type="Script" uid="uid://v0ufwmn8uqkd" path="res://skill tree/skill_tree_button.gd" id="1_kic2p"]
-[ext_resource type="Texture2D" uid="uid://nsf77pn7q8hw" path="res://skill tree/placeholder_skill.png" id="2_utmqi"]
-[ext_resource type="PackedScene" uid="uid://bbdcedro31itg" path="res://shatter effect/shard_emitter.tscn" id="4_cmhow"]
+[ext_resource type="Script" uid="uid://v0ufwmn8uqkd" path="res://skill tree/skill_tree_button.gd" id="1_ju8b4"]
+[ext_resource type="PackedScene" uid="uid://bbdcedro31itg" path="res://shatter effect/shard_emitter.tscn" id="2_ju8b4"]
+[ext_resource type="Texture2D" uid="uid://nsf77pn7q8hw" path="res://skill tree/placeholder_skill.png" id="2_xsgn6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehp47"]
 bg_color = Color(0.8750217, 0.16538504, 0, 1)
@@ -92,8 +92,8 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ehp47")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ehp47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3okbx")
-script = ExtResource("1_kic2p")
-button_hold_duration = 0.2
+script = ExtResource("1_ju8b4")
+button_hold_duration = 2.0
 shard_emitter = NodePath("ButtonShatter/shard emitter")
 button_shatter = NodePath("ButtonShatter")
 animation_player = NodePath("AnimationPlayer")
@@ -103,10 +103,10 @@ visible = false
 modulate = Color(1, 0, 0, 1)
 z_index = 3
 z_as_relative = false
-texture = ExtResource("2_utmqi")
+texture = ExtResource("2_xsgn6")
 centered = false
 
-[node name="shard emitter" parent="ButtonShatter" unique_id=1312431340 instance=ExtResource("4_cmhow")]
+[node name="shard emitter" parent="ButtonShatter" unique_id=1312431340 instance=ExtResource("2_ju8b4")]
 nbr_of_shards = 10
 threshold = 5.0
 min_impulse = 300.0

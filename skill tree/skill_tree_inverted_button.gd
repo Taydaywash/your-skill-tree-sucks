@@ -2,6 +2,7 @@ extends Button
 
 @onready var default_position = position
 @export var button_hold_duration : float
+@export var info_panel: Panel
 
 @export var required_nodes : Array[Button]
 @export var inverted_animation_player: AnimationPlayer
@@ -32,6 +33,7 @@ func _process(_delta: float) -> void:
 	tween.parallel().tween_property(self, "self_modulate", Color(0.51, 0.51, 0.51, 1.0), 0.03).set_ease(Tween.EASE_IN)
 
 func _on_mouse_entered() -> void:
+	info_panel.emit_signal("skill_hovered",name,"empty")
 	if unlocked:
 		return
 	for node in required_nodes:

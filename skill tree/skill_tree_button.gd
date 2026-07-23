@@ -5,6 +5,7 @@ extends Button
 @export var shard_emitter: ShardEmitter
 @export var button_shatter: Sprite2D
 
+@export var info_panel: Panel
 @export var required_nodes : Array[Button]
 @export var animation_player: AnimationPlayer
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	button_hold_timer.autostart = false
 
 func _on_mouse_entered() -> void:
+	info_panel.emit_signal("skill_hovered",name,"empty")
 	if shattered:
 		return
 	for node in required_nodes:

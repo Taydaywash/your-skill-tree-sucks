@@ -238,78 +238,86 @@ offset_bottom = 424.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
 
-[node name="0" parent="." unique_id=1868352893 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="0" parent="." unique_id=1868352893 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
 offset_top = -32.0
 offset_right = -212.0
 offset_bottom = 80.0
 icon = ExtResource("5_sdnbj")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword"), NodePath("../gun")]
 
-[node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -172.0
 offset_top = -96.0
 offset_right = -60.0
 offset_bottom = 16.0
 icon = ExtResource("6_46aa3")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../shield"), NodePath("../spear")]
 
-[node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
 offset_top = -96.0
 offset_right = -364.0
 offset_bottom = 16.0
 icon = ExtResource("7_0rout")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../dash"), NodePath("../harpoon")]
 
-[node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
 offset_top = -176.0
 offset_right = -292.0
 offset_bottom = -64.0
 icon = ExtResource("8_lrvki")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 
-[node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
 offset_top = -176.0
 offset_right = -132.0
 offset_bottom = -64.0
 icon = ExtResource("9_d4sjy")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 
-[node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
 offset_top = -232.0
 offset_right = -12.0
 offset_bottom = -120.0
 icon = ExtResource("10_cdydi")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 
-[node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
 offset_top = -232.0
 offset_right = -412.0
 offset_bottom = -120.0
 icon = ExtResource("11_4cf1k")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 
-[node name="final" parent="." unique_id=1629203100 instance=ExtResource("4_0v6ha")]
+[node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
 offset_top = -280.0
 offset_right = -212.0
 offset_bottom = -168.0
 icon = ExtResource("12_rjc8t")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 
-[node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -172.0
 offset_top = 16.0
@@ -317,9 +325,10 @@ offset_right = -60.0
 offset_bottom = 128.0
 icon = ExtResource("7_0rout")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../0")]
 
-[node name="sword_neg" parent="." unique_id=437368073 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="sword_neg" parent="." unique_id=437368073 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -476.0
 offset_top = 16.0
@@ -327,9 +336,10 @@ offset_right = -364.0
 offset_bottom = 128.0
 icon = ExtResource("6_46aa3")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../0")]
 
-[node name="shield_neg" parent="." unique_id=1958150389 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="shield_neg" parent="." unique_id=1958150389 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -404.0
 offset_top = 96.0
@@ -337,9 +347,10 @@ offset_right = -292.0
 offset_bottom = 208.0
 icon = ExtResource("9_d4sjy")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
 
-[node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -244.0
 offset_top = 96.0
@@ -347,6 +358,7 @@ offset_right = -132.0
 offset_bottom = 208.0
 icon = ExtResource("8_lrvki")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../gun_neg")]
 
 [node name="harpoon_neg" parent="." unique_id=2083797914 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
@@ -359,7 +371,7 @@ icon = ExtResource("11_4cf1k")
 expand_icon = true
 required_nodes = [NodePath("../gun_neg")]
 
-[node name="spear_neg" parent="." unique_id=126980460 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="spear_neg" parent="." unique_id=126980460 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -524.0
 offset_top = 144.0
@@ -367,9 +379,10 @@ offset_right = -412.0
 offset_bottom = 256.0
 icon = ExtResource("10_cdydi")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
 
-[node name="final_neg" parent="." unique_id=1911817242 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="final_neg" parent="." unique_id=1911817242 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -320.0
 offset_top = 196.0
@@ -377,6 +390,7 @@ offset_right = -208.0
 offset_bottom = 308.0
 icon = ExtResource("12_rjc8t")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../harpoon_neg"), NodePath("../dash_neg"), NodePath("../shield_neg"), NodePath("../spear_neg")]
 
 [node name="InfoPanel" type="Panel" parent="." unique_id=481681843 node_paths=PackedStringArray("skill_name", "skill_description")]
