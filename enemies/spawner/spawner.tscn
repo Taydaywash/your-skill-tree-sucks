@@ -10,7 +10,6 @@ script = ExtResource("1_4mutu")
 enemy_scene = ExtResource("2_remv4")
 timer = NodePath("Timer")
 indicator_scene = ExtResource("3_7pkxv")
-timer_wait_time = 100.0
 
 [node name="Timer" type="Timer" parent="." unique_id=438572802]
 autostart = true

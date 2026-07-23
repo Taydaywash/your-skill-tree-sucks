@@ -87,8 +87,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rajix"]
 radius = 29.999996
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vjpb"]
-size = Vector2(28, 36)
+[sub_resource type="GDScript" id="GDScript_6vjpb"]
+resource_name = "TestScript"
+script/source = "extends Area2D
+
+@export var damage_amount: int = 50
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yllr7"]
+size = Vector2(20, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lth"]
 size = Vector2(24, 32)
@@ -125,13 +132,17 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D" unique_id=195259210]
 shape = SubResource("CircleShape2D_rajix")
 
-[node name="PlayerHitbox" type="Area2D" parent="." unique_id=1066398349]
+[node name="DamageTestArea" type="Area2D" parent="Hand" unique_id=2118758764]
+position = Vector2(50.000015, -34.999996)
+scale = Vector2(4.9999995, 4.9999995)
 collision_layer = 2
-collision_mask = 8
+collision_mask = 0
+script = SubResource("GDScript_6vjpb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox" unique_id=605930711]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_6vjpb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/DamageTestArea" unique_id=305674087]
+position = Vector2(-4, -11.499998)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_yllr7")
 
 [node name="PlayerHurtbox" type="Area2D" parent="." unique_id=945928895]
 collision_layer = 4

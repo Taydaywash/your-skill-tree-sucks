@@ -2,6 +2,9 @@ extends AnimatedSprite2D
 
 var current_weapon = "spear"
 
+func _ready() -> void:
+	pass
+
 func _process(_delta: float) -> void:
 	position = (get_global_mouse_position() - get_parent().global_position).normalized() * 20
 	match current_weapon:

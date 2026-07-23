@@ -9,8 +9,8 @@ var player: Player = null
 
 func _ready() -> void:
 	player = get_parent().get_node("Player")
-	health_bar.max_value = health.max_health
-	health_bar.value = health.current_health
+	#health_bar.max_value = health.max_health
+	#health_bar.value = health.current_health
 	
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
@@ -26,3 +26,6 @@ func on_health_changed(new_health: int) -> void:
 
 func on_death() -> void:
 	call_deferred("queue_free")
+
+func _on_hurtbot_area_entered(area):
+	health.take_damage(area.damage_amount)
