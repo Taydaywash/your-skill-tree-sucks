@@ -64,6 +64,14 @@ debug={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="PlayerHitbox"
+2d_physics/layer_3="PlayerHurtbox"
+2d_physics/layer_4="EnemyHitbox"
+2d_physics/layer_5="EnemyHurtbox"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

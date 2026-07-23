@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var move_speed : int
 @export var sprite: AnimatedSprite2D
@@ -19,3 +20,7 @@ func _process(_delta: float) -> void:
 		sprite.play("walk")
 	else:
 		sprite.play("default")
+
+func _on_player_hitbox_area_entered(_area):
+	#get_tree().reload_current_scene.call_deferred()
+	pass

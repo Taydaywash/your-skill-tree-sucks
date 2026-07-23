@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d0s7flavngvkg"]
+
+[ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
+[ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill_tree.tscn" id="2_hyim0"]
+[ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
+
+[node name="Node2D" type="Node2D" unique_id=2078986703]
+
+[node name="Player" parent="." unique_id=1088654542 instance=ExtResource("1_gjxf3")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=555529656]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2134721847]
+position = Vector2(-193, 99)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1099619318]
+build_mode = 1
+polygon = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=902332067]
+invert_enabled = true
+polygon = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260]
+
+[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 instance=ExtResource("2_hyim0")]
+visible = false
+z_index = 1
+position = Vector2(576, 320)
+
+[node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]

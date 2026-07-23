@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
 [ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill_tree.tscn" id="2_hyim0"]
+[ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
+[ext_resource type="Script" uid="uid://c1pugpvcsv5lp" path="res://enemies/spawner/marker_2d.gd" id="4_spvjk"]
 
 [node name="Node2D" type="Node2D" unique_id=2078986703]
 
@@ -10,15 +12,15 @@
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=555529656]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2134721847]
-position = Vector2(-193, 99)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1099619318]
 build_mode = 1
-polygon = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
+polygon = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=902332067]
 invert_enabled = true
-polygon = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
+polygon = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128)
+uv = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260]
 
@@ -26,3 +28,88 @@ polygon = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 1
 visible = false
 z_index = 1
 position = Vector2(576, 320)
+
+[node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
+
+[node name="Marker2D" parent="Spawner" index="1" unique_id=2078705381]
+position = Vector2(736, 288)
+position_offset_x = 125.0
+position_offset_y = 125.0
+
+[node name="Marker2D2" type="Marker2D" parent="Spawner" unique_id=2035314425]
+position = Vector2(760, -256)
+script = ExtResource("4_spvjk")
+
+[node name="Marker2D3" type="Marker2D" parent="Spawner" unique_id=50251439]
+position = Vector2(-800, -128)
+script = ExtResource("4_spvjk")
+position_offset_x = 75.0
+position_offset_y = 200.0
+
+[node name="Marker2D4" type="Marker2D" parent="Spawner" unique_id=1888805367]
+position = Vector2(-392, 320)
+script = ExtResource("4_spvjk")
+position_offset_x = 150.0
+position_offset_y = 150.0
+
+[node name="Marker2D5" type="Marker2D" parent="Spawner" unique_id=610792897]
+position = Vector2(264, 320)
+script = ExtResource("4_spvjk")
+position_offset_x = 150.0
+position_offset_y = 150.0
+
+[node name="Marker2D6" type="Marker2D" parent="Spawner" unique_id=79249919]
+position = Vector2(-64, 320)
+script = ExtResource("4_spvjk")
+position_offset_x = 150.0
+position_offset_y = 150.0
+
+[node name="Marker2D7" type="Marker2D" parent="Spawner" unique_id=1036976376]
+position = Vector2(-32, -408)
+script = ExtResource("4_spvjk")
+position_offset_x = 450.0
+position_offset_y = 50.0
+
+[node name="Marker2D8" type="Marker2D" parent="Spawner" unique_id=469501716]
+position = Vector2(-584, -152)
+script = ExtResource("4_spvjk")
+position_offset_y = 175.0
+
+[node name="Marker2D9" type="Marker2D" parent="Spawner" unique_id=28151712]
+position = Vector2(-320, -152)
+script = ExtResource("4_spvjk")
+position_offset_x = 125.0
+position_offset_y = 175.0
+
+[node name="Marker2D10" type="Marker2D" parent="Spawner" unique_id=588799664]
+position = Vector2(760, -256)
+script = ExtResource("4_spvjk")
+
+[node name="Marker2D11" type="Marker2D" parent="Spawner" unique_id=2030877453]
+position = Vector2(72, 96)
+script = ExtResource("4_spvjk")
+position_offset_x = 425.0
+position_offset_y = 50.0
+
+[node name="Marker2D12" type="Marker2D" parent="Spawner" unique_id=297875225]
+position = Vector2(-56, -152)
+script = ExtResource("4_spvjk")
+position_offset_y = 175.0
+
+[node name="Marker2D13" type="Marker2D" parent="Spawner" unique_id=1552575879]
+position = Vector2(184, -152)
+script = ExtResource("4_spvjk")
+position_offset_y = 175.0
+
+[node name="Marker2D14" type="Marker2D" parent="Spawner" unique_id=1166169562]
+position = Vector2(417, -152)
+script = ExtResource("4_spvjk")
+position_offset_y = 175.0
+
+[node name="Marker2D15" type="Marker2D" parent="Spawner" unique_id=2063458827]
+position = Vector2(592, -104)
+script = ExtResource("4_spvjk")
+position_offset_x = 50.0
+position_offset_y = 225.0
+
+[editable path="Spawner"]
