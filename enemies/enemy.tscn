@@ -12,12 +12,10 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
 radius = 15.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1569434064]
+[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_7frlh")
-speed = null
-damage_amount = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598867225]
 shape = SubResource("CircleShape2D_7frlh")
@@ -27,7 +25,7 @@ position = Vector2(-4.7683716e-07, -4.172325e-07)
 scale = Vector2(0.234375, 0.234375)
 texture = ExtResource("1_fw1ev")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=960642182]
+[node name="Hitbox" type="Area2D" parent="." unique_id=960642182 groups=["Player"]]
 collision_layer = 8
 collision_mask = 4
 
@@ -53,3 +51,6 @@ pivot_offset = Vector2(14, 2)
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
