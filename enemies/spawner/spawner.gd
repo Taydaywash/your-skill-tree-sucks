@@ -24,8 +24,8 @@ func spawn_enemy() -> void:
 		return 
 		
 	var random_position = spawn_points.pick_random()
-	var offset = random_position.position_offset
-	var spawn_position: Vector2 = random_position.global_position + Vector2(randf_range(-offset, offset), randf_range(-offset, offset))
+	var offset = Vector2(random_position.position_offset_x, random_position.position_offset_y)
+	var spawn_position: Vector2 = random_position.global_position + Vector2(randf_range(-offset.x, offset.x), randf_range(-offset.y, offset.y))
 	
 	var indicator = indicator_scene.instantiate()
 	get_tree().current_scene.call_deferred("add_child", indicator)

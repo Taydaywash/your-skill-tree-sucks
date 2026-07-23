@@ -22,4 +22,5 @@ func _process(_delta: float) -> void:
 		sprite.play("default")
 
 func _on_player_hitbox_area_entered(_area):
-	get_tree().reload_current_scene.call_deferred()
+	#get_tree().reload_current_scene.call_deferred()
+	pass
