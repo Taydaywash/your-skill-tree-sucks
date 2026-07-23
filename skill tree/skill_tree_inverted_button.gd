@@ -71,10 +71,10 @@ func _on_gui_input(event: InputEvent) -> void:
 			return
 		else:
 			unlocked = true
-			sprite.visible = true
+			inverted_animation_player.play("RESET")
 			var tween2 = get_tree().create_tween()
 			tween2.tween_property(self, "scale", Vector2(0.5,0.5), 0.03).set_ease(Tween.EASE_OUT)
-			tween2.parallel().tween_property(self, "self_modulate", Color(0.2, 0.2, 0.2, 1.0), 0.03).set_ease(Tween.EASE_IN)
+			tween2.parallel().tween_property(self, "self_modulate", Color(1, 1, 1, 1.0), 0.03).set_ease(Tween.EASE_IN)
 	if event is InputEventMouseButton and not event.is_pressed():
 		button_hold_timer.stop()
 		button_hold_timer.timeout.emit()

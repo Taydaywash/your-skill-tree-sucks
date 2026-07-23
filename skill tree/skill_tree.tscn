@@ -1,12 +1,27 @@
 [gd_scene format=3 uid="uid://dfpb6agb07u30"]
 
-[ext_resource type="Script" uid="uid://crwmdnktf1wmr" path="res://skill_tree_controller.gd" id="1_fmctd"]
-[ext_resource type="PackedScene" uid="uid://c0mdbd7win22j" path="res://skill_tree_button.tscn" id="1_t5gwv"]
+[ext_resource type="Script" uid="uid://crwmdnktf1wmr" path="res://skill tree/skill_tree_controller.gd" id="1_fmctd"]
 [ext_resource type="Script" uid="uid://sfoarva2jdbm" path="res://path_controller.gd" id="2_802jk"]
-[ext_resource type="PackedScene" uid="uid://cjo1hemtuumkn" path="res://skill_tree_inverted_button.tscn" id="4_t5gwv"]
+[ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="3_itn7s"]
+[ext_resource type="PackedScene" uid="uid://c0mdbd7win22j" path="res://skill_tree_button.tscn" id="4_0v6ha"]
+[ext_resource type="Texture2D" uid="uid://cxg50y0swxx5w" path="res://skill tree/icons/level0_icon.png" id="5_sdnbj"]
+[ext_resource type="Texture2D" uid="uid://by2xej7sbt8vb" path="res://skill tree/icons/sword_icon.png" id="6_46aa3"]
+[ext_resource type="Texture2D" uid="uid://cv1uubiebsory" path="res://skill tree/icons/gun_icon.png" id="7_0rout"]
+[ext_resource type="Texture2D" uid="uid://ctl84p65gem83" path="res://skill tree/icons/dash_icon.png" id="8_lrvki"]
+[ext_resource type="Texture2D" uid="uid://122tkw7s55l4" path="res://skill tree/icons/shield_icon.png" id="9_d4sjy"]
+[ext_resource type="Texture2D" uid="uid://61r588iwssl5" path="res://skill tree/icons/spear_icon.png" id="10_cdydi"]
+[ext_resource type="Texture2D" uid="uid://jfhxbogmqaxy" path="res://skill tree/icons/harpoon_icon.png" id="11_4cf1k"]
+[ext_resource type="Texture2D" uid="uid://dp78tb38p4g52" path="res://skill tree/icons/chains_icon.png" id="12_rjc8t"]
+[ext_resource type="PackedScene" uid="uid://cjo1hemtuumkn" path="res://skill_tree_inverted_button.tscn" id="13_nq7ri"]
+[ext_resource type="Script" uid="uid://d1px4voqasu4y" path="res://skill tree/skill_info_panel.gd" id="14_nq7ri"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yf088"]
+font = ExtResource("3_itn7s")
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8pl"]
-bg_color = Color(0, 0, 0, 0.6313726)
+bg_color = Color(0.09803922, 0.03137255, 0.05490196, 0.8666667)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58i6i"]
 bg_color = Color(1, 1, 1, 1)
@@ -16,12 +31,26 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nl8pl"]
+font = ExtResource("3_itn7s")
+font_size = 26
+outline_size = 8
+outline_color = Color(5.1608413e-06, 5.160842e-06, 5.1608413e-06, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0v6ha"]
+font = ExtResource("3_itn7s")
+font_size = 17
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(5.1608413e-06, 5.160842e-06, 5.1608413e-06, 1)
+shadow_size = 0
+
 [node name="Skill Tree" type="Node2D" unique_id=604634100]
 script = ExtResource("1_fmctd")
 
 [node name="Node" type="Node2D" parent="." unique_id=606577394]
 
 [node name="FinalPath" type="Node2D" parent="Node" unique_id=1670245898 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 script = ExtResource("2_802jk")
 node = NodePath("../../final")
 
@@ -46,6 +75,7 @@ default_color = Color(0, 0, 0, 1)
 texture_mode = 2
 
 [node name="SwordPath" type="Line2D" parent="Node" unique_id=305438836 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 points = PackedVector2Array(-248, 8, -136, -64)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -53,6 +83,7 @@ script = ExtResource("2_802jk")
 node = NodePath("../../sword")
 
 [node name="ShieldPath" type="Line2D" parent="Node" unique_id=235192114 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 points = PackedVector2Array(-168, -136, -128, -80)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -60,6 +91,7 @@ script = ExtResource("2_802jk")
 node = NodePath("../../shield")
 
 [node name="SpearPath" type="Line2D" parent="Node" unique_id=1160059866 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 points = PackedVector2Array(-64, -176, -112, -80)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -67,6 +99,7 @@ script = ExtResource("2_802jk")
 node = NodePath("../../spear")
 
 [node name="GunPath" type="Line2D" parent="Node" unique_id=284359801 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 points = PackedVector2Array(-400, -64, -288, 8)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -74,6 +107,7 @@ script = ExtResource("2_802jk")
 node = NodePath("../../gun")
 
 [node name="HarpoonPath" type="Line2D" parent="Node" unique_id=1338651231 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 points = PackedVector2Array(-472, -176, -432, -80)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -81,6 +115,7 @@ script = ExtResource("2_802jk")
 node = NodePath("../../harpoon")
 
 [node name="DashPath" type="Line2D" parent="Node" unique_id=1407164711 node_paths=PackedStringArray("node")]
+position = Vector2(0, 18)
 points = PackedVector2Array(-368, -136, -408, -80)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -89,6 +124,7 @@ node = NodePath("../../dash")
 
 [node name="NegSwordPath" type="Line2D" parent="Node" unique_id=2107101917 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 points = PackedVector2Array(-288, 8, -400, 64)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -99,6 +135,7 @@ negative = true
 
 [node name="NegGunPath" type="Line2D" parent="Node" unique_id=1991437599 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 points = PackedVector2Array(-248, 8, -136, 64)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -109,6 +146,7 @@ negative = true
 
 [node name="NegDashPath" type="Line2D" parent="Node" unique_id=672951020 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 points = PackedVector2Array(-136, 64, -176, 120)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -119,6 +157,7 @@ negative = true
 
 [node name="NegHarpoonPath" type="Line2D" parent="Node" unique_id=1488430826 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 points = PackedVector2Array(-104, 80, -64, 168)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -129,6 +168,7 @@ negative = true
 
 [node name="NegSpearPath" type="Line2D" parent="Node" unique_id=871905802 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 points = PackedVector2Array(-424, 80, -472, 168)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -139,6 +179,7 @@ negative = true
 
 [node name="NegShieldPath" type="Line2D" parent="Node" unique_id=275638477 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 points = PackedVector2Array(-408, 80, -368, 136)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
@@ -149,6 +190,7 @@ negative = true
 
 [node name="NegFinalPath" type="Node2D" parent="Node" unique_id=1907541312 node_paths=PackedStringArray("node", "required_nodes")]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 18)
 script = ExtResource("2_802jk")
 node = NodePath("../../final_neg")
 required_nodes = [NodePath("../../dash_neg"), NodePath("../../harpoon_neg"), NodePath("../../spear_neg"), NodePath("../../shield_neg")]
@@ -174,6 +216,18 @@ points = PackedVector2Array(-288, 248, -472, 208)
 default_color = Color(0, 0, 0, 1)
 texture_mode = 2
 
+[node name="Label" type="Label" parent="." unique_id=603319307]
+z_index = 2
+z_as_relative = false
+offset_left = -200.0
+offset_top = -304.0
+offset_right = 200.0
+offset_bottom = -255.0
+text = "Level Down!
+Pick A Skill To un-unlock"
+label_settings = SubResource("LabelSettings_yf088")
+horizontal_alignment = 1
+
 [node name="Panel2" type="Panel" parent="." unique_id=408639439]
 z_index = -2
 z_as_relative = false
@@ -184,120 +238,173 @@ offset_bottom = 424.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
 
-[node name="0" parent="." unique_id=1868352893 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="0" parent="." unique_id=1868352893 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
-offset_top = -52.0
+offset_top = -32.0
 offset_right = -212.0
-offset_bottom = 60.0
+offset_bottom = 80.0
+icon = ExtResource("5_sdnbj")
+expand_icon = true
 required_nodes = [NodePath("../sword"), NodePath("../gun")]
 
-[node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -172.0
-offset_top = -116.0
+offset_top = -96.0
 offset_right = -60.0
-offset_bottom = -4.0
+offset_bottom = 16.0
+icon = ExtResource("6_46aa3")
+expand_icon = true
 required_nodes = [NodePath("../shield"), NodePath("../spear")]
 
-[node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
-offset_top = -116.0
+offset_top = -96.0
 offset_right = -364.0
-offset_bottom = -4.0
+offset_bottom = 16.0
+icon = ExtResource("7_0rout")
+expand_icon = true
 required_nodes = [NodePath("../dash"), NodePath("../harpoon")]
 
-[node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
-offset_top = -196.0
+offset_top = -176.0
 offset_right = -292.0
-offset_bottom = -84.0
+offset_bottom = -64.0
+icon = ExtResource("8_lrvki")
+expand_icon = true
 required_nodes = [NodePath("../final")]
 
-[node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
-offset_top = -196.0
+offset_top = -176.0
 offset_right = -132.0
-offset_bottom = -84.0
+offset_bottom = -64.0
+icon = ExtResource("9_d4sjy")
+expand_icon = true
 required_nodes = [NodePath("../final")]
 
-[node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
-offset_top = -252.0
+offset_top = -232.0
 offset_right = -12.0
-offset_bottom = -140.0
+offset_bottom = -120.0
+icon = ExtResource("10_cdydi")
+expand_icon = true
 required_nodes = [NodePath("../final")]
 
-[node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("required_nodes") instance=ExtResource("1_t5gwv")]
+[node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
-offset_top = -252.0
+offset_top = -232.0
 offset_right = -412.0
-offset_bottom = -140.0
+offset_bottom = -120.0
+icon = ExtResource("11_4cf1k")
+expand_icon = true
 required_nodes = [NodePath("../final")]
 
-[node name="final" parent="." unique_id=1629203100 instance=ExtResource("1_t5gwv")]
+[node name="final" parent="." unique_id=1629203100 instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
-offset_top = -308.0
+offset_top = -280.0
 offset_right = -212.0
-offset_bottom = -196.0
+offset_bottom = -168.0
+icon = ExtResource("12_rjc8t")
+expand_icon = true
 
-[node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -172.0
-offset_top = 4.0
+offset_top = 16.0
 offset_right = -60.0
-offset_bottom = 116.0
+offset_bottom = 128.0
+icon = ExtResource("7_0rout")
+expand_icon = true
 required_nodes = [NodePath("../0")]
 
-[node name="sword_neg" parent="." unique_id=437368073 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="sword_neg" parent="." unique_id=437368073 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -476.0
-offset_top = 4.0
+offset_top = 16.0
 offset_right = -364.0
-offset_bottom = 116.0
+offset_bottom = 128.0
+icon = ExtResource("6_46aa3")
+expand_icon = true
 required_nodes = [NodePath("../0")]
 
-[node name="shield_neg" parent="." unique_id=1958150389 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="shield_neg" parent="." unique_id=1958150389 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -404.0
-offset_top = 84.0
+offset_top = 96.0
 offset_right = -292.0
-offset_bottom = 196.0
+offset_bottom = 208.0
+icon = ExtResource("9_d4sjy")
+expand_icon = true
 required_nodes = [NodePath("../sword_neg")]
 
-[node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -244.0
-offset_top = 84.0
+offset_top = 96.0
 offset_right = -132.0
-offset_bottom = 196.0
+offset_bottom = 208.0
+icon = ExtResource("8_lrvki")
+expand_icon = true
 required_nodes = [NodePath("../gun_neg")]
 
-[node name="harpoon_neg" parent="." unique_id=2083797914 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="harpoon_neg" parent="." unique_id=2083797914 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -124.0
-offset_top = 132.0
+offset_top = 144.0
 offset_right = -12.0
-offset_bottom = 244.0
+offset_bottom = 256.0
+icon = ExtResource("11_4cf1k")
+expand_icon = true
 required_nodes = [NodePath("../gun_neg")]
 
-[node name="spear_neg" parent="." unique_id=126980460 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="spear_neg" parent="." unique_id=126980460 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -524.0
-offset_top = 132.0
+offset_top = 144.0
 offset_right = -412.0
-offset_bottom = 244.0
+offset_bottom = 256.0
+icon = ExtResource("10_cdydi")
+expand_icon = true
 required_nodes = [NodePath("../sword_neg")]
 
-[node name="final_neg" parent="." unique_id=1911817242 node_paths=PackedStringArray("required_nodes") instance=ExtResource("4_t5gwv")]
+[node name="final_neg" parent="." unique_id=1911817242 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -320.0
-offset_top = 192.0
+offset_top = 196.0
 offset_right = -208.0
-offset_bottom = 304.0
+offset_bottom = 308.0
+icon = ExtResource("12_rjc8t")
+expand_icon = true
 required_nodes = [NodePath("../harpoon_neg"), NodePath("../dash_neg"), NodePath("../shield_neg"), NodePath("../spear_neg")]
 
-[node name="InfoPanel" type="Panel" parent="." unique_id=481681843]
+[node name="InfoPanel" type="Panel" parent="." unique_id=481681843 node_paths=PackedStringArray("skill_name", "skill_description")]
 offset_left = 40.0
-offset_top = -280.0
+offset_top = -264.0
 offset_right = 496.0
-offset_bottom = 280.0
+offset_bottom = 264.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_58i6i")
+script = ExtResource("14_nq7ri")
+skill_name = NodePath("Skill Name")
+skill_description = NodePath("Skill Description")
+
+[node name="Skill Name" type="Label" parent="InfoPanel" unique_id=1637994557]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 444.0
+offset_bottom = 100.0
+text = "Lamenting Chains of Order and Chaos"
+label_settings = SubResource("LabelSettings_nl8pl")
+autowrap_mode = 2
+
+[node name="Skill Description" type="Label" parent="InfoPanel" unique_id=1424940420]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 116.0
+offset_right = 444.0
+offset_bottom = 233.0
+text = "You are now granted the ultimate power of order and chaos, permanently keeping you chained in a single position. The ultimate upgrade."
+label_settings = SubResource("LabelSettings_0v6ha")
+autowrap_mode = 2
