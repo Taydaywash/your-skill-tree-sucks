@@ -20,6 +20,13 @@ func _ready() -> void:
 	button_hold_timer.wait_time = button_hold_duration
 	button_hold_timer.autostart = false
 
+func _process(_delta: float) -> void:
+	for node in required_nodes:
+			if not node.shattered:
+				return
+	if not shattered and not unlocked:
+		self_modulate = Color(0.8,0.8,0.8)
+
 func _on_mouse_entered() -> void:
 	info_panel.emit_signal("skill_hovered",name,"empty")
 	if shattered:

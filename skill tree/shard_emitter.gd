@@ -64,18 +64,10 @@ func _ready() -> void:
 			shard.hide()
 			shards.append(shard)
 
-			#setup polygons & collision shapes
+			#setup polygons
 			shard.get_node("Polygon2D").texture = texture
 			shard.get_node("Polygon2D").polygon = t
 			shard.get_node("Polygon2D").position = -center
-
-			#shrink polygon so that the collision shapes don't overlapp
-			var shrunk_triangles = Geometry2D.offset_polygon(t, -2)
-			if shrunk_triangles.size() > 0:
-				shard.get_node("CollisionPolygon2D").polygon = shrunk_triangles[0]
-			else:
-				shard.get_node("CollisionPolygon2D").polygon = t
-			shard.get_node("CollisionPolygon2D").position = -center
 
 		queue_redraw()
 		call_deferred("add_shards")
@@ -93,7 +85,6 @@ func shatter() -> void:
 		var direction = Vector2.UP.rotated(randf_range(0, 2*PI))
 		var impulse = randf_range(min_impulse, max_impulse)
 		s.apply_central_impulse(direction * impulse)
-		s.get_node("CollisionPolygon2D").disabled = true
 		s.show()
 	$DeleteTimer.start(lifetime)
 
