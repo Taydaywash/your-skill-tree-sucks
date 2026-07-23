@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dcsj55qrhqcan"]
+
+[ext_resource type="Script" uid="uid://b0xvc38vycq40" path="res://enemies/spawner/spawner.gd" id="1_4mutu"]
+[ext_resource type="PackedScene" uid="uid://cxxr0k8g0861a" path="res://enemies/enemy.tscn" id="2_remv4"]
+[ext_resource type="PackedScene" uid="uid://c227lkskobg4f" path="res://enemies/spawner/spawn indicator/spawn_indicator.tscn" id="3_7pkxv"]
+[ext_resource type="Script" uid="uid://c1pugpvcsv5lp" path="res://enemies/spawner/marker_2d.gd" id="4_iwwlv"]
+
+[node name="Spawner" type="Node2D" unique_id=2040356687 node_paths=PackedStringArray("timer")]
+script = ExtResource("1_4mutu")
+enemy_scene = ExtResource("2_remv4")
+timer = NodePath("Timer")
+indicator_scene = ExtResource("3_7pkxv")
+
+[node name="Timer" type="Timer" parent="." unique_id=438572802]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2078705381]
+script = ExtResource("4_iwwlv")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -29,9 +29,3 @@ z_index = 1
 position = Vector2(576, 320)
 
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
-
-[node name="Marker2D" parent="Spawner" index="1" unique_id=2078705381]
-position = Vector2(-291, 92)
-position_offset = 120.0
-
-[editable path="Spawner"]

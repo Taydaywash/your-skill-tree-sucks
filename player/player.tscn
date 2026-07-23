@@ -86,7 +86,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rajix"]
 radius = 29.999996
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vjpb"]
+size = Vector2(28, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lth"]
+size = Vector2(24, 32)
+
 [node name="Player" type="CharacterBody2D" unique_id=1088654542 node_paths=PackedStringArray("sprite")]
+collision_layer = 0
 script = ExtResource("1_ivps1")
 move_speed = 250
 sprite = NodePath("Body")
@@ -109,6 +116,24 @@ animation = &"sword_idle"
 script = ExtResource("12_606se")
 
 [node name="Area2D" type="Area2D" parent="Hand" unique_id=604919790]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D" unique_id=195259210]
 shape = SubResource("CircleShape2D_rajix")
+
+[node name="PlayerHitbox" type="Area2D" parent="." unique_id=1066398349]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox" unique_id=605930711]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_6vjpb")
+
+[node name="PlayerHurtbox" type="Area2D" parent="." unique_id=945928895]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox" unique_id=393733954]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_b1lth")
+
+[connection signal="area_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_area_entered"]
