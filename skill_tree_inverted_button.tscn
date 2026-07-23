@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cjo1hemtuumkn"]
 
-[ext_resource type="Script" uid="uid://rxyvke36yyqt" path="res://skill_tree_inverted_button.gd" id="1_w7oq3"]
-[ext_resource type="Animation" uid="uid://ghm5njccyiq1" path="res://build.res" id="2_y4gy4"]
-[ext_resource type="Texture2D" uid="uid://nsf77pn7q8hw" path="res://skill tree/placeholder_skill.png" id="3_w7oq3"]
+[ext_resource type="Script" uid="uid://rxyvke36yyqt" path="res://skill tree/skill_tree_inverted_button.gd" id="1_503ij"]
+[ext_resource type="Animation" uid="uid://ghm5njccyiq1" path="res://build.res" id="2_ximra"]
+[ext_resource type="Texture2D" uid="uid://nsf77pn7q8hw" path="res://skill tree/placeholder_skill.png" id="3_hiala"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehp47"]
 bg_color = Color(0.8750217, 0.16538504, 0, 1)
@@ -312,13 +312,13 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.06108652381980153, -0.1308996938995747, 0.09250245035569966, 0.0]
+"values": [3.141592653589793, 3.202679177409595, 3.0106929596902186, 3.2340951039454917, 3.141592653589793]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_km5uh"]
 _data = {
 &"RESET": SubResource("Animation_ju8b4"),
-&"build": ExtResource("2_y4gy4"),
+&"build": ExtResource("2_ximra"),
 &"cant interact": SubResource("Animation_xsgn6")
 }
 
@@ -333,7 +333,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ehp47")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ehp47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3okbx")
-script = ExtResource("1_w7oq3")
+script = ExtResource("1_503ij")
 button_hold_duration = 2.0
 inverted_animation_player = NodePath("InvertedAnimationPlayer")
 sprite = NodePath("Sprite2D")
@@ -344,7 +344,7 @@ libraries/ = SubResource("AnimationLibrary_km5uh")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=283344105]
 visible = false
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("3_w7oq3")
+texture = ExtResource("3_hiala")
 centered = false
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2113469107]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0s7flavngvkg"]
 
 [ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
-[ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill_tree.tscn" id="2_hyim0"]
+[ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill tree/skill_tree.tscn" id="2_hyim0"]
 [ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
 [ext_resource type="Script" uid="uid://c1pugpvcsv5lp" path="res://enemies/spawner/marker_2d.gd" id="4_spvjk"]
 
@@ -19,6 +19,7 @@ polygon = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=902332067]
 invert_enabled = true
+invert_border = 1845.8
 polygon = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128)
 uv = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
 
