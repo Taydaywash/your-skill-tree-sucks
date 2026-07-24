@@ -38,9 +38,8 @@ func on_health_changed(new_health: int) -> void:
 	health_bar.value = new_health
 
 func _on_player_hurtbox_area_entered(area):
-	var area_parent = area.get_parent()
-	if "damage_amount" in area_parent:
-		var damage = area_parent.get("damage_amount")
+	if "damage_amount" in area:
+		var damage = area.get("damage_amount")
 		take_damage(damage)
 
 func take_damage(amount: int) -> void:
@@ -63,10 +62,7 @@ func start_invincibility() -> void:
 	sprite.modulate.a = 1.0
 	
 	for area in hurtbox.get_overlapping_areas():
-		var area_parent = area.get_parent()
-		if area_parent.is_in_group("Enemy"):
-			take_damage(area_parent.damage_amount)
-			break
+		take_damage(area.damage_amount)
 
 func on_death() -> void:
 	get_tree().call_deferred("reload_current_scene")

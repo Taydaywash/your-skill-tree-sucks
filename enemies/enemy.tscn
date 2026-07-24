@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bm4uu7ahbwno8" path="res://enemies/enemy.gd" id="1_7frlh"]
 [ext_resource type="Texture2D" uid="uid://bns54eyafhyej" path="res://icon.svg" id="1_fw1ev"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="3_a6vjd"]
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="3_orwns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7frlh"]
@@ -25,9 +26,11 @@ position = Vector2(-4.7683716e-07, -4.172325e-07)
 scale = Vector2(0.234375, 0.234375)
 texture = ExtResource("1_fw1ev")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=960642182 groups=["Player"]]
+[node name="Hitbox" type="Area2D" parent="." unique_id=960642182]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 0
+script = ExtResource("3_a6vjd")
+damage_amount = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1439527242]
 shape = SubResource("CircleShape2D_6vjpb")
