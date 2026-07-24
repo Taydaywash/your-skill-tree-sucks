@@ -2,26 +2,26 @@ extends AnimatedSprite2D
 
 @export_category("General")
 @export var player: Player
-var current_melee = "spear"
 @export var animation_player: AnimationPlayer
+
+#Melee
+var current_melee = "spear"
 
 @export_category("Spear")
 @export var spear_chargeup_time : float = 0.5
 @export var spear_raycast: RayCast2D
-
-@export_category("Dash")
-@export var dash_speed : int
-@export var dash_duration : float #seconds
-
-var current_weapon = "spear"
-var current_range = "dash"
-
-#Spear Variables
 var spear_charged : bool = false
 var spear_chargeup_cancelled : bool = false
 var spear_chargeup : Timer
 
-#Dash Variables
+#Range
+var current_range = "harpoon"
+@export var harpoon_shot: PackedScene
+
+#Other
+@export_category("Dash")
+@export var dash_speed : int
+@export var dash_duration : float #seconds
 var dash_timer : Timer
 var dash_direction: Vector2 = Vector2.ZERO
 
@@ -78,7 +78,7 @@ func _input(event: InputEvent) -> void:
 			"spear":
 				spear_chargeup.start()
 				await spear_chargeup.timeout
-				animation_player.play("reset")
+				animation_player.play("RESET")
 				animation_player.play("spear_attack")
 			"sword":
 				play("sword_idle")
@@ -89,11 +89,16 @@ func _input(event: InputEvent) -> void:
 		match current_range:
 			"harpoon":
 				play("harpoon_idle")
+				var harpoon_shot_instance = harpoon_shot.instantiate()
+				get_parent().add_sibling(harpoon_shot_instance)
+				harpoon_shot_instance.global_position = get_parent().global_position
+				harpoon_shot_instance.velocity = (global_position - harpoon_shot_instance.global_position).normalized() * harpoon_shot_instance.speed
+				harpoon_shot_instance.hand = self
 			"gun":
 				play("gun_idle")
 			"rock":
 				play("fist_idle")
-		animation_player.play("reset")
+		animation_player.play("RESET")
 		animation_player.play("range_attack")
 	if event.is_action_pressed("dash"):
 		player.movement_disabled = true

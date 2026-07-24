@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="13_yllr7"]
 [ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="14_wodsf"]
 [ext_resource type="Texture2D" uid="uid://b0uofxx8vjtu4" path="res://player/animations/sparkle.png" id="15_32hag"]
+[ext_resource type="PackedScene" uid="uid://bpvtlxywwmahl" path="res://player/range attacks/harpoon_shot.tscn" id="15_65viv"]
 [ext_resource type="PackedScene" uid="uid://cbo75wyi0m7wr" path="res://classes/leveling system/leveling.tscn" id="17_tqiix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
@@ -243,7 +244,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_e7oew"]
 resource_name = "range_attack"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -428,6 +429,7 @@ player = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 spear_chargeup_time = 0.2
 spear_raycast = NodePath("Weapon/SpearRaycast")
+harpoon_shot = ExtResource("15_65viv")
 dash_speed = 1000
 dash_duration = 0.4
 

@@ -7,10 +7,14 @@ extends CharacterBody2D
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $Health/HealthBar
 
+var hooked : bool = false
+
+var default_speed : float
 
 var player: Player = null
 
 func _ready() -> void:
+	default_speed = speed
 	player = get_parent().get_node("Player")
 	health_bar.max_value = health.max_health
 	health_bar.value = health.current_health
@@ -26,9 +30,7 @@ func _physics_process(_delta):
 
 func on_health_changed(new_health: int) -> void:
 	health_bar.value = new_health
-	print(new_health)
 	if not health_bar.visible:
-		print("visible")
 		health_bar.visible = true
 
 func on_death() -> void:
@@ -37,10 +39,7 @@ func on_death() -> void:
 
 func _on_hurtbot_area_entered(area):
 	if area.pull_enemy:
-		print("pull")
-		speed *= 10
-		await get_tree().create_timer(0.15).timeout
-		speed /= 10
+		speed = default_speed * 2 + speed/5
 	health.take_damage(area.damage_amount)
 
 func spawn_xp_orb() -> void:

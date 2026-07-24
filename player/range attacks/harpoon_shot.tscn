@@ -1,21 +1,40 @@
 [gd_scene format=3 uid="uid://bpvtlxywwmahl"]
 
 [ext_resource type="Texture2D" uid="uid://jfhxbogmqaxy" path="res://skill tree/icons/harpoon_icon.png" id="1_mj74p"]
+[ext_resource type="Script" uid="uid://cfj8nkkh3trd7" path="res://player/range attacks/bullet.gd" id="2_153yy"]
 [ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_i7jpt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nl8pl"]
 radius = 28.0
 
-[node name="HarpoonShot" type="Sprite2D" unique_id=269680938]
-rotation = 0.7853982
-scale = Vector2(0.2857143, 0.2857143)
-texture = ExtResource("1_mj74p")
+[node name="Physics" type="CharacterBody2D" unique_id=626645502 node_paths=PackedStringArray("damage_area", "line_2d")]
+collision_layer = 0
+script = ExtResource("2_153yy")
+speed = 500
+damage_area = NodePath("DamageArea")
+line_2d = NodePath("Line2D")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=314767685]
+[node name="DamageArea" type="Area2D" parent="." unique_id=314767685]
+z_index = 2
+rotation = 0.7853982
+scale = Vector2(0.28571427, 0.28571427)
 collision_layer = 2
-collision_mask = 0
+collision_mask = 9
 script = ExtResource("2_i7jpt")
+damage_amount = 10
 pull_enemy = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1783652798]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1783652798]
 shape = SubResource("CircleShape2D_nl8pl")
+
+[node name="HarpoonShot" type="Sprite2D" parent="." unique_id=269680938]
+rotation = 0.7853982
+scale = Vector2(0.28571427, 0.28571427)
+texture = ExtResource("1_mj74p")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=934660833]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
