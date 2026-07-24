@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bpvtlxywwmahl"]
+
+[ext_resource type="Texture2D" uid="uid://jfhxbogmqaxy" path="res://skill tree/icons/harpoon_icon.png" id="1_mj74p"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_i7jpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nl8pl"]
+radius = 28.0
+
+[node name="HarpoonShot" type="Sprite2D" unique_id=269680938]
+rotation = 0.7853982
+scale = Vector2(0.2857143, 0.2857143)
+texture = ExtResource("1_mj74p")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=314767685]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_i7jpt")
+pull_enemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1783652798]
+shape = SubResource("CircleShape2D_nl8pl")

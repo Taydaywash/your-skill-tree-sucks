@@ -36,6 +36,11 @@ func on_death() -> void:
 	call_deferred("queue_free")
 
 func _on_hurtbot_area_entered(area):
+	if area.pull_enemy:
+		print("pull")
+		speed *= 10
+		await get_tree().create_timer(0.15).timeout
+		speed /= 10
 	health.take_damage(area.damage_amount)
 
 func spawn_xp_orb() -> void:

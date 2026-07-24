@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 
 @export_category("General")
 @export var player: Player
+var current_melee = "spear"
 @export var animation_player: AnimationPlayer
 
 @export_category("Spear")
@@ -36,11 +37,19 @@ func _ready() -> void:
 	add_child(dash_timer)
 	
 	EventController.connect("unlock_sword",func ():
-		current_weapon = "sword"
+		current_melee = "sword"
 		play("sword_idle")
 	)
 	EventController.connect("unlock_fist",func ():
-		current_weapon = "fist"
+		current_melee = "fist"
+		play("fist_idle")
+	)
+	EventController.connect("unlock_gun",func ():
+		current_range = "gun"
+		play("gun_idle")
+	)
+	EventController.connect("unlock_rock_throw",func ():
+		current_range = "rock"
 		play("fist_idle")
 	)
 	
@@ -54,7 +63,7 @@ func _process(_delta: float) -> void:
 	if animation_player.is_playing():
 		return
 	position = (get_global_mouse_position() - get_parent().global_position).normalized() * 20
-	match current_weapon:
+	match current_melee:
 		"spear":
 			look_at(get_parent().global_position)
 			rotate(PI)
@@ -65,14 +74,12 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("melee_attack"):
-		match current_weapon:
+		match current_melee:
 			"spear":
 				spear_chargeup.start()
 				await spear_chargeup.timeout
+				animation_player.play("reset")
 				animation_player.play("spear_attack")
-				await animation_player.animation_finished
-			"sheild":
-				pass
 			"sword":
 				play("sword_idle")
 			"fist":
@@ -81,18 +88,20 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("range_attack"):
 		match current_range:
 			"harpoon":
-				pass
-			"dash":
-				player.movement_disabled = true
-				player.is_invincible = true
-				dash_direction = global_position.direction_to(get_global_mouse_position())
-				player.velocity = dash_direction * dash_speed
-				dash_timer.start()
-				await dash_timer.timeout
-				player.movement_disabled = false
-				player.is_invincible = false
-				player.velocity = Vector2.ZERO
+				play("harpoon_idle")
 			"gun":
-				pass
-			"rock_throw":
-				pass
+				play("gun_idle")
+			"rock":
+				play("fist_idle")
+		animation_player.play("reset")
+		animation_player.play("range_attack")
+	if event.is_action_pressed("dash"):
+		player.movement_disabled = true
+		player.is_invincible = true
+		dash_direction = global_position.direction_to(get_global_mouse_position())
+		player.velocity = dash_direction * dash_speed
+		dash_timer.start()
+		await dash_timer.timeout
+		player.movement_disabled = false
+		player.is_invincible = false
+		player.velocity = Vector2.ZERO

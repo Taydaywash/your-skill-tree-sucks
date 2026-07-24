@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://c7r8o7khumhut" path="res://player/animations/player_walk/walk0004.png" id="7_bwjto"]
 [ext_resource type="Texture2D" uid="uid://wq3i3hobxuck" path="res://player/animations/player_walk/walk0005.png" id="8_606se"]
 [ext_resource type="Texture2D" uid="uid://cmfqti1ul7dkm" path="res://player/animations/hand.png" id="9_b26j0"]
+[ext_resource type="Texture2D" uid="uid://06vxexv7ksve" path="res://player/animations/gun.png" id="10_e7oew"]
 [ext_resource type="Texture2D" uid="uid://dj8mneg4trjq4" path="res://player/animations/spear.png" id="10_urp6f"]
 [ext_resource type="Texture2D" uid="uid://47homgb7dab0" path="res://player/animations/sword.png" id="11_bwjto"]
+[ext_resource type="Texture2D" uid="uid://dqa4281j7hnol" path="res://player/animations/harpoon.png" id="11_c35mf"]
 [ext_resource type="Script" uid="uid://oyn1v23j0yyj" path="res://player/player_hand.gd" id="12_606se"]
 [ext_resource type="Texture2D" uid="uid://bujuoj1cysr5s" path="res://player/animations/spear_weapon.png" id="13_kb6p2"]
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="13_yllr7"]
@@ -69,6 +71,22 @@ animations = [{
 }],
 "loop": 1,
 "name": &"fist_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_e7oew")
+}],
+"loop": 1,
+"name": &"gun_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_c35mf")
+}],
+"loop": 1,
+"name": &"harpoon_idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -210,6 +228,34 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Hand:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_e7oew"]
+resource_name = "range_attack"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.25, 0.25), Vector2(0.2, 0.2)]
+}
 
 [sub_resource type="Animation" id="Animation_32hag"]
 resource_name = "spear_attack"
@@ -339,6 +385,7 @@ tracks/9/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqiix"]
 _data = {
 &"RESET": SubResource("Animation_wodsf"),
+&"range_attack": SubResource("Animation_e7oew"),
 &"spear_attack": SubResource("Animation_32hag")
 }
 
