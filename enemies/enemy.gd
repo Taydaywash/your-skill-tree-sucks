@@ -2,8 +2,11 @@ extends CharacterBody2D
 
 @export var speed: float = 100
 @export var damage_amount: int = 20
+@export var xp_orb_scene: PackedScene
+
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $Health/HealthBar
+
 
 var player: Player = null
 
@@ -27,7 +30,13 @@ func on_health_changed(new_health: int) -> void:
 	health_bar.value = new_health
 
 func on_death() -> void:
+	spawn_xp_orb()
 	call_deferred("queue_free")
 
 func _on_hurtbot_area_entered(area):
 	health.take_damage(area.damage_amount)
+
+func spawn_xp_orb() -> void:
+	var xp_orb = xp_orb_scene.instantiate()
+	get_tree().current_scene.call_deferred("add_child", xp_orb)
+	xp_orb.global_position = global_position

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bsxiri62dcrmy"]
+
+[ext_resource type="Texture2D" uid="uid://bns54eyafhyej" path="res://icon.svg" id="1_q58er"]
+[ext_resource type="Script" uid="uid://dinvoibbhkgao" path="res://classes/leveling system/xp_orb.gd" id="1_rsvh8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vjpb"]
+radius = 6.0
+
+[node name="AttractionArea" type="Area2D" unique_id=977865216]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_rsvh8")
+speed = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256044944]
+shape = SubResource("CircleShape2D_b1lth")
+
+[node name="XpOrb" type="Area2D" parent="." unique_id=1838520654]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XpOrb" unique_id=1719735651]
+shape = SubResource("CircleShape2D_6vjpb")
+
+[node name="Sprite2D" type="Sprite2D" parent="XpOrb" unique_id=389094258]
+self_modulate = Color(1, 1, 0.0627451, 1)
+scale = Vector2(0.0703125, 0.078125)
+texture = ExtResource("1_q58er")
+
+[connection signal="body_entered" from="." to="." method="_on_attraction_area_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_attraction_area_body_exited"]
+[connection signal="body_entered" from="XpOrb" to="." method="_on_xp_orb_body_entered"]

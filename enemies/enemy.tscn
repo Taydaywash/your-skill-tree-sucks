@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bm4uu7ahbwno8" path="res://enemies/enemy.gd" id="1_7frlh"]
 [ext_resource type="Texture2D" uid="uid://bns54eyafhyej" path="res://icon.svg" id="1_fw1ev"]
+[ext_resource type="PackedScene" uid="uid://bsxiri62dcrmy" path="res://classes/leveling system/xp_orb.tscn" id="2_07tka"]
 [ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="3_a6vjd"]
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="3_orwns"]
 
@@ -17,14 +18,15 @@ radius = 15.0
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_7frlh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598867225]
-shape = SubResource("CircleShape2D_7frlh")
+xp_orb_scene = ExtResource("2_07tka")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462433278]
 position = Vector2(-4.7683716e-07, -4.172325e-07)
 scale = Vector2(0.234375, 0.234375)
 texture = ExtResource("1_fw1ev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598867225]
+shape = SubResource("CircleShape2D_7frlh")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=960642182]
 collision_layer = 8
