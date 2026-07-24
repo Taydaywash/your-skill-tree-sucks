@@ -5,9 +5,8 @@ class_name Player
 @export var sprite: AnimatedSprite2D
 @export var invincibility_timer: Timer
 @export var hurtbox: Area2D
-
-@onready var health: Health = $Health
-@onready var health_bar: ProgressBar = $Health/HealthBar
+@export var health: Health 
+@export var health_bar: ProgressBar
 
 var is_invincible: bool = false
 var flash_tween: Tween = null
