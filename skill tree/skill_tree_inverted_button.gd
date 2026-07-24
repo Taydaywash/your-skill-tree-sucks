@@ -7,7 +7,8 @@ extends Button
 @export var required_nodes : Array[Button]
 @export var inverted_animation_player: AnimationPlayer
 @export var sprite: Sprite2D
-
+@export var title: String
+@export_multiline("type") var description: String
 var shattered := false #For Error Prevention Only
 var unlocked := false
 
@@ -33,7 +34,7 @@ func _process(_delta: float) -> void:
 	tween.parallel().tween_property(self, "self_modulate", Color(0.51, 0.51, 0.51, 1.0), 0.03).set_ease(Tween.EASE_IN)
 
 func _on_mouse_entered() -> void:
-	info_panel.emit_signal("skill_hovered",name,"empty")
+	info_panel.emit_signal("skill_hovered",title,description)
 	if unlocked:
 		return
 	for node in required_nodes:
