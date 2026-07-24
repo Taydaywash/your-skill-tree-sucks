@@ -33,17 +33,20 @@ position = Vector2(576, 320)
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
 
 [node name="Marker2D" parent="Spawner" index="1" unique_id=2078705381]
+visible = false
 position = Vector2(736, 288)
 position_offset_x = 125.0
 position_offset_y = 125.0
 circle_marker = false
 
 [node name="Marker2D2" type="Marker2D" parent="Spawner" unique_id=2035314425]
+visible = false
 position = Vector2(760, -256)
 script = ExtResource("4_spvjk")
 circle_marker = false
 
 [node name="Marker2D3" type="Marker2D" parent="Spawner" unique_id=50251439]
+visible = false
 position = Vector2(-800, -128)
 script = ExtResource("4_spvjk")
 position_offset_x = 75.0
@@ -51,6 +54,7 @@ position_offset_y = 200.0
 circle_marker = false
 
 [node name="Marker2D4" type="Marker2D" parent="Spawner" unique_id=1888805367]
+visible = false
 position = Vector2(-392, 320)
 script = ExtResource("4_spvjk")
 position_offset_x = 150.0
@@ -58,6 +62,7 @@ position_offset_y = 150.0
 circle_marker = false
 
 [node name="Marker2D5" type="Marker2D" parent="Spawner" unique_id=610792897]
+visible = false
 position = Vector2(264, 320)
 script = ExtResource("4_spvjk")
 position_offset_x = 150.0
@@ -65,6 +70,7 @@ position_offset_y = 150.0
 circle_marker = false
 
 [node name="Marker2D6" type="Marker2D" parent="Spawner" unique_id=79249919]
+visible = false
 position = Vector2(-64, 320)
 script = ExtResource("4_spvjk")
 position_offset_x = 150.0
@@ -72,6 +78,7 @@ position_offset_y = 150.0
 circle_marker = false
 
 [node name="Marker2D7" type="Marker2D" parent="Spawner" unique_id=1036976376]
+visible = false
 position = Vector2(-32, -408)
 script = ExtResource("4_spvjk")
 position_offset_x = 450.0
@@ -79,12 +86,14 @@ position_offset_y = 50.0
 circle_marker = false
 
 [node name="Marker2D8" type="Marker2D" parent="Spawner" unique_id=469501716]
+visible = false
 position = Vector2(-584, -152)
 script = ExtResource("4_spvjk")
 position_offset_y = 175.0
 circle_marker = false
 
 [node name="Marker2D9" type="Marker2D" parent="Spawner" unique_id=28151712]
+visible = false
 position = Vector2(-320, -152)
 script = ExtResource("4_spvjk")
 position_offset_x = 125.0
@@ -92,11 +101,13 @@ position_offset_y = 175.0
 circle_marker = false
 
 [node name="Marker2D10" type="Marker2D" parent="Spawner" unique_id=588799664]
+visible = false
 position = Vector2(760, -256)
 script = ExtResource("4_spvjk")
 circle_marker = false
 
 [node name="Marker2D11" type="Marker2D" parent="Spawner" unique_id=2030877453]
+visible = false
 position = Vector2(72, 96)
 script = ExtResource("4_spvjk")
 position_offset_x = 425.0
@@ -104,24 +115,28 @@ position_offset_y = 50.0
 circle_marker = false
 
 [node name="Marker2D12" type="Marker2D" parent="Spawner" unique_id=297875225]
+visible = false
 position = Vector2(-56, -152)
 script = ExtResource("4_spvjk")
 position_offset_y = 175.0
 circle_marker = false
 
 [node name="Marker2D13" type="Marker2D" parent="Spawner" unique_id=1552575879]
+visible = false
 position = Vector2(184, -152)
 script = ExtResource("4_spvjk")
 position_offset_y = 175.0
 circle_marker = false
 
 [node name="Marker2D14" type="Marker2D" parent="Spawner" unique_id=1166169562]
+visible = false
 position = Vector2(417, -152)
 script = ExtResource("4_spvjk")
 position_offset_y = 175.0
 circle_marker = false
 
 [node name="Marker2D15" type="Marker2D" parent="Spawner" unique_id=2063458827]
+visible = false
 position = Vector2(592, -104)
 script = ExtResource("4_spvjk")
 position_offset_x = 50.0

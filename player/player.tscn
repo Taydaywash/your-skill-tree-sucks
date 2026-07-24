@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dj8mneg4trjq4" path="res://player/animations/spear.png" id="10_urp6f"]
 [ext_resource type="Texture2D" uid="uid://47homgb7dab0" path="res://player/animations/sword.png" id="11_bwjto"]
 [ext_resource type="Script" uid="uid://oyn1v23j0yyj" path="res://player/player_hand.gd" id="12_606se"]
+[ext_resource type="Texture2D" uid="uid://bujuoj1cysr5s" path="res://player/animations/spear_weapon.png" id="13_kb6p2"]
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="13_yllr7"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="14_wodsf"]
+[ext_resource type="Texture2D" uid="uid://b0uofxx8vjtu4" path="res://player/animations/sparkle.png" id="15_32hag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
 size = Vector2(28, 36)
@@ -84,6 +87,263 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_wodsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand/Weapon:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fist_idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Weapon/SpearHitbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Weapon/SpearHitbox:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Weapon/SparkleEffect:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hand/Weapon/SparkleEffect:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.62575835, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hand/Weapon/SparkleEffect:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Hand/Weapon/SpearRaycast:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Hand/Weapon/SpearHitbox:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_32hag"]
+resource_name = "spear_attack"
+length = 0.3333
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.008333334, 0.13333333, 0.19999999, 0.3333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(650, 0), Vector2(805, 0), Vector2(800, 0), Vector2(800, 0), Vector2(20, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand/Weapon:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333329),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("13_kb6p2"), null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"fist_idle", &"spear_idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Weapon/SpearHitbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 247.27975),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Weapon/SpearHitbox:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 445.72165),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Weapon/SparkleEffect:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.9269171555944915]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hand/Weapon/SparkleEffect:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1), Vector2(1.175, 2.35)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hand/Weapon/SparkleEffect:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Hand/Weapon/SpearRaycast:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Hand/Weapon/SpearHitbox:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 187.40294),
+"update": 0,
+"values": [Vector2(99999, 99999), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqiix"]
+_data = {
+&"RESET": SubResource("Animation_wodsf"),
+&"spear_attack": SubResource("Animation_32hag")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58i6i"]
+size = Vector2(73.44298, 40)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_rajix"]
 radius = 29.999996
 
@@ -118,12 +378,50 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_nl8pl")
 animation = &"walk"
 
-[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541]
+[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "spear_raycast")]
 position = Vector2(19.999998, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_58i6i")
-animation = &"sword_idle"
+animation = &"fist_idle"
 script = ExtResource("12_606se")
+player = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+spear_chargeup_time = 0.2
+spear_raycast = NodePath("Weapon/SpearRaycast")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1328636621]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_tqiix")
+
+[node name="Weapon" type="Sprite2D" parent="Hand" unique_id=1983645036]
+self_modulate = Color(1, 1, 1, 0.46666667)
+scale = Vector2(1.6339198, 1)
+
+[node name="SpearHitbox" type="Area2D" parent="Hand/Weapon" unique_id=2106612464]
+visible = false
+collision_layer = 2
+collision_mask = 0
+monitorable = false
+script = ExtResource("14_wodsf")
+damage_amount = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Weapon/SpearHitbox" unique_id=1578485210]
+position = Vector2(474.37347, 0)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_58i6i")
+
+[node name="SparkleEffect" type="Sprite2D" parent="Hand/Weapon" unique_id=2051917126]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+position = Vector2(474.31946, 0)
+scale = Vector2(0.62575835, 1)
+texture = ExtResource("15_32hag")
+
+[node name="SpearRaycast" type="RayCast2D" parent="Hand/Weapon" unique_id=1267639171]
+position = Vector2(-492.68018, 0)
+enabled = false
+target_position = Vector2(966.9996, 0)
+hit_from_inside = true
 
 [node name="Area2D" type="Area2D" parent="Hand" unique_id=604919790]
 collision_layer = 0
@@ -133,10 +431,12 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_rajix")
 
 [node name="DamageTestArea" type="Area2D" parent="Hand" unique_id=2118758764]
+visible = false
 position = Vector2(50.000015, -34.999996)
 scale = Vector2(4.9999995, 4.9999995)
 collision_layer = 2
 collision_mask = 0
+monitorable = false
 script = SubResource("GDScript_6vjpb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/DamageTestArea" unique_id=305674087]

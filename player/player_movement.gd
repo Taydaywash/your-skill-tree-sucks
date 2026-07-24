@@ -11,14 +11,16 @@ class_name Player
 
 var is_invincible: bool = false
 var flash_tween: Tween = null
+var movement_disabled : bool = false
 
 func _ready() -> void:
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
 
 func _physics_process(_delta: float) -> void:
-	var input_dir = Input.get_vector("move_left","move_right","move_up","move_down")
-	velocity = input_dir.normalized() * move_speed
+	if not movement_disabled:
+		var input_dir = Input.get_vector("move_left","move_right","move_up","move_down")
+		velocity = input_dir.normalized() * move_speed
 	move_and_slide()
 
 func _process(_delta: float) -> void:
