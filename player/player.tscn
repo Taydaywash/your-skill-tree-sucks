@@ -351,7 +351,7 @@ radius = 29.999996
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lth"]
 size = Vector2(24, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=1088654542 node_paths=PackedStringArray("sprite", "invincibility_timer", "hurtbox", "health") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1088654542 node_paths=PackedStringArray("sprite", "invincibility_timer", "hurtbox", "health", "leveling") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_ivps1")
 move_speed = 250
@@ -359,6 +359,7 @@ sprite = NodePath("Body")
 invincibility_timer = NodePath("InvincibilityTimer")
 hurtbox = NodePath("PlayerHurtbox")
 health = NodePath("Health")
+leveling = NodePath("Leveling")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=97123581]
 z_index = 1

@@ -20,3 +20,4 @@ func _on_attraction_area_body_exited(body):
 func _on_xp_orb_body_entered(body):
 	if body is Player:
 		call_deferred("queue_free")
+		EventController.emit_signal("pick_up_xp_orb")

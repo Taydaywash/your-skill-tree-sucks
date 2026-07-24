@@ -7,6 +7,7 @@ class_name Player
 @export var hurtbox: Area2D
 @export var health: Health 
 @export var health_bar: ProgressBar
+@export var leveling: Leveling
 @export var xp_bar: ProgressBar
 
 var is_invincible: bool = false
@@ -18,6 +19,10 @@ func _ready() -> void:
 	health_bar.value = health.current_health
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
+	
+	xp_bar.max_value = leveling.max_xp
+	xp_bar.value = leveling.current_xp
+	leveling.xp_changed.connect(update_xp_bar)
 
 
 func _physics_process(_delta: float) -> void:
@@ -70,5 +75,5 @@ func start_invincibility() -> void:
 func on_death() -> void:
 	get_tree().call_deferred("reload_current_scene")
 
-func _on_invincibility_timer_timeout():
-	pass # Replace with function body.
+func update_xp_bar(new_xp: int) -> void:
+	xp_bar.value = new_xp

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cbo75wyi0m7wr"]
+
+[ext_resource type="Script" uid="uid://csmhp3pc77g5" path="res://classes/leveling system/leveling.gd" id="1_rbj68"]
+
+[node name="Leveling" type="Node2D" unique_id=1343209801]
+script = ExtResource("1_rbj68")
