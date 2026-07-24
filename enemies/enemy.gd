@@ -12,8 +12,8 @@ var player: Player = null
 
 func _ready() -> void:
 	player = get_parent().get_node("Player")
-	#health_bar.max_value = health.max_health
-	#health_bar.value = health.current_health
+	health_bar.max_value = health.max_health
+	health_bar.value = health.current_health
 	
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
@@ -25,9 +25,11 @@ func _physics_process(_delta):
 		move_and_slide()
 
 func on_health_changed(new_health: int) -> void:
-	if not health_bar.visible:
-		health_bar.visible = true
 	health_bar.value = new_health
+	print(new_health)
+	if not health_bar.visible:
+		print("visible")
+		health_bar.visible = true
 
 func on_death() -> void:
 	spawn_xp_orb()

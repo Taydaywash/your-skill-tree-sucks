@@ -7,14 +7,18 @@ class_name Player
 @export var hurtbox: Area2D
 @export var health: Health 
 @export var health_bar: ProgressBar
+@export var xp_bar: ProgressBar
 
 var is_invincible: bool = false
 var flash_tween: Tween = null
 var movement_disabled : bool = false
 
 func _ready() -> void:
+	health_bar.max_value = health.max_health
+	health_bar.value = health.current_health
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
+
 
 func _physics_process(_delta: float) -> void:
 	if not movement_disabled:
@@ -38,7 +42,7 @@ func on_health_changed(new_health: int) -> void:
 
 func _on_player_hurtbox_area_entered(area):
 	if "damage_amount" in area:
-		var damage = area.get("damage_amount")
+		var damage = area.damage_amount
 		take_damage(damage)
 
 func take_damage(amount: int) -> void:

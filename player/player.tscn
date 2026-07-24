@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="13_yllr7"]
 [ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="14_wodsf"]
 [ext_resource type="Texture2D" uid="uid://b0uofxx8vjtu4" path="res://player/animations/sparkle.png" id="15_32hag"]
+[ext_resource type="PackedScene" uid="uid://cbo75wyi0m7wr" path="res://classes/leveling system/leveling.tscn" id="17_tqiix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
 size = Vector2(28, 36)
@@ -432,6 +433,8 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_b1lth")
 
 [node name="Health" parent="." unique_id=1666146690 instance=ExtResource("13_yllr7")]
+
+[node name="Leveling" parent="." unique_id=1343209801 instance=ExtResource("17_tqiix")]
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=816067780]
 one_shot = true
