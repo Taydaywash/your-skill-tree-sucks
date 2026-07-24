@@ -247,6 +247,8 @@ icon = ExtResource("5_sdnbj")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword"), NodePath("../gun")]
+title = "Level 0"
+description = "Your base form"
 
 [node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -172.0
@@ -257,6 +259,8 @@ icon = ExtResource("6_46aa3")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../shield"), NodePath("../spear")]
+title = "Master's Sword"
+description = "A powerful sword which can deal big damage to your foes at a distance"
 
 [node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
@@ -267,6 +271,8 @@ icon = ExtResource("7_0rout")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../dash"), NodePath("../harpoon")]
+title = "Gun of Destruction"
+description = "A powerful weapon which fires fast-moving projectiles that can damage anything."
 
 [node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
@@ -277,6 +283,8 @@ icon = ExtResource("8_lrvki")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
+title = "Dash of One Thousand Winds"
+description = "Supercharge your dodge with the force of One Thousand Winds, allowing you to escape your foes with minimal effort"
 
 [node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
@@ -287,6 +295,8 @@ icon = ExtResource("9_d4sjy")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
+title = "Shield of Heroic Strength"
+description = "A powerful, Inudstructable defensive power that can block anything and everything."
 
 [node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
@@ -297,6 +307,8 @@ icon = ExtResource("10_cdydi")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
+title = "Spear Of Obliteration and Doom"
+description = "Incredibly strong weapon that can slay enemies in one powerful strike"
 
 [node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
@@ -307,6 +319,8 @@ icon = ExtResource("11_4cf1k")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
+title = "Harpoon of Opportunity"
+description = "Beckon your foes closer for an easier strike, taking them down with ease"
 
 [node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
@@ -316,6 +330,8 @@ offset_bottom = -168.0
 icon = ExtResource("12_rjc8t")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
+title = "Lamenting Chains of Order and Chaos"
+description = "You are now granted the ultimate power of order and chaos, permanently keeping you chained in a single position. The ultimate upgrade."
 
 [node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -327,6 +343,8 @@ icon = ExtResource("7_0rout")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../0")]
+title = "ƃnu"
+description = "?"
 
 [node name="sword_neg" parent="." unique_id=437368073 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -338,6 +356,8 @@ icon = ExtResource("6_46aa3")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../0")]
+title = "sʍoɹp"
+description = "?"
 
 [node name="shield_neg" parent="." unique_id=1958150389 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -349,6 +369,8 @@ icon = ExtResource("9_d4sjy")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
+title = "sɥᴉǝlp"
+description = "?"
 
 [node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -360,8 +382,10 @@ icon = ExtResource("8_lrvki")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../gun_neg")]
+title = "pɐsɥ"
+description = "?"
 
-[node name="harpoon_neg" parent="." unique_id=2083797914 node_paths=PackedStringArray("required_nodes") instance=ExtResource("13_nq7ri")]
+[node name="harpoon_neg" parent="." unique_id=2083797914 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
 offset_left = -124.0
 offset_top = 144.0
@@ -369,7 +393,10 @@ offset_right = -12.0
 offset_bottom = 256.0
 icon = ExtResource("11_4cf1k")
 expand_icon = true
+info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../gun_neg")]
+title = "ɥɐɹdoou"
+description = "?"
 
 [node name="spear_neg" parent="." unique_id=126980460 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -381,6 +408,8 @@ icon = ExtResource("10_cdydi")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
+title = "sdǝɐɹ"
+description = "?"
 
 [node name="final_neg" parent="." unique_id=1911817242 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -392,6 +421,8 @@ icon = ExtResource("12_rjc8t")
 expand_icon = true
 info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../harpoon_neg"), NodePath("../dash_neg"), NodePath("../shield_neg"), NodePath("../spear_neg")]
+title = "Break your chains"
+description = "Become Free"
 
 [node name="InfoPanel" type="Panel" parent="." unique_id=481681843 node_paths=PackedStringArray("skill_name", "skill_description")]
 offset_left = 40.0

@@ -8,6 +8,8 @@ extends Button
 @export var info_panel: Panel
 @export var required_nodes : Array[Button]
 @export var animation_player: AnimationPlayer
+@export var title: String
+@export_multiline("type") var description: String
 
 var shattered := false
 var unlocked := false #For Error Prevention Only
@@ -28,7 +30,7 @@ func _process(_delta: float) -> void:
 		self_modulate = Color(0.8,0.8,0.8)
 
 func _on_mouse_entered() -> void:
-	info_panel.emit_signal("skill_hovered",name,"empty")
+	info_panel.emit_signal("skill_hovered",title,description)
 	if shattered:
 		return
 	for node in required_nodes:

@@ -43,7 +43,6 @@ func _input(event: InputEvent) -> void:
 				await spear_chargeup.timeout
 				animation_player.play("spear_attack")
 				await animation_player.animation_finished
-				
 			"sword":
 				play("sword_idle")
 			"fist":
