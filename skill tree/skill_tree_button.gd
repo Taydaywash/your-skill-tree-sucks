@@ -11,6 +11,9 @@ extends Button
 @export var title: String
 @export_multiline("type") var description: String
 
+@export_category("Emit Signal When Shattered")
+@export var signal_name : String
+
 var shattered := false
 var unlocked := false #For Error Prevention Only
 
@@ -72,6 +75,8 @@ func _on_gui_input(event: InputEvent) -> void:
 			return
 		else:
 			shattered = true
+			if signal_name:
+				EventController.emit_signal(signal_name)
 			button_shatter.visible = true
 			var tween2 = get_tree().create_tween()
 			tween2.tween_property(self, "scale", Vector2(0.5,0.5), 0.03).set_ease(Tween.EASE_OUT)

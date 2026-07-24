@@ -261,6 +261,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../shield"), NodePath("../spear")]
 title = "Master's Sword"
 description = "A powerful sword which can deal big damage to your foes at a distance"
+signal_name = "unlock_fist"
 
 [node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
@@ -273,6 +274,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../dash"), NodePath("../harpoon")]
 title = "Gun of Destruction"
 description = "A powerful weapon which fires fast-moving projectiles that can damage anything."
+signal_name = "unlock_rock_throw"
 
 [node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
@@ -285,6 +287,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 title = "Dash of One Thousand Winds"
 description = "Supercharge your dodge with the force of One Thousand Winds, allowing you to escape your foes with minimal effort"
+signal_name = "remove_long_dash"
 
 [node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
@@ -297,6 +300,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 title = "Shield of Heroic Strength"
 description = "A powerful, Inudstructable defensive power that can block anything and everything."
+signal_name = "remove_shield"
 
 [node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
@@ -309,6 +313,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 title = "Spear Of Obliteration and Doom"
 description = "Incredibly strong weapon that can slay enemies in one powerful strike"
+signal_name = "unlock_sword"
 
 [node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
@@ -321,6 +326,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../final")]
 title = "Harpoon of Opportunity"
 description = "Beckon your foes closer for an easier strike, taking them down with ease"
+signal_name = "unlock_gun"
 
 [node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0

@@ -17,6 +17,15 @@ func _ready() -> void:
 	spear_chargeup.autostart = false
 	add_child(spear_chargeup)
 	
+	EventController.connect("unlock_sword",func ():
+		current_weapon = "sword"
+		play("sword_idle")
+	)
+	EventController.connect("unlock_fist",func ():
+		current_weapon = "fist"
+		play("fist_idle")
+	)
+	
 func _process(_delta: float) -> void:
 	if spear_raycast.is_colliding() and not player.movement_disabled:
 		player.movement_disabled = true
