@@ -1,21 +1,39 @@
 extends AnimatedSprite2D
-@export var player: Player
 
-var current_weapon = "spear"
+@export_category("General")
+@export var player: Player
 @export var animation_player: AnimationPlayer
 
+@export_category("Spear")
 @export var spear_chargeup_time : float = 0.5
+@export var spear_raycast: RayCast2D
+
+@export_category("Dash")
+@export var dash_speed : int
+@export var dash_duration : float #seconds
+
+var current_weapon = "spear"
+var current_range = "dash"
+
+#Spear Variables
 var spear_charged : bool = false
 var spear_chargeup_cancelled : bool = false
 var spear_chargeup : Timer
-@export var spear_raycast: RayCast2D
 
+#Dash Variables
+var dash_timer : Timer
+var dash_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	spear_chargeup = Timer.new()
 	spear_chargeup.wait_time = spear_chargeup_time
 	spear_chargeup.autostart = false
 	add_child(spear_chargeup)
+
+	dash_timer = Timer.new()
+	dash_timer.wait_time = dash_duration
+	dash_timer.one_shot = true
+	add_child(dash_timer)
 	
 	EventController.connect("unlock_sword",func ():
 		current_weapon = "sword"
@@ -44,6 +62,7 @@ func _process(_delta: float) -> void:
 			rotation = 0
 		"sword":
 			rotation = 0
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("melee_attack"):
 		match current_weapon:
@@ -52,7 +71,28 @@ func _input(event: InputEvent) -> void:
 				await spear_chargeup.timeout
 				animation_player.play("spear_attack")
 				await animation_player.animation_finished
+			"sheild":
+				pass
 			"sword":
 				play("sword_idle")
 			"fist":
 				play("fist_idle")
+	
+	if event.is_action_pressed("range_attack"):
+		match current_range:
+			"harpoon":
+				pass
+			"dash":
+				player.movement_disabled = true
+				player.is_invincible = true
+				dash_direction = global_position.direction_to(get_global_mouse_position())
+				player.velocity = dash_direction * dash_speed
+				dash_timer.start()
+				await dash_timer.timeout
+				player.movement_disabled = false
+				player.is_invincible = false
+				player.velocity = Vector2.ZERO
+			"gun":
+				pass
+			"rock_throw":
+				pass
