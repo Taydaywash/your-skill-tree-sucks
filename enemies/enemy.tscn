@@ -45,6 +45,7 @@ shape = SubResource("CircleShape2D_b1lth")
 [node name="Health" parent="." unique_id=1666146690 instance=ExtResource("3_orwns")]
 
 [node name="HealthBar" type="ProgressBar" parent="Health" unique_id=1406353274]
+visible = false
 modulate = Color(1, 0, 0, 1)
 offset_left = -14.0
 offset_top = -23.0

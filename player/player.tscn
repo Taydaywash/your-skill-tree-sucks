@@ -403,7 +403,7 @@ collision_layer = 2
 collision_mask = 0
 monitorable = false
 script = ExtResource("14_wodsf")
-damage_amount = 100
+damage_amount = 90
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Weapon/SpearHitbox" unique_id=1578485210]
 position = Vector2(474.37347, 0)

@@ -22,6 +22,8 @@ func _physics_process(_delta):
 		move_and_slide()
 
 func on_health_changed(new_health: int) -> void:
+	if not health_bar.visible:
+		health_bar.visible = true
 	health_bar.value = new_health
 
 func on_death() -> void:
