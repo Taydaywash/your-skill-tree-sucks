@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="7_lx2ly"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8pl"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.013225317, 0.032837898, 0.062342063, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nl8pl"]
 font = ExtResource("1_y7k74")
@@ -30,7 +30,64 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="Title" type="Control" unique_id=867774957 node_paths=PackedStringArray("audio_controller", "settings_screen")]
+[sub_resource type="Animation" id="Animation_0824t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ScreenCover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lx2ly"]
+resource_name = "exit_scene"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ScreenCover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.4506254, 1),
+"update": 0,
+"values": [Vector2(0, 2000), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nuqgq"]
+resource_name = "load_scene"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ScreenCover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.9281707, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2000)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lx2ly"]
+_data = {
+&"RESET": SubResource("Animation_0824t"),
+&"exit_scene": SubResource("Animation_lx2ly"),
+&"load_scene": SubResource("Animation_nuqgq")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rajix"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Control" unique_id=867774957 node_paths=PackedStringArray("audio_controller", "animation_player", "settings_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +98,7 @@ script = ExtResource("1_oyqm6")
 audio_controller = NodePath("AudioController")
 positive = ExtResource("2_0824t")
 negative = ExtResource("3_nuqgq")
+animation_player = NodePath("AnimationPlayer")
 settings_screen = NodePath("Panel3")
 main = ExtResource("2_kpexm")
 
@@ -118,6 +176,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_3xoar")
 text = "Back"
 
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("7_lx2ly")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2007539014]
+libraries/ = SubResource("AnimationLibrary_lx2ly")
+autoplay = &"load_scene"
+
+[node name="ScreenCover" type="Panel" parent="AnimationPlayer" unique_id=1612102891]
+offset_right = 1152.0
+offset_bottom = 652.0012
+theme_override_styles/panel = SubResource("StyleBoxFlat_rajix")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]

@@ -2,13 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="1_04q08"]
 [ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
+[ext_resource type="Script" uid="uid://b1ecog8ni266l" path="res://world/main.gd" id="1_qnd6n"]
 [ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill tree/skill_tree.tscn" id="2_hyim0"]
 [ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
 [ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="3_gu74f"]
+[ext_resource type="Texture2D" uid="uid://d3luwa7txqn8j" path="res://world/wall_texture.png" id="4_60vd7"]
 [ext_resource type="PackedScene" uid="uid://cxxr0k8g0861a" path="res://enemies/enemy.tscn" id="4_i1eo7"]
+[ext_resource type="Script" uid="uid://bybx01etg6h01" path="res://world/ui.gd" id="4_op3e8"]
 [ext_resource type="Script" uid="uid://c1pugpvcsv5lp" path="res://enemies/spawner/marker_2d.gd" id="4_spvjk"]
+[ext_resource type="AudioStream" uid="uid://dxfpv1bsnpuu2" path="res://Audio/negative.wav" id="5_8q2wj"]
+[ext_resource type="Texture2D" uid="uid://dsfcepju0jxu3" path="res://world/floor_texture.png" id="5_e63cu"]
 [ext_resource type="PackedScene" uid="uid://blso2d5rl1jcl" path="res://enemies/thrower enemy/thrower_enemy.tscn" id="5_gu74f"]
+[ext_resource type="AudioStream" uid="uid://ikv021mbn1wu" path="res://Audio/positive.wav" id="6_60vd7"]
+[ext_resource type="PackedScene" uid="uid://by1jjjut24mkr" path="res://settings_screen.tscn" id="7_vid1e"]
 [ext_resource type="AudioStream" uid="uid://dmw6jkoaa1upn" path="res://Audio/YourBattleThemeSucks.mp3" id="9_vrojb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8pl"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gu74f"]
 bg_color = Color(0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
@@ -27,9 +37,100 @@ font = ExtResource("3_gu74f")
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D" unique_id=2078986703]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf7cw"]
+bg_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_58i6i"]
+font = ExtResource("3_gu74f")
+font_size = 33
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16fuh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rajix"]
+bg_color = Color(0, 0, 0, 0.88235295)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58i6i"]
+bg_color = Color(0.24719188, 0.24719194, 0.24719173, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_op3e8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ScreenCover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vid1e"]
+resource_name = "enter_scene"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ScreenCover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.5491211, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2000)]
+}
+
+[sub_resource type="Animation" id="Animation_qnd6n"]
+resource_name = "exit_scene"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ScreenCover:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.3789293, 1),
+"update": 0,
+"values": [Vector2(0, 2000), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tp5tb"]
+_data = {
+&"RESET": SubResource("Animation_op3e8"),
+&"enter_scene": SubResource("Animation_vid1e"),
+&"exit_scene": SubResource("Animation_qnd6n")
+}
+
+[node name="Main" type="Node2D" unique_id=2078986703 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_qnd6n")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("1_04q08")]
+process_mode = 3
 
 [node name="Player" parent="." unique_id=1088654542 node_paths=PackedStringArray("health_bar", "xp_bar") instance=ExtResource("1_gjxf3")]
 health_bar = NodePath("../CanvasLayer/HealthBar")
@@ -47,12 +148,46 @@ build_mode = 1
 polygon = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=902332067]
+texture = ExtResource("4_60vd7")
+texture_offset = Vector2(1200, 1200)
+texture_scale = Vector2(0.98, 0.98)
+texture_rotation = 0.91629785
 invert_enabled = true
 invert_border = 1845.8
 polygon = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128)
-uv = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 73, 139, 73, 307, 382, 312, 382, 89, 230, 94, 227, 1, 551, -7, 536, 88, 437, 96, 445, 194, 821, 194, 833, 458, 1113, 458, 1065, -51, 823, -27, 802, -147, 1073, -144, 1071, -434, 541, -458, 554, -162, 237, -143, 230, -247, 470, -252, 440, -489, -124, -473, -140, -279, 7, -294, 13, -149, -240, -136, -232, -495, -499, -447, -512, 221, -564, 212, -564, -403, -678, -383, -673, 373)
+uv = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260]
+[node name="Line2D" type="Line2D" parent="StaticBody2D/Polygon2D" unique_id=1393654734]
+points = PackedVector2Array(-704, 128, -704, 64, -384, 64, -384, 128, -576, 128, -576, 512, 448, 512, 448, 256, 576, 256, 576, 448, 896, 448, 896, 128, 704, 128, 704, -128, 896, -128, 896, -384, 448, -384, 448, -512, -512, -512, -512, -384, -896, -384, -896, 128, -704, 128)
+width = 4.205
+default_color = Color(0.53234404, 0.39292708, 0.28918853, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Floor" type="Sprite2D" parent="StaticBody2D" unique_id=2107746149]
+z_index = -5
+z_as_relative = false
+position = Vector2(-8.0000305, 4.0000305)
+scale = Vector2(2.044843, 1.6196318)
+texture = ExtResource("5_e63cu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260 node_paths=PackedStringArray("pause", "animation_player", "settings", "audio_controller")]
+process_mode = 3
+script = ExtResource("4_op3e8")
+pause = NodePath("Pause")
+animation_player = NodePath("../AnimationPlayer")
+settings = NodePath("Pause/Settings/SettingsBack")
+negative = ExtResource("5_8q2wj")
+positive = ExtResource("6_60vd7")
+audio_controller = NodePath("../AudioController")
+
+[node name="ScreenCover" type="Panel" parent="CanvasLayer" unique_id=1026027310]
+z_index = 2
+z_as_relative = false
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
 
 [node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter", "player") instance=ExtResource("2_hyim0")]
 visible = false
@@ -90,6 +225,88 @@ offset_right = 364.0
 offset_bottom = 51.0
 text = "LVL 7"
 label_settings = SubResource("LabelSettings_nl8pl")
+
+[node name="Pause" type="Panel" parent="CanvasLayer" unique_id=1388698698]
+process_mode = 3
+visible = false
+z_index = 1
+z_as_relative = false
+offset_right = 1152.0
+offset_bottom = 652.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf7cw")
+
+[node name="Pause Text" type="Label" parent="CanvasLayer/Pause" unique_id=219043233]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.5
+offset_top = 48.0
+offset_right = 181.5
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_58i6i")
+
+[node name="Resume" type="Button" parent="CanvasLayer/Pause" unique_id=1076408924]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 164.0
+offset_right = 868.0
+offset_bottom = 228.0
+theme_override_fonts/font = ExtResource("3_gu74f")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_16fuh")
+text = "Resume"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Pause" unique_id=634838546]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 432.0
+offset_right = 868.0
+offset_bottom = 496.0
+theme_override_fonts/font = ExtResource("3_gu74f")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_16fuh")
+text = "Quit"
+
+[node name="Settings" type="Button" parent="CanvasLayer/Pause" unique_id=1195218875]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 292.0
+offset_right = 868.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("3_gu74f")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_16fuh")
+text = "Settings"
+
+[node name="SettingsBack" type="Panel" parent="CanvasLayer/Pause/Settings" unique_id=2086491687]
+visible = false
+layout_mode = 0
+offset_left = -284.0
+offset_top = -292.0
+offset_right = 868.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rajix")
+
+[node name="Settings" parent="CanvasLayer/Pause/Settings/SettingsBack" unique_id=1406267981 instance=ExtResource("7_vid1e")]
+z_index = 1
+layout_mode = 0
+offset_left = 256.0
+offset_top = 152.0
+offset_right = 900.0
+offset_bottom = 504.0
+
+[node name="SettingsBack" type="Button" parent="CanvasLayer/Pause/Settings/SettingsBack/Settings" unique_id=1367260080]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 296.0
+offset_right = 100.0
+offset_bottom = 335.0
+theme_override_fonts/font = ExtResource("3_gu74f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_58i6i")
+text = "Done"
 
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
 default_enemy = ExtResource("4_i1eo7")
@@ -216,6 +433,16 @@ autoplay = true
 max_distance = 15666.0
 panning_strength = 0.0
 bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=383553885]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_tp5tb")
+autoplay = &"enter_scene"
+
+[connection signal="pressed" from="CanvasLayer/Pause/Resume" to="CanvasLayer" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Quit" to="CanvasLayer" method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Settings" to="CanvasLayer" method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Settings/SettingsBack/Settings/SettingsBack" to="CanvasLayer" method="_on_settings_back_pressed"]
 
 [editable path="Player"]
 [editable path="Spawner"]
