@@ -375,6 +375,9 @@ _data = {
 &"RESET": SubResource("Animation_e63cu")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
+size = Vector2(1836, 1072)
+
 [node name="Main" type="Node2D" unique_id=2078986703 node_paths=PackedStringArray("animation_player", "cut_scene_animator", "dialogue", "spawner", "music", "player", "audio_controller")]
 script = ExtResource("1_qnd6n")
 animation_player = NodePath("AnimationPlayer")
@@ -465,7 +468,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
 
-[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter", "player", "level_down_animator", "level_down_text") instance=ExtResource("2_hyim0")]
+[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter", "player", "level_down_animator", "level_down_text", "projectile_killer") instance=ExtResource("2_hyim0")]
 visible = false
 z_index = 2
 position = Vector2(576, 320)
@@ -475,6 +478,7 @@ level_counter = NodePath("../Level counter")
 player = NodePath("../../Player")
 level_down_animator = NodePath("../../Player/LevelDownAnimator")
 level_down_text = NodePath("../../Player/LevelDownAnimator/LevelDownText")
+projectile_killer = NodePath("../../ProjectileKiller")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=107239846]
 self_modulate = Color(1, 0, 0, 1)
@@ -793,6 +797,15 @@ position = Vector2(-16, 112)
 
 [node name="XP Orb (cutscene)10" parent="CutSceneAnimator" unique_id=1863770066 instance=ExtResource("22_wc2es")]
 position = Vector2(-84, 68)
+
+[node name="ProjectileKiller" type="Area2D" parent="." unique_id=187156902]
+position = Vector2(0, 1100)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileKiller" unique_id=191525292]
+position = Vector2(-2, 4)
+shape = SubResource("RectangleShape2D_nl8pl")
 
 [connection signal="pressed" from="CanvasLayer/Pause/Resume" to="CanvasLayer" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/Quit" to="CanvasLayer" method="_on_quit_pressed"]
