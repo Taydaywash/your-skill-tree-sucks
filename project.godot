@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventController="*uid://cwjg2ijjtp83t"
+GameState="*uid://bc7gvrdicbw12"
 
 [display]
 

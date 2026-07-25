@@ -16,7 +16,6 @@ collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_lxcb4")
 xp_orb_scene = ExtResource("2_kumiv")
-follow_distance = 450
 thrower_enemy_rock = ExtResource("3_8ls1y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462433278]

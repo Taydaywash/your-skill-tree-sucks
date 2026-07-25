@@ -3,7 +3,8 @@ extends CharacterBody2D
 @export var speed: float = 100
 @export var damage_amount: int = 20
 @export var xp_orb_scene: PackedScene
-@export var follow_distance : int
+@export var follow_distance : int = 400
+@export var attack_rate : Array[int] = [3,4]
 @export var thrower_enemy_rock: PackedScene
 
 @onready var health: Health = $Health
@@ -24,14 +25,28 @@ func _ready() -> void:
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
 	attack_loop()
+	
+	match GameState.thrower_enemy_weapon:
+		"rock":
+			attack_rate = [3,4]
+		"gun":
+			attack_rate = [2,4]
+		"harpoon":
+			attack_rate = [2,3]
 
 func attack_loop():
-	var projectile_instance = thrower_enemy_rock.instantiate()
-	get_tree().current_scene.call_deferred("add_child", projectile_instance)
-	projectile_instance.global_position = global_position
-	var direction: Vector2 = (player.global_position - global_position).normalized()
-	projectile_instance.velocity = direction * projectile_instance.speed
-	await get_tree().create_timer(randf_range(1,4)).timeout
+	match GameState.thrower_enemy_weapon:
+		"rock":
+			var projectile_instance = thrower_enemy_rock.instantiate()
+			get_tree().current_scene.call_deferred("add_child", projectile_instance)
+			projectile_instance.global_position = global_position
+			var direction: Vector2 = (player.global_position - global_position).normalized()
+			projectile_instance.velocity = direction * projectile_instance.speed
+		"gun":
+			pass
+		"harpoon":
+			pass
+	await get_tree().create_timer(randf_range(attack_rate[0],attack_rate[1])).timeout
 	attack_loop()
 
 func _physics_process(_delta):
