@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var follow_distance : int = 400
 @export var attack_rate : Array[int] = [3,4]
 @export var thrower_enemy_rock: PackedScene
+@export var sprite: AnimatedSprite2D
 
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $Health/HealthBar
@@ -52,13 +53,17 @@ func attack_loop():
 	attack_loop()
 
 func _physics_process(_delta):
+	if player.global_position.x < global_position.x:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
 	if player: 
 		if (player.global_position - global_position).length() > follow_distance:
 			var direction: Vector2 = (player.global_position - global_position).normalized()
 			velocity = direction * speed
 		else:
 			var direction: Vector2 = (player.global_position - global_position).normalized()
-			velocity = direction * -speed
+			velocity = direction * -speed/2
 			velocity += direction.rotated(PI/2) * speed
 		move_and_slide()
 

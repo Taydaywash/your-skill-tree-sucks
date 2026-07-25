@@ -11,7 +11,7 @@ var return_to_player : bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
-	harpoon_shot.look_at(velocity)
+	harpoon_shot.look_at(get_global_mouse_position())
 	await get_tree().create_timer(1).timeout
 	return_to_player = true
 

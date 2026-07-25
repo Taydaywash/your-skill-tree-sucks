@@ -17,6 +17,8 @@ var spear_chargeup : Timer
 #Range
 var current_range = "harpoon"
 @export var harpoon_shot: PackedScene
+@export var harpoon_cooldown_time: float
+var harpoon_cooldown : Timer
 
 
 
@@ -24,9 +26,14 @@ func _ready() -> void:
 	spear_chargeup = Timer.new()
 	spear_chargeup.wait_time = spear_chargeup_time
 	spear_chargeup.autostart = false
+	spear_chargeup.one_shot = true
 	add_child(spear_chargeup)
 
-	
+	harpoon_cooldown = Timer.new()
+	harpoon_cooldown.wait_time = harpoon_cooldown_time
+	harpoon_cooldown.autostart = false
+	harpoon_cooldown.one_shot = true
+	add_child(harpoon_cooldown)
 	
 	EventController.connect("unlock_sword",func ():
 		current_melee = "sword"
@@ -82,6 +89,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("range_attack"):
 		match current_range:
 			"harpoon":
+				if harpoon_cooldown.time_left:
+					return
+				harpoon_cooldown.start()
 				play("harpoon_idle")
 				var harpoon_shot_instance = harpoon_shot.instantiate()
 				get_parent().add_sibling(harpoon_shot_instance)

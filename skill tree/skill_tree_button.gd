@@ -23,6 +23,7 @@ func _ready() -> void:
 	button_hold_timer = Timer.new()
 	add_child(button_hold_timer)
 	button_hold_timer.wait_time = button_hold_duration
+	button_hold_timer.one_shot = true
 	button_hold_timer.autostart = false
 
 func _process(_delta: float) -> void:

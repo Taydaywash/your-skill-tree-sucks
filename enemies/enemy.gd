@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 100
 @export var damage_amount: int = 20
 @export var xp_orb_scene: PackedScene
+@export var sprite: AnimatedSprite2D
 
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $Health/HealthBar
@@ -25,6 +26,10 @@ func _ready() -> void:
 	health.death.connect(on_death)
 	
 func _physics_process(_delta):
+	if player.global_position.x < global_position.x:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
 	if player: 
 		var direction: Vector2 = (player.global_position - global_position).normalized()
 		velocity = direction * speed
