@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b0uofxx8vjtu4" path="res://player/animations/sparkle.png" id="1_o6jns"]
 [ext_resource type="Script" uid="uid://3dxtq7vq2kkh" path="res://enemies/thrower enemy/enemy_bullet.gd" id="1_w1tm8"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_thkn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6ymq"]
 radius = 28.0
@@ -14,8 +15,10 @@ speed = 200
 z_index = 2
 rotation = 0.7853982
 scale = Vector2(0.28571427, 0.28571427)
-collision_layer = 16
-collision_mask = 2
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_thkn1")
+damage_amount = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=259976302]
 shape = SubResource("CircleShape2D_i6ymq")

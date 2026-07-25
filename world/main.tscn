@@ -72,6 +72,7 @@ enemyChance = Dictionary[float, PackedScene]({
 15.0: ExtResource("5_gu74f"),
 70.0: ExtResource("4_i1eo7")
 })
+timer_wait_time = 1.5
 
 [node name="Marker2D" parent="Spawner" index="1" unique_id=2078705381]
 visible = false
