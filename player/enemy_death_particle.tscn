@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dggajlbuvq5b1"]
+
+[ext_resource type="Texture2D" uid="uid://b5cljbsdssgnc" path="res://enemies/enemy_blood.png" id="1_elild"]
+[ext_resource type="Script" uid="uid://dmmd8c7iyq1o2" path="res://player/particle.gd" id="2_4s7r4"]
+
+[sub_resource type="Curve" id="Curve_nl8pl"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 5.538452), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_rajix"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.731884, 0.5692308), -1.3846157, -1.3846157, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_58i6i"]
+offsets = PackedFloat32Array(0, 0.73140496)
+colors = PackedColorArray(1.1018162, 0, 0, 1, 0, 0, 0, 0)
+
+[node name="Node2D" type="CPUParticles2D" unique_id=985185584]
+z_index = -2
+emitting = false
+amount = 16
+texture = ExtResource("1_elild")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+spread = 33.25
+gravity = Vector2(0, 0)
+initial_velocity_min = 86.67
+initial_velocity_max = 340.0
+angle_min = -0.5
+angle_max = 128.8
+angle_curve = SubResource("Curve_nl8pl")
+scale_amount_min = 0.37
+scale_amount_max = 0.92
+scale_amount_curve = SubResource("Curve_rajix")
+color_ramp = SubResource("Gradient_58i6i")
+script = ExtResource("2_4s7r4")

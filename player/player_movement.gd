@@ -23,6 +23,11 @@ var player_disabled : bool = false
 var dash_timer : Timer
 var dash_direction: Vector2 = Vector2.ZERO
 
+var step_audio_cooldown : Timer
+@export var audio_controller: AudioController
+@export var step: AudioStreamWAV
+
+
 func _ready() -> void:
 	health_bar.max_value = health.max_health
 	health_bar.value = health.current_health
@@ -38,6 +43,11 @@ func _ready() -> void:
 	dash_timer.one_shot = true
 	add_child(dash_timer)
 	
+	step_audio_cooldown = Timer.new()
+	step_audio_cooldown.wait_time = 0.25
+	step_audio_cooldown.one_shot = true
+	add_child(step_audio_cooldown)
+	
 	default_speed = move_speed
 	move_speed = 1
 	
@@ -52,7 +62,10 @@ func _physics_process(_delta: float) -> void:
 		var input_dir = Input.get_vector("move_left","move_right","move_up","move_down")
 		velocity = input_dir.normalized() * move_speed
 	move_and_slide()
-
+	if velocity.length() > 10:
+		if not step_audio_cooldown.time_left:
+			step_audio_cooldown.start()
+			audio_controller.play_sound(step)
 func _process(_delta: float) -> void:
 	
 	if velocity.x < 0:

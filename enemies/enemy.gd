@@ -14,6 +14,17 @@ var default_speed : float
 
 var player: Player = null
 
+@export var audio_controller: AudioController
+@export var enemy_hit: AudioStreamWAV
+@export var enemy_die: AudioStreamWAV
+@export var enemy_death_particle: PackedScene
+@export var particle_controller: Node2D
+
+
+@export var hitbox: Area2D
+
+var enemy_alive :bool = true
+
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	
@@ -26,6 +37,8 @@ func _ready() -> void:
 	health.death.connect(on_death)
 	
 func _physics_process(_delta):
+	if not enemy_alive:
+		return
 	if player.global_position.x < global_position.x:
 		sprite.flip_h = true
 	else:
@@ -41,12 +54,18 @@ func on_health_changed(new_health: int) -> void:
 		health_bar.visible = true
 
 func on_death() -> void:
+	audio_controller.play_sound(enemy_die)
 	spawn_xp_orb()
+	hitbox.set_deferred("monitorable",false)
+	enemy_alive = false
+	await get_tree().create_timer(0.5).timeout
 	call_deferred("queue_free")
 
 func _on_hurtbot_area_entered(area):
 	if area.pull_enemy:
 		speed = default_speed * 2 + speed/5
+	particle_controller.spawn_particle(enemy_death_particle)
+	audio_controller.play_sound(enemy_hit)
 	health.take_damage(area.damage_amount)
 
 func spawn_xp_orb() -> void:

@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dsfcepju0jxu3" path="res://world/floor_texture.png" id="5_e63cu"]
 [ext_resource type="AudioStream" uid="uid://ghadq0ejan1i" path="res://Audio/levelDown.wav" id="5_gk3u8"]
 [ext_resource type="PackedScene" uid="uid://blso2d5rl1jcl" path="res://enemies/thrower enemy/thrower_enemy.tscn" id="5_gu74f"]
+[ext_resource type="AudioStream" uid="uid://dmmk8q4a5h7gi" path="res://Audio/02chargeup.wav" id="5_n7uhj"]
 [ext_resource type="PackedScene" uid="uid://bbdcedro31itg" path="res://shatter effect/shard_emitter.tscn" id="5_wc2es"]
 [ext_resource type="AudioStream" uid="uid://ikv021mbn1wu" path="res://Audio/positive.wav" id="6_60vd7"]
 [ext_resource type="AudioStream" uid="uid://cncqiwqmwyqgh" path="res://Audio/glassShatter.wav" id="6_sgblq"]
@@ -396,6 +397,10 @@ process_mode = 3
 health_bar = NodePath("../CanvasLayer/HealthBar")
 xp_bar = NodePath("../CanvasLayer/XpBar")
 
+[node name="Hand" parent="Player" index="2" unique_id=853776541 node_paths=PackedStringArray("audio_controller")]
+_02_chargeup = ExtResource("5_n7uhj")
+audio_controller = NodePath("../../AudioController")
+
 [node name="Leveling" parent="Player" index="5" unique_id=1343209801 node_paths=PackedStringArray("level_counter")]
 level_counter = NodePath("../../CanvasLayer/Level counter")
 
@@ -505,7 +510,7 @@ offset_left = 284.0
 offset_top = 28.0
 offset_right = 364.0
 offset_bottom = 51.0
-text = "LVL 7"
+text = "LVL MAX"
 label_settings = SubResource("LabelSettings_nl8pl")
 
 [node name="Pause" type="Panel" parent="CanvasLayer" unique_id=1388698698]

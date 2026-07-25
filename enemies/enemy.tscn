@@ -4,9 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bsxiri62dcrmy" path="res://classes/leveling system/xp_orb.tscn" id="2_07tka"]
 [ext_resource type="Texture2D" uid="uid://gaf34tra68y3" path="res://enemies/enemyAnimation/walk0000.png" id="3_0h01o"]
 [ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="3_a6vjd"]
+[ext_resource type="AudioStream" uid="uid://iari5040daqn" path="res://Audio/enemy_hit.wav" id="3_grymm"]
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="3_orwns"]
 [ext_resource type="Texture2D" uid="uid://chhg1h4u0hr84" path="res://enemies/enemyAnimation/walk0001.png" id="4_8cidi"]
+[ext_resource type="AudioStream" uid="uid://rmhmvehbms4r" path="res://Audio/enemy_die.wav" id="4_ymuxt"]
 [ext_resource type="Texture2D" uid="uid://dyaah8ucr3ltr" path="res://enemies/enemyAnimation/walk0002.png" id="5_grymm"]
+[ext_resource type="PackedScene" uid="uid://dggajlbuvq5b1" path="res://player/enemy_death_particle.tscn" id="5_xvjrt"]
 [ext_resource type="Texture2D" uid="uid://cwxpqxd2x56rg" path="res://enemies/enemyAnimation/walk0003.png" id="6_ymuxt"]
 [ext_resource type="Texture2D" uid="uid://b3n0prnsoii6n" path="res://enemies/enemyAnimation/walk0004.png" id="7_2dcpb"]
 [ext_resource type="Texture2D" uid="uid://cgf2mv55wbixr" path="res://enemies/enemyAnimation/walk0005.png" id="8_xvjrt"]
@@ -15,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://clafhfhmnj4n1" path="res://enemies/enemyAnimation/walk0008.png" id="11_n7mk6"]
 [ext_resource type="Texture2D" uid="uid://bgxd6wmlmm6tv" path="res://enemies/enemyAnimation/walk0009.png" id="12_cve8t"]
 [ext_resource type="Texture2D" uid="uid://dgxbwpvpo7soj" path="res://enemies/enemyAnimation/walk0010.png" id="13_5hpbo"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="17_ymuxt"]
+[ext_resource type="PackedScene" uid="uid://bqxq7axrrfho5" path="res://player/particle_controller.tscn" id="19_2dcpb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nl8pl"]
 animations = [{
@@ -65,12 +70,18 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
 radius = 15.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "audio_controller", "particle_controller", "hitbox") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_7frlh")
 xp_orb_scene = ExtResource("2_07tka")
 sprite = NodePath("Sprite2D")
+audio_controller = NodePath("AudioController")
+enemy_hit = ExtResource("3_grymm")
+enemy_die = ExtResource("4_ymuxt")
+enemy_death_particle = ExtResource("5_xvjrt")
+particle_controller = NodePath("ParticleController")
+hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=677219279]
 position = Vector2(-4.7683716e-07, -4.172325e-07)
@@ -114,5 +125,9 @@ pivot_offset = Vector2(14, 2)
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("17_ymuxt")]
+
+[node name="ParticleController" parent="." unique_id=1587575907 instance=ExtResource("19_2dcpb")]
 
 [connection signal="area_entered" from="Hurtbot" to="." method="_on_hurtbot_area_entered"]

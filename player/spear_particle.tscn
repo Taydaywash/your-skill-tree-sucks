@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://blnv6ssfdlncj"]
+
+[ext_resource type="Texture2D" uid="uid://b0uofxx8vjtu4" path="res://player/animations/sparkle.png" id="1_2nkrg"]
+[ext_resource type="Script" uid="uid://dmmd8c7iyq1o2" path="res://player/particle.gd" id="2_nr0wf"]
+
+[sub_resource type="Curve" id="Curve_nl8pl"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 5.538452), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_rajix"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8768115, 0.6923077), -1.3846157, -1.3846157, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_58i6i"]
+offsets = PackedFloat32Array(0, 0.73140496)
+colors = PackedColorArray(18.892157, 0, 0, 1, 0, 0, 0, 0)
+
+[node name="Node2D" type="CPUParticles2D" unique_id=985185584]
+z_index = -2
+emitting = false
+amount = 5
+texture = ExtResource("1_2nkrg")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+spread = 10.8
+gravity = Vector2(0, 0)
+initial_velocity_min = 86.67
+initial_velocity_max = 340.0
+angle_min = -0.5
+angle_max = 128.8
+angle_curve = SubResource("Curve_nl8pl")
+scale_amount_min = 0.05
+scale_amount_max = 0.35
+scale_amount_curve = SubResource("Curve_rajix")
+color_ramp = SubResource("Gradient_58i6i")
+script = ExtResource("2_nr0wf")

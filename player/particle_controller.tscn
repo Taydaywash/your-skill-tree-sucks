@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bqxq7axrrfho5"]
+
+[ext_resource type="Script" uid="uid://c8lpd8qfmas1r" path="res://player/particle_controller.gd" id="1_chy60"]
+
+[node name="ParticleController" type="Node2D" unique_id=1587575907]
+script = ExtResource("1_chy60")

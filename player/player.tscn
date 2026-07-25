@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dnxeq4irevjbf"]
 
 [ext_resource type="Script" uid="uid://cvnpwqr8o6shq" path="res://player/player_movement.gd" id="1_ivps1"]
+[ext_resource type="AudioStream" uid="uid://uindq8kyyjo8" path="res://Audio/step.wav" id="2_1so5t"]
 [ext_resource type="Texture2D" uid="uid://cp7gidx8e6o60" path="res://player/animations/player_idle/idle.png" id="2_b26j0"]
 [ext_resource type="Texture2D" uid="uid://ccbc2epsel5h7" path="res://player/animations/player_walk/walk0000.png" id="3_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://dnu5gm7a1wscn" path="res://player/animations/player_walk/walk0001.png" id="4_nvl01"]
@@ -28,10 +29,15 @@
 [ext_resource type="Texture2D" uid="uid://c60l563nv4l8n" path="res://player/swipe/sword_swing0005.png" id="19_pnw6m"]
 [ext_resource type="Texture2D" uid="uid://y55vd44c6q5w" path="res://player/swipe/sword_swing0006.png" id="20_1so5t"]
 [ext_resource type="Texture2D" uid="uid://om8phj050623" path="res://player/swipe/frame0000.png" id="24_55jnj"]
+[ext_resource type="AudioStream" uid="uid://c5sae7s3kmfmp" path="res://Audio/spear.wav" id="24_q28gw"]
 [ext_resource type="Texture2D" uid="uid://xfkao64bpc6k" path="res://player/swipe/frame0002.png" id="25_dx5ib"]
+[ext_resource type="PackedScene" uid="uid://blnv6ssfdlncj" path="res://player/spear_particle.tscn" id="25_pnw6m"]
 [ext_resource type="Texture2D" uid="uid://ce3ejakqbgm2j" path="res://player/swipe/frame0003.png" id="26_a2xo5"]
 [ext_resource type="Texture2D" uid="uid://c8mip1x2ji7h4" path="res://player/swipe/frame0004.png" id="27_art4l"]
 [ext_resource type="Texture2D" uid="uid://cn20f0jobs76w" path="res://player/swipe/frame0005.png" id="28_fjxoa"]
+[ext_resource type="AudioStream" uid="uid://bgqffkmyi568t" path="res://player/swipe/attack.wav" id="29_jd2rm"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="34_q28gw"]
+[ext_resource type="PackedScene" uid="uid://bqxq7axrrfho5" path="res://player/particle_controller.tscn" id="38_1so5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
 size = Vector2(28, 36)
@@ -504,6 +510,34 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(99999, 99999), Vector2(0, 0)]
 }
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AudioController")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("24_q28gw"), 0.7, 1.1],
+"method": &"play_sound"
+}]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ParticleController")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("25_pnw6m")],
+"method": &"spawn_particle"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_gswnw"]
 resource_name = "sword_attack"
@@ -629,6 +663,20 @@ tracks/9/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AudioController")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.04),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("29_jd2rm")],
+"method": &"play_sound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqiix"]
 _data = {
@@ -650,7 +698,7 @@ radius = 29.999996
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lth"]
 size = Vector2(24, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=1088654542 node_paths=PackedStringArray("sprite", "invincibility_timer", "hurtbox", "health", "leveling") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1088654542 node_paths=PackedStringArray("sprite", "invincibility_timer", "hurtbox", "health", "leveling", "audio_controller") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_ivps1")
 move_speed = 250
@@ -661,6 +709,8 @@ health = NodePath("Health")
 leveling = NodePath("Leveling")
 dash_speed = 1500
 dash_duration = 0.5
+audio_controller = NodePath("AudioController")
+step = ExtResource("2_1so5t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=97123581]
 z_index = 1
@@ -760,6 +810,10 @@ shape = SubResource("RectangleShape2D_b1lth")
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=816067780]
 one_shot = true
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("34_q28gw")]
+
+[node name="ParticleController" parent="." unique_id=1587575907 instance=ExtResource("38_1so5t")]
 
 [connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_player_hurtbox_area_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

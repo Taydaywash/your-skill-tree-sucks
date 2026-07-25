@@ -13,6 +13,7 @@ var current_melee = "spear"
 var spear_charged : bool = false
 var spear_chargeup_cancelled : bool = false
 var spear_chargeup : Timer
+@export var _02_chargeup: AudioStreamWAV
 
 #Range
 var current_range = "harpoon"
@@ -20,7 +21,7 @@ var current_range = "harpoon"
 @export var harpoon_cooldown_time: float
 var harpoon_cooldown : Timer
 
-
+@export var audio_controller: AudioController
 
 func _ready() -> void:
 	spear_chargeup = Timer.new()
@@ -81,6 +82,7 @@ func _input(event: InputEvent) -> void:
 		match current_melee:
 			"spear":
 				spear_chargeup.start()
+				audio_controller.play_sound(_02_chargeup)
 				await spear_chargeup.timeout
 				animation_player.play("spear_attack")
 			"sword":
