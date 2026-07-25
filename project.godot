@@ -23,9 +23,13 @@ buses/default_bus_layout="uid://dmvxtq5khu1eb"
 
 EventController="*uid://cwjg2ijjtp83t"
 GameState="*uid://bc7gvrdicbw12"
+SaveLoad="*uid://ipvy7bwpxaoq"
 
 [display]
 
+window/size/resizable=false
+window/size/sharp_corners=true
+window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

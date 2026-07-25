@@ -125,6 +125,58 @@ theme_override_styles/grabber_pressed = SubResource("StyleBoxFlat_00yke")
 step = 5.0
 value = 100.0
 
+[node name="ScreenResolution" type="OptionButton" parent="." unique_id=798932493]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 56.0
+offset_right = 624.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("1_00yke")
+selected = 0
+item_count = 3
+popup/item_0/text = "1152x648"
+popup/item_0/id = 0
+popup/item_1/text = "1280 × 720"
+popup/item_1/id = 1
+popup/item_2/text = "1920 × 1080"
+popup/item_2/id = 2
+
+[node name="Resolution" type="Label" parent="ScreenResolution" unique_id=1750768631]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 48.0
+offset_right = 82.0
+offset_bottom = 71.0
+text = "Resolution"
+label_settings = SubResource("LabelSettings_nl8pl")
+horizontal_alignment = 1
+
+[node name="ScreenMode" type="OptionButton" parent="." unique_id=1670582482]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 140.0
+offset_right = 624.0
+offset_bottom = 180.0
+theme_override_fonts/font = ExtResource("1_00yke")
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="Screen mode" type="Label" parent="ScreenMode" unique_id=434381112]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 48.0
+offset_right = 82.0
+offset_bottom = 71.0
+text = "Screen Mode"
+label_settings = SubResource("LabelSettings_nl8pl")
+horizontal_alignment = 1
+
 [connection signal="value_changed" from="MasterLabel/MasterScroll" to="." method="_on_master_scroll_changed"]
 [connection signal="value_changed" from="SFX/SfxScroll" to="." method="_on_sfx_scroll_changed"]
 [connection signal="value_changed" from="Music/MusicScroll" to="." method="_on_music_scroll_changed"]
+[connection signal="item_selected" from="ScreenResolution" to="." method="_on_screen_resolution_item_selected"]
+[connection signal="item_selected" from="ScreenMode" to="." method="_on_screen_mode_item_selected"]
