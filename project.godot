@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Your Skill Tree Sucks"
-run/main_scene="uid://d0s7flavngvkg"
+run/main_scene="uid://cby6l7wi382t4"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://dmvxtq5khu1eb"
 
 [autoload]
 

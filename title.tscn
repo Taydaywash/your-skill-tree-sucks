@@ -93,6 +93,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_58i6i")
 text = "Quit"
 
 [node name="Panel3" type="Panel" parent="." unique_id=722189795]
+visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 652.0
