@@ -7,7 +7,6 @@ var player: Node2D = null
 var starting_position
 
 func _ready() -> void:
-	starting_position = global_position
 	EventController.level_down.connect(delete_orbs)
 
 func _physics_process(delta):

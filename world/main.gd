@@ -26,12 +26,14 @@ const s1b4 : Dictionary = {
 	"speaker":"Creator",
 	"text":"We- well fine then! Let's see how you like it when you start leveling DOWN instead of UP!"
 }
+
 const s1 = [s1b1,s1b2,s1b3,s1b4]
 
 func _ready() -> void:
 	#SaveLoad.reset_game_state()
 	var game_state = SaveLoad.load_game_state()
 	for orb in cut_scene_animator.get_children():
+		orb.starting_position = orb.global_position
 		orb.global_position = Vector2(9999,9999)
 	await get_tree().create_timer(1).timeout
 	if not game_state.cutscene_watched:
@@ -53,4 +55,4 @@ func _ready() -> void:
 		audio_controller.play_sound(creator_speak)
 		await get_tree().create_timer(0.2).timeout
 	spawner.is_spawning = true
-	#music.playing = true
+	music.playing = true
