@@ -59,4 +59,4 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug"):
-		EventController.level_down.emit()
+		EventController.pick_up_xp_orb.emit()

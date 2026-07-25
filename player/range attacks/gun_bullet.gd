@@ -11,7 +11,8 @@ var hand : Node
 func _ready() -> void:
 	await get_tree().process_frame
 	gun_shot.look_at(get_global_mouse_position())
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(10).timeout
+	queue_free()
 
 func _process(_delta: float) -> void:
 	pass

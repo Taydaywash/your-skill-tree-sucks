@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bf5to2ngo24hx"]
+
+[ext_resource type="Script" uid="uid://dmt5uomtk4pvy" path="res://player/range attacks/rock.gd" id="1_0j23a"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_w24da"]
+[ext_resource type="Texture2D" uid="uid://ctwbo43drpr2t" path="res://player/player_rock.png" id="3_0j23a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n0lcb"]
+radius = 100.0
+
+[node name="Rock" type="CharacterBody2D" unique_id=1260749187 node_paths=PackedStringArray("rock_shot")]
+script = ExtResource("1_0j23a")
+speed = 200
+rock_shot = NodePath("RockShot")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=335465162]
+z_index = 2
+rotation = 0.7853982
+scale = Vector2(0.28571427, 0.28571427)
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("2_w24da")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=720061213]
+shape = SubResource("CircleShape2D_n0lcb")
+
+[node name="RockShot" type="Sprite2D" parent="." unique_id=1159642310]
+z_index = 1
+position = Vector2(1.9073486e-06, -4.7683716e-07)
+scale = Vector2(2.3999999, 2.4)
+texture = ExtResource("3_0j23a")
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

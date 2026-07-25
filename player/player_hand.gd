@@ -3,6 +3,7 @@ extends AnimatedSprite2D
 @export_category("General")
 @export var player: Player
 @export var animation_player: AnimationPlayer
+@export var audio_controller: AudioController
 
 #Melee
 var current_melee = "spear"
@@ -21,11 +22,15 @@ var current_range = "harpoon"
 @export var harpoon_cooldown_time: float
 var harpoon_cooldown : Timer
 
-@export var audio_controller: AudioController
 @export_category("Gun")
 @export var gun_shot: PackedScene
 @export var gun_cooldown_time: float
 var gun_cooldown: Timer
+
+@export_category("Rock")
+@export var rock_shot: PackedScene
+@export var rock_cooldown_time: float = 1
+var rock_cooldown: Timer
 
 func _ready() -> void:
 	spear_chargeup = Timer.new()
@@ -45,6 +50,12 @@ func _ready() -> void:
 	gun_cooldown.autostart = false
 	gun_cooldown.one_shot = true
 	add_child(gun_cooldown)
+	
+	rock_cooldown = Timer.new()
+	rock_cooldown.wait_time = rock_cooldown_time
+	rock_cooldown.autostart = false
+	rock_cooldown.one_shot = true
+	add_child(rock_cooldown)
 	
 	EventController.connect("unlock_sword",func ():
 		current_melee = "sword"
@@ -113,14 +124,25 @@ func _input(event: InputEvent) -> void:
 				harpoon_shot_instance.velocity = (global_position - harpoon_shot_instance.global_position).normalized() * harpoon_shot_instance.speed
 				harpoon_shot_instance.hand = self
 			"gun":
+				if gun_cooldown.time_left:
+					return
 				play("gun_idle")
+				gun_cooldown.start()
 				var gun_shot_instance = gun_shot.instantiate()
 				get_parent().add_sibling(gun_shot_instance)
 				gun_shot_instance.global_position = get_parent().global_position
 				gun_shot_instance.velocity = (global_position - gun_shot_instance.global_position).normalized() * gun_shot_instance.speed
 				gun_shot_instance.hand = self
 			"rock":
+				if rock_cooldown.time_left:
+					return
+				rock_cooldown.start()
 				play("fist_idle")
+				var rock_shot_instance = rock_shot.instantiate()
+				get_parent().add_sibling(rock_shot_instance)
+				rock_shot_instance.global_position = get_parent().global_position
+				rock_shot_instance.velocity = (global_position - rock_shot_instance.global_position).normalized() * rock_shot_instance.speed
+				rock_shot_instance.hand = self
 		if animation_player.is_playing():
 			await animation_player.animation_finished
 		animation_player.play("range_attack")

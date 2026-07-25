@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://gf8skwxkqrlp" path="res://player/range attacks/gun_shot.tscn" id="23_5ejfk"]
 [ext_resource type="Texture2D" uid="uid://om8phj050623" path="res://player/swipe/frame0000.png" id="24_55jnj"]
 [ext_resource type="AudioStream" uid="uid://c5sae7s3kmfmp" path="res://Audio/spear.wav" id="24_q28gw"]
+[ext_resource type="PackedScene" uid="uid://bf5to2ngo24hx" path="res://player/range attacks/rock.tscn" id="25_a2xo5"]
 [ext_resource type="Texture2D" uid="uid://xfkao64bpc6k" path="res://player/swipe/frame0002.png" id="25_dx5ib"]
 [ext_resource type="PackedScene" uid="uid://blnv6ssfdlncj" path="res://player/spear_particle.tscn" id="25_pnw6m"]
 [ext_resource type="Texture2D" uid="uid://ce3ejakqbgm2j" path="res://player/swipe/frame0003.png" id="26_a2xo5"]
@@ -723,7 +724,7 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_nl8pl")
 animation = &"walk"
 
-[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "spear_raycast")]
+[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "audio_controller", "spear_raycast")]
 position = Vector2(19.999998, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_58i6i")
@@ -731,12 +732,15 @@ animation = &"fist_idle"
 script = ExtResource("12_606se")
 player = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
+audio_controller = NodePath("../AudioController")
 spear_chargeup_time = 0.2
 spear_raycast = NodePath("Weapon/SpearRaycast")
 harpoon_shot = ExtResource("15_65viv")
 harpoon_cooldown_time = 0.3
 gun_shot = ExtResource("23_5ejfk")
 gun_cooldown_time = 0.5
+rock_shot = ExtResource("25_a2xo5")
+rock_cooldown_time = 0.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1328636621]
 root_node = NodePath("../..")
