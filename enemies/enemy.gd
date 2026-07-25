@@ -58,6 +58,7 @@ func on_death() -> void:
 	spawn_xp_orb()
 	hitbox.set_deferred("monitorable",false)
 	enemy_alive = false
+	visible = false
 	await get_tree().create_timer(0.5).timeout
 	call_deferred("queue_free")
 
