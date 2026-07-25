@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://c1fmc7fqp7afc" path="res://player/swipe/sword_swing0004.png" id="18_ge24q"]
 [ext_resource type="Texture2D" uid="uid://c60l563nv4l8n" path="res://player/swipe/sword_swing0005.png" id="19_pnw6m"]
 [ext_resource type="Texture2D" uid="uid://y55vd44c6q5w" path="res://player/swipe/sword_swing0006.png" id="20_1so5t"]
+[ext_resource type="PackedScene" uid="uid://gf8skwxkqrlp" path="res://player/range attacks/gun_shot.tscn" id="23_5ejfk"]
 [ext_resource type="Texture2D" uid="uid://om8phj050623" path="res://player/swipe/frame0000.png" id="24_55jnj"]
 [ext_resource type="Texture2D" uid="uid://xfkao64bpc6k" path="res://player/swipe/frame0002.png" id="25_dx5ib"]
 [ext_resource type="Texture2D" uid="uid://ce3ejakqbgm2j" path="res://player/swipe/frame0003.png" id="26_a2xo5"]
@@ -684,6 +685,8 @@ spear_chargeup_time = 0.2
 spear_raycast = NodePath("Weapon/SpearRaycast")
 harpoon_shot = ExtResource("15_65viv")
 harpoon_cooldown_time = 0.3
+gun_shot = ExtResource("23_5ejfk")
+gun_cooldown_time = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1328636621]
 root_node = NodePath("../..")
