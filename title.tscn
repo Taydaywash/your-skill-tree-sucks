@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://reyynr7arxru" path="res://title.gd" id="1_oyqm6"]
 [ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="1_y7k74"]
+[ext_resource type="AudioStream" uid="uid://ikv021mbn1wu" path="res://Audio/positive.wav" id="2_0824t"]
+[ext_resource type="PackedScene" uid="uid://d0s7flavngvkg" path="res://world/main.tscn" id="2_kpexm"]
+[ext_resource type="AudioStream" uid="uid://dxfpv1bsnpuu2" path="res://Audio/negative.wav" id="3_nuqgq"]
+[ext_resource type="PackedScene" uid="uid://by1jjjut24mkr" path="res://settings_screen.tscn" id="4_3xoar"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="7_lx2ly"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8pl"]
 bg_color = Color(0, 0, 0, 1)
@@ -15,7 +20,17 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58i6i"]
 bg_color = Color(0.28607237, 0.2860724, 0.28607222, 1)
 
-[node name="Title" type="Control" unique_id=867774957]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16fuh"]
+bg_color = Color(0, 0, 0, 0.72156864)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xoar"]
+bg_color = Color(0.3106171, 0.31061712, 0.310617, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Title" type="Control" unique_id=867774957 node_paths=PackedStringArray("audio_controller", "settings_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +38,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oyqm6")
+audio_controller = NodePath("AudioController")
+positive = ExtResource("2_0824t")
+negative = ExtResource("3_nuqgq")
+settings_screen = NodePath("Panel3")
+main = ExtResource("2_kpexm")
 
 [node name="Panel" type="Panel" parent="." unique_id=1055568888]
 layout_mode = 0
@@ -72,6 +92,33 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_58i6i")
 text = "Quit"
 
+[node name="Panel3" type="Panel" parent="." unique_id=722189795]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 652.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_16fuh")
+
+[node name="Panel2" parent="Panel3" unique_id=1406267981 instance=ExtResource("4_3xoar")]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 150.0
+offset_right = 898.0
+offset_bottom = 502.0
+
+[node name="SettingsBack2" type="Button" parent="Panel3/Panel2" unique_id=1638235828]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 308.0
+offset_right = 104.0
+offset_bottom = 339.0
+theme_override_fonts/font = ExtResource("1_y7k74")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_3xoar")
+text = "Back"
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("7_lx2ly")]
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Panel3/Panel2/SettingsBack2" to="." method="_on_settings_back_pressed"]
