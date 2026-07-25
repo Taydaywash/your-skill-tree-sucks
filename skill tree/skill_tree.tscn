@@ -293,6 +293,7 @@ title = "Master's Sword"
 description = "A powerful sword which can deal big damage to your foes at a distance"
 signal_name = "unlock_fist"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
@@ -307,6 +308,7 @@ title = "Gun of Destruction"
 description = "A powerful weapon which fires fast-moving projectiles that can damage anything."
 signal_name = "unlock_rock_throw"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
@@ -321,6 +323,7 @@ title = "Dash of One Thousand Winds"
 description = "Supercharge your dodge with the force of One Thousand Winds, allowing you to escape your foes with minimal effort"
 signal_name = "remove_long_dash"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
@@ -335,6 +338,7 @@ title = "Shield of Heroic Strength"
 description = "A powerful, Inudstructable defensive power that can block anything and everything."
 signal_name = "remove_shield"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
@@ -349,6 +353,7 @@ title = "Spear Of Obliteration and Doom"
 description = "Incredibly strong weapon that can slay enemies in one powerful strike"
 signal_name = "unlock_sword"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
@@ -363,6 +368,7 @@ title = "Harpoon of Opportunity"
 description = "Beckon your foes closer for an easier strike, taking them down with ease"
 signal_name = "unlock_gun"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
@@ -376,6 +382,7 @@ title = "Lamenting Chains of Order and Chaos"
 description = "You are now granted the ultimate power of order and chaos, permanently keeping you chained in a single position. The ultimate upgrade."
 signal_name = "remove_chains"
 audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
 [node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
