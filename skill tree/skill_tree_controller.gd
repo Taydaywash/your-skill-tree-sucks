@@ -9,6 +9,7 @@ extends Node2D
 
 @export var level_down_animator: AnimationPlayer
 @export var level_down_text: Sprite2D
+@export var projectile_killer: Area2D
 
 
 var current_skill_points: int = -0
@@ -24,6 +25,7 @@ func level_down() -> void:
 	player.velocity = Vector2.ZERO
 	player.player_disabled = true
 	player.movement_disabled = true
+	projectile_killer.position = Vector2.ZERO
 	level_down_text.global_position = player.global_position + Vector2(-88,-49.72)
 	level_down_animator.play("Level Down")
 	await level_down_animator.animation_finished
@@ -47,6 +49,7 @@ func set_skill_points_label() -> void:
 func unpause() -> void:
 	toggle_visibility()
 	EventController.unpause_enemies.emit()
+	projectile_killer.position = Vector2(0,1100)
 	player.player_disabled = false
 	player.movement_disabled = false
 
