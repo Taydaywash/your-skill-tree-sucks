@@ -60,7 +60,7 @@ func _process(_delta: float) -> void:
 		#spear_raycast.enabled = false
 		await get_tree().create_timer(0.1).timeout
 		player.movement_disabled = false
-	if animation_player.is_playing():
+	if animation_player.is_playing() and animation_player.current_animation == "spear_attack":
 		return
 	position = (get_global_mouse_position() - get_parent().global_position).normalized() * 20
 	match current_melee:
@@ -78,13 +78,11 @@ func _input(event: InputEvent) -> void:
 			"spear":
 				spear_chargeup.start()
 				await spear_chargeup.timeout
-				animation_player.play("RESET")
 				animation_player.play("spear_attack")
 			"sword":
 				play("sword_idle")
 			"fist":
 				play("fist_idle")
-	
 	if event.is_action_pressed("range_attack"):
 		match current_range:
 			"harpoon":
@@ -98,7 +96,8 @@ func _input(event: InputEvent) -> void:
 				play("gun_idle")
 			"rock":
 				play("fist_idle")
-		animation_player.play("RESET")
+		if animation_player.is_playing():
+			await animation_player.animation_finished
 		animation_player.play("range_attack")
 	if event.is_action_pressed("dash"):
 		player.movement_disabled = true
