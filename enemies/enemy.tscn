@@ -63,12 +63,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7frlh"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6vjpb"]
-radius = 13.0
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
-radius = 15.0
+radius = 16.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "audio_controller", "particle_controller", "hitbox") groups=["Enemy"]]
 collision_layer = 8

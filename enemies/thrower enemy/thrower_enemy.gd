@@ -66,13 +66,14 @@ func _physics_process(_delta):
 	else:
 		sprite.flip_h = false
 	if player: 
+		var direction: Vector2 = (player.global_position - global_position).normalized()
 		if (player.global_position - global_position).length() > follow_distance:
-			var direction: Vector2 = (player.global_position - global_position).normalized()
 			velocity = direction * speed
+		elif (player.global_position - global_position).length() < (follow_distance - 50):
+			velocity = Vector2.ZERO
+			velocity += direction.rotated(PI/2) * speed/3
 		else:
-			var direction: Vector2 = (player.global_position - global_position).normalized()
-			velocity = direction * -speed/2
-			velocity += direction.rotated(PI/2) * speed
+			velocity = direction * -speed * 2
 		move_and_slide()
 
 func on_health_changed(new_health: int) -> void:
@@ -90,8 +91,8 @@ func on_death() -> void:
 
 func _on_hurtbot_area_entered(area):
 	if area.pull_enemy:
-		follow_distance = 0
-		speed = default_speed * 2 + speed/5
+		follow_distance = 200
+		speed = 50
 	particle_controller.spawn_particle(enemy_death_particle)
 	audio_controller.play_sound(enemy_hit)
 	health.take_damage(area.damage_amount)
