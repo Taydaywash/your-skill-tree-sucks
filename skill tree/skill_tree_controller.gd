@@ -8,6 +8,7 @@ extends Node2D
 @export var continue_button: Button
 
 @export var level_down_animator: AnimationPlayer
+@export var level_down_text: Sprite2D
 
 
 var current_skill_points: int = -0
@@ -24,7 +25,7 @@ func level_down() -> void:
 	player.velocity = Vector2.ZERO
 	player.player_disabled = true
 	player.movement_disabled = true
-	#level_down_animator.get_child(0).global_position = player.global_position
+	level_down_text.global_position = player.global_position + Vector2(-88,-49.72)
 	level_down_animator.play("Level Down")
 	await level_down_animator.animation_finished
 	toggle_visibility()

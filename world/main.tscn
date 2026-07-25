@@ -21,10 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://by1jjjut24mkr" path="res://settings_screen.tscn" id="7_vid1e"]
 [ext_resource type="AudioStream" uid="uid://dmw6jkoaa1upn" path="res://Audio/YourBattleThemeSucks.mp3" id="9_vrojb"]
 [ext_resource type="Script" uid="uid://dslqucek2tbxp" path="res://world/dialogue.gd" id="12_s8tpt"]
+[ext_resource type="PackedScene" uid="uid://bsxiri62dcrmy" path="res://classes/leveling system/xp_orb.tscn" id="22_wc2es"]
 
 [sub_resource type="Animation" id="Animation_gk3u8"]
 resource_name = "Level Down"
-length = 2.5000000000000004
+length = 3.5000000000000004
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -355,7 +356,7 @@ _data = {
 &"RESET": SubResource("Animation_e63cu")
 }
 
-[node name="Main" type="Node2D" unique_id=2078986703 node_paths=PackedStringArray("animation_player", "cut_scene_animator", "dialogue", "spawner", "music", "player")]
+[node name="Main" type="Node2D" unique_id=2078986703 node_paths=PackedStringArray("animation_player", "cut_scene_animator", "dialogue", "spawner", "music", "player", "audio_controller")]
 script = ExtResource("1_qnd6n")
 animation_player = NodePath("AnimationPlayer")
 cut_scene_animator = NodePath("CutSceneAnimator")
@@ -363,6 +364,8 @@ dialogue = NodePath("CanvasLayer/Dialogue")
 spawner = NodePath("Spawner")
 music = NodePath("Music")
 player = NodePath("Player")
+audio_controller = NodePath("AudioController")
+creator_speak = ExtResource("2_h1iki")
 
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("1_04q08")]
 process_mode = 3
@@ -425,7 +428,7 @@ position = Vector2(-8.0000305, 4.0000305)
 scale = Vector2(2.044843, 1.6196318)
 texture = ExtResource("5_e63cu")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260 node_paths=PackedStringArray("pause", "animation_player", "settings", "audio_controller")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260 node_paths=PackedStringArray("pause", "animation_player", "settings", "audio_controller", "skill_tree")]
 process_mode = 3
 script = ExtResource("4_op3e8")
 pause = NodePath("Pause")
@@ -434,6 +437,7 @@ settings = NodePath("Pause/Settings/SettingsBack")
 negative = ExtResource("5_8q2wj")
 positive = ExtResource("6_60vd7")
 audio_controller = NodePath("../AudioController")
+skill_tree = NodePath("Skill Tree")
 
 [node name="ScreenCover" type="Panel" parent="CanvasLayer" unique_id=1026027310]
 z_index = 2
@@ -442,7 +446,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
 
-[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter", "player", "level_down_animator") instance=ExtResource("2_hyim0")]
+[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter", "player", "level_down_animator", "level_down_text") instance=ExtResource("2_hyim0")]
 visible = false
 z_index = 2
 position = Vector2(576, 320)
@@ -451,6 +455,7 @@ xp_bar = NodePath("../XpBar")
 level_counter = NodePath("../Level counter")
 player = NodePath("../../Player")
 level_down_animator = NodePath("../../Player/LevelDownAnimator")
+level_down_text = NodePath("../../Player/LevelDownAnimator/LevelDownText")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=107239846]
 self_modulate = Color(1, 0, 0, 1)
@@ -739,6 +744,36 @@ autoplay = &"enter_scene"
 
 [node name="CutSceneAnimator" type="AnimationPlayer" parent="." unique_id=194940018]
 libraries/ = SubResource("AnimationLibrary_r4j7u")
+
+[node name="XP Orb (cutscene)" parent="CutSceneAnimator" unique_id=977865216 instance=ExtResource("22_wc2es")]
+position = Vector2(-100, 4)
+
+[node name="XP Orb (cutscene)2" parent="CutSceneAnimator" unique_id=313970115 instance=ExtResource("22_wc2es")]
+position = Vector2(-80, -40)
+
+[node name="XP Orb (cutscene)3" parent="CutSceneAnimator" unique_id=1929150461 instance=ExtResource("22_wc2es")]
+position = Vector2(-32, -64)
+
+[node name="XP Orb (cutscene)4" parent="CutSceneAnimator" unique_id=2127377989 instance=ExtResource("22_wc2es")]
+position = Vector2(28, -64)
+
+[node name="XP Orb (cutscene)5" parent="CutSceneAnimator" unique_id=1658489560 instance=ExtResource("22_wc2es")]
+position = Vector2(84, -48)
+
+[node name="XP Orb (cutscene)6" parent="CutSceneAnimator" unique_id=26442238 instance=ExtResource("22_wc2es")]
+position = Vector2(100, -4)
+
+[node name="XP Orb (cutscene)7" parent="CutSceneAnimator" unique_id=517537756 instance=ExtResource("22_wc2es")]
+position = Vector2(92, 56)
+
+[node name="XP Orb (cutscene)8" parent="CutSceneAnimator" unique_id=1000039667 instance=ExtResource("22_wc2es")]
+position = Vector2(60, 88)
+
+[node name="XP Orb (cutscene)9" parent="CutSceneAnimator" unique_id=1276956681 instance=ExtResource("22_wc2es")]
+position = Vector2(-16, 112)
+
+[node name="XP Orb (cutscene)10" parent="CutSceneAnimator" unique_id=1863770066 instance=ExtResource("22_wc2es")]
+position = Vector2(-84, 68)
 
 [connection signal="pressed" from="CanvasLayer/Pause/Resume" to="CanvasLayer" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/Quit" to="CanvasLayer" method="_on_quit_pressed"]

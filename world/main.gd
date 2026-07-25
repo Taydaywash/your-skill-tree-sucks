@@ -6,6 +6,8 @@ extends Node2D
 @export var music: AudioStreamPlayer2D
 @export var player: Player
 
+@export var audio_controller: AudioController
+@export var creator_speak: AudioStreamWAV
 
 #Scene 1
 const s1b1 : Dictionary = {
@@ -29,8 +31,11 @@ const s1 = [s1b1,s1b2,s1b3,s1b4]
 func _ready() -> void:
 	#SaveLoad.reset_game_state()
 	var game_state = SaveLoad.load_game_state()
+	for orb in cut_scene_animator.get_children():
+		orb.global_position = Vector2(9999,9999)
+	await get_tree().create_timer(1).timeout
 	if not game_state.cutscene_watched:
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(2).timeout
 		player.player_disabled = true
 		cut_scene_animator.play("1")
 		await cut_scene_animator.animation_finished
@@ -42,5 +47,10 @@ func _ready() -> void:
 		SaveLoad.save_game_state({
 			"cutscene_watched": true,
 		})
+	for orb in cut_scene_animator.get_children():
+		orb.visible=true
+		orb.global_position = orb.starting_position
+		audio_controller.play_sound(creator_speak)
+		await get_tree().create_timer(0.2).timeout
 	spawner.is_spawning = true
 	music.playing = true

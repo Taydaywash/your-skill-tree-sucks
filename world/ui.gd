@@ -7,9 +7,12 @@ class_name UI
 @export var negative: AudioStreamWAV
 @export var positive: AudioStreamWAV
 @export var audio_controller: AudioController
+@export var skill_tree: Node2D
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
+		if skill_tree.visible:
+			return
 		if settings.visible:
 			audio_controller.play_sound(negative,1,1.3)
 			settings.visible = false

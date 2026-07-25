@@ -4,7 +4,10 @@ extends Area2D
 var moving_toward_player: bool = false
 var player: Node2D = null
 
+var starting_position
+
 func _ready() -> void:
+	starting_position = global_position
 	EventController.level_down.connect(delete_orbs)
 
 func _physics_process(delta):
