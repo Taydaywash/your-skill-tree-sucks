@@ -13,6 +13,7 @@ class_name Player
 var is_invincible: bool = false
 var flash_tween: Tween = null
 var movement_disabled : bool = false
+var player_disabled : bool = false
 
 #Dash
 @export_category("Dash")
@@ -92,6 +93,9 @@ func update_xp_bar(new_xp: int) -> void:
 	xp_bar.value = new_xp
 
 func _input(event: InputEvent) -> void:
+	if player_disabled:
+		return
+	
 	if event.is_action_pressed("dash"):
 		movement_disabled = true
 		#player.is_invincible = true

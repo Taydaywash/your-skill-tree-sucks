@@ -10,3 +10,4 @@ signal unlock_gun
 signal unlock_rock_throw
 signal level_down
 signal pick_up_xp_orb
+signal unpause_enemies

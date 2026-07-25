@@ -334,7 +334,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ehp47")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ehp47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3okbx")
 script = ExtResource("1_503ij")
-button_hold_duration = 2.0
+button_hold_duration = 2.1
 inverted_animation_player = NodePath("InvertedAnimationPlayer")
 sprite = NodePath("Sprite2D")
 

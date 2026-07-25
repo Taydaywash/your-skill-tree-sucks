@@ -14,6 +14,8 @@ var default_speed : float
 var player: Player = null
 
 func _ready() -> void:
+	EventController.level_down.connect(kill_all_enemies)
+	
 	default_speed = speed
 	player = get_parent().get_node("Player")
 	health_bar.max_value = health.max_health
@@ -46,3 +48,7 @@ func spawn_xp_orb() -> void:
 	var xp_orb = xp_orb_scene.instantiate()
 	get_tree().current_scene.call_deferred("add_child", xp_orb)
 	xp_orb.global_position = global_position
+	
+
+func kill_all_enemies() -> void:
+	call_deferred("queue_free")

@@ -50,13 +50,14 @@ uv = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 7
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260]
 
-[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter") instance=ExtResource("2_hyim0")]
+[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter", "player") instance=ExtResource("2_hyim0")]
 visible = false
 z_index = 2
 position = Vector2(576, 320)
 health_bar = NodePath("../HealthBar")
 xp_bar = NodePath("../XpBar")
 level_counter = NodePath("../Level counter")
+player = NodePath("../../Player")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=107239846]
 self_modulate = Color(1, 0, 0, 1)

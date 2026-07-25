@@ -58,6 +58,9 @@ func _on_gui_input(event: InputEvent) -> void:
 	if shattered:
 		return
 	if event is InputEventMouseButton and event.is_pressed():
+		if get_parent().current_skill_points >= 0:
+			animation_player.play("cant interact")
+			return
 		for node in required_nodes:
 			if not node.shattered:
 				animation_player.play("cant interact")
@@ -74,6 +77,8 @@ func _on_gui_input(event: InputEvent) -> void:
 			tween2.parallel().tween_property(self, "self_modulate", Color(0.51, 0.51, 0.51, 1.0), 0.03).set_ease(Tween.EASE_IN)
 			return
 		else:
+			get_parent().current_skill_points += 1
+			get_parent().set_skill_points_label()
 			shattered = true
 			if signal_name:
 				EventController.emit_signal(signal_name)

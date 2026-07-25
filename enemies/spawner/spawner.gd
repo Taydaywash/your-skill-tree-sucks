@@ -7,8 +7,12 @@ extends Node2D
 @export var timer_wait_time: float = 1
 
 var spawn_points: Array[Marker2D] = []
+var is_spawning: bool = true
 
 func _ready():
+	EventController.level_down.connect(pause_enemies)
+	EventController.unpause_enemies.connect(unpause_enemies)
+	
 	timer.wait_time = timer_wait_time
 	
 	for child in get_children():
@@ -32,7 +36,7 @@ func spawn_enemy() -> void:
 	get_tree().current_scene.call_deferred("add_child", indicator)
 	indicator.global_position = spawn_position
 	await indicator.tree_exited
-	if not is_inside_tree() or get_tree() == null:
+	if not is_inside_tree() or get_tree() == null or not is_spawning:
 		return
 	
 	var final_choice = default_enemy
@@ -48,4 +52,11 @@ func spawn_enemy() -> void:
 	enemy.global_position = spawn_position
 
 func _on_timer_timeout():
-	spawn_enemy()
+	if is_spawning:
+		spawn_enemy()
+		
+func pause_enemies():
+	is_spawning = false
+	
+func unpause_enemies():
+	is_spawning = true

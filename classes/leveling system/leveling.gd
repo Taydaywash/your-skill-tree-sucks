@@ -6,7 +6,7 @@ class_name Leveling
 signal xp_changed(current_xp: int)
 
 var player_level: int = 7
-var max_xp: int = 10
+var max_xp: int = 1
 
 var current_xp: int = 0
 var extra_xp: int = 0

@@ -44,8 +44,21 @@ font_color = Color(0, 0, 0, 1)
 outline_color = Color(5.1608413e-06, 5.160842e-06, 5.1608413e-06, 1)
 shadow_size = 0
 
-[node name="Skill Tree" type="Node2D" unique_id=604634100]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag5bh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_taeg2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cek0s"]
+bg_color = Color(0.05197096, 0.051970966, 0.051970914, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qekd"]
+bg_color = Color(0, 0, 0, 0.78431374)
+
+[node name="Skill Tree" type="Node2D" unique_id=604634100 node_paths=PackedStringArray("skill_point_counter", "continue_button")]
 script = ExtResource("1_fmctd")
+skill_point_counter = NodePath("skill point counter")
+continue_button = NodePath("ContinueButton")
 
 [node name="Node" type="Node2D" parent="." unique_id=606577394]
 
@@ -445,7 +458,7 @@ description = "Become Free"
 offset_left = 40.0
 offset_top = -264.0
 offset_right = 496.0
-offset_bottom = 264.0
+offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_58i6i")
 script = ExtResource("14_nq7ri")
 skill_name = NodePath("Skill Name")
@@ -470,3 +483,17 @@ offset_bottom = 233.0
 text = "You are now granted the ultimate power of order and chaos, permanently keeping you chained in a single position. The ultimate upgrade."
 label_settings = SubResource("LabelSettings_0v6ha")
 autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="." unique_id=180775323]
+offset_left = 48.0
+offset_top = 208.0
+offset_right = 488.0
+offset_bottom = 252.0
+theme_override_fonts/font = ExtResource("3_itn7s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ag5bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_taeg2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cek0s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7qekd")
+text = "Continue"
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

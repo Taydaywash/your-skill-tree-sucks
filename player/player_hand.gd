@@ -65,6 +65,9 @@ func _process(_delta: float) -> void:
 			rotation = 0
 
 func _input(event: InputEvent) -> void:
+	if player.player_disabled:
+		return
+	
 	if event.is_action_pressed("melee_attack"):
 		match current_melee:
 			"spear":
@@ -75,6 +78,7 @@ func _input(event: InputEvent) -> void:
 				play("sword_idle")
 			"fist":
 				play("fist_idle")
+
 	if event.is_action_pressed("range_attack"):
 		match current_range:
 			"harpoon":
