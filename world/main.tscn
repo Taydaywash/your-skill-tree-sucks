@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
 [ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill tree/skill_tree.tscn" id="2_hyim0"]
 [ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
+[ext_resource type="PackedScene" uid="uid://cxxr0k8g0861a" path="res://enemies/enemy.tscn" id="4_i1eo7"]
 [ext_resource type="Script" uid="uid://c1pugpvcsv5lp" path="res://enemies/spawner/marker_2d.gd" id="4_spvjk"]
+[ext_resource type="PackedScene" uid="uid://blso2d5rl1jcl" path="res://enemies/thrower enemy/thrower_enemy.tscn" id="5_gu74f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gu74f"]
 bg_color = Color(0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
@@ -66,6 +68,10 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_cmo1i")
 show_percentage = false
 
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
+enemyChance = Dictionary[float, PackedScene]({
+15.0: ExtResource("5_gu74f"),
+70.0: ExtResource("4_i1eo7")
+})
 
 [node name="Marker2D" parent="Spawner" index="1" unique_id=2078705381]
 visible = false

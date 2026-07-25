@@ -14,6 +14,13 @@ var is_invincible: bool = false
 var flash_tween: Tween = null
 var movement_disabled : bool = false
 
+#Dash
+@export_category("Dash")
+@export var dash_speed : int
+@export var dash_duration : float #seconds
+var dash_timer : Timer
+var dash_direction: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
 	health_bar.max_value = health.max_health
 	health_bar.value = health.current_health
@@ -23,6 +30,11 @@ func _ready() -> void:
 	xp_bar.max_value = leveling.max_xp
 	xp_bar.value = leveling.current_xp
 	leveling.xp_changed.connect(update_xp_bar)
+	
+	dash_timer = Timer.new()
+	dash_timer.wait_time = dash_duration
+	dash_timer.one_shot = true
+	add_child(dash_timer)
 
 
 func _physics_process(_delta: float) -> void:
@@ -78,3 +90,15 @@ func on_death() -> void:
 
 func update_xp_bar(new_xp: int) -> void:
 	xp_bar.value = new_xp
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("dash"):
+		movement_disabled = true
+		#player.is_invincible = true
+		dash_direction = global_position.direction_to(get_global_mouse_position())
+		velocity = dash_direction * dash_speed
+		dash_timer.start()
+		await dash_timer.timeout
+		movement_disabled = false
+		is_invincible = false
+		velocity = Vector2.ZERO

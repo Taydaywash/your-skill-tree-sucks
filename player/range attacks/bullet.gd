@@ -33,7 +33,6 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.get_collision_layer_value(1):
 		return_to_player = true
 	if body.get_collision_layer_value(4):
-		print("hit_enemy")
 		damage_area.set_deferred("monitorable", false)
 		damage_area.set_deferred("monitoring", false)
 		velocity = Vector2.ZERO

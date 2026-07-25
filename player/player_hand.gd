@@ -18,12 +18,7 @@ var spear_chargeup : Timer
 var current_range = "harpoon"
 @export var harpoon_shot: PackedScene
 
-#Other
-@export_category("Dash")
-@export var dash_speed : int
-@export var dash_duration : float #seconds
-var dash_timer : Timer
-var dash_direction: Vector2 = Vector2.ZERO
+
 
 func _ready() -> void:
 	spear_chargeup = Timer.new()
@@ -31,10 +26,7 @@ func _ready() -> void:
 	spear_chargeup.autostart = false
 	add_child(spear_chargeup)
 
-	dash_timer = Timer.new()
-	dash_timer.wait_time = dash_duration
-	dash_timer.one_shot = true
-	add_child(dash_timer)
+	
 	
 	EventController.connect("unlock_sword",func ():
 		current_melee = "sword"
@@ -99,13 +91,4 @@ func _input(event: InputEvent) -> void:
 		if animation_player.is_playing():
 			await animation_player.animation_finished
 		animation_player.play("range_attack")
-	if event.is_action_pressed("dash"):
-		player.movement_disabled = true
-		player.is_invincible = true
-		dash_direction = global_position.direction_to(get_global_mouse_position())
-		player.velocity = dash_direction * dash_speed
-		dash_timer.start()
-		await dash_timer.timeout
-		player.movement_disabled = false
-		player.is_invincible = false
-		player.velocity = Vector2.ZERO
+	

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bob3e4mdl15p7"]
+
+[ext_resource type="Texture2D" uid="uid://b0uofxx8vjtu4" path="res://player/animations/sparkle.png" id="1_o6jns"]
+[ext_resource type="Script" uid="uid://3dxtq7vq2kkh" path="res://enemies/thrower enemy/enemy_bullet.gd" id="1_w1tm8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6ymq"]
+radius = 28.0
+
+[node name="ThrowerEnemyRock" type="CharacterBody2D" unique_id=1637516504]
+script = ExtResource("1_w1tm8")
+speed = 200
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1810409952]
+z_index = 2
+rotation = 0.7853982
+scale = Vector2(0.28571427, 0.28571427)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=259976302]
+shape = SubResource("CircleShape2D_i6ymq")
+
+[node name="HarpoonShot" type="Sprite2D" parent="." unique_id=1151652233]
+z_index = 1
+scale = Vector2(0.28571427, 0.28571427)
+texture = ExtResource("1_o6jns")
