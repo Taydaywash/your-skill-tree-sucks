@@ -1,9 +1,11 @@
 extends Node2D
 class_name Leveling
 
+@export var level_counter: Label
+
 signal xp_changed(current_xp: int)
 
-var starting_level: int = 10
+var player_level: int = 7
 var max_xp: int = 10
 
 var current_xp: int = 0
@@ -19,6 +21,7 @@ func xp_orb_collected() -> void:
 	emit_signal("xp_changed", current_xp)
 
 func level_down() -> void:
-	starting_level -= 1
+	player_level -= 1
+	level_counter.text = "LVL %s" %[player_level]
 	current_xp = current_xp % max_xp
 	EventController.emit_signal("level_down")

@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var default_enemy: PackedScene
 @export var enemyChance : Dictionary[float,PackedScene]
 @export var timer: Timer
 @export var indicator_scene: PackedScene
@@ -34,7 +35,7 @@ func spawn_enemy() -> void:
 	if not is_inside_tree() or get_tree() == null:
 		return
 	
-	var final_choice
+	var final_choice = default_enemy
 	#Decrements the choice value by an amount determined by each enemy. Upon reaching zero, select the current entry
 	var enemy_choice = randf_range(0,100)
 	for entry in enemyChance:
@@ -42,10 +43,6 @@ func spawn_enemy() -> void:
 			final_choice = enemyChance[entry]
 			break
 		enemy_choice -= entry
-	if not final_choice:
-		for entry in enemyChance:
-			final_choice = enemyChance[entry]
-			break
 	var enemy = final_choice.instantiate()
 	get_tree().current_scene.call_deferred("add_child", enemy)
 	enemy.global_position = spawn_position

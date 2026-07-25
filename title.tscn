@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cby6l7wi382t4"]
+
+[ext_resource type="Script" uid="uid://reyynr7arxru" path="res://title.gd" id="1_oyqm6"]
+[ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="1_y7k74"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8pl"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nl8pl"]
+font = ExtResource("1_y7k74")
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58i6i"]
+bg_color = Color(0.28607237, 0.2860724, 0.28607222, 1)
+
+[node name="Title" type="Control" unique_id=867774957]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oyqm6")
+
+[node name="Panel" type="Panel" parent="." unique_id=1055568888]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 652.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
+
+[node name="Label" type="Label" parent="." unique_id=1373235765]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 72.0
+offset_right = 1174.0
+offset_bottom = 123.0
+text = "Your Skill Tree Sucks!"
+label_settings = SubResource("LabelSettings_nl8pl")
+
+[node name="Play" type="Button" parent="." unique_id=899438413]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 232.0
+offset_right = 716.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("1_y7k74")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_58i6i")
+text = "Play"
+
+[node name="Settings" type="Button" parent="." unique_id=498331781]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 368.0
+offset_right = 840.0
+offset_bottom = 436.0
+theme_override_fonts/font = ExtResource("1_y7k74")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_58i6i")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="." unique_id=979489043]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 504.0
+offset_right = 712.0
+offset_bottom = 572.0
+theme_override_fonts/font = ExtResource("1_y7k74")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_58i6i")
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

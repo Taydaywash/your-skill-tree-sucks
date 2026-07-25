@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
 [ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill tree/skill_tree.tscn" id="2_hyim0"]
 [ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
+[ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="3_gu74f"]
 [ext_resource type="PackedScene" uid="uid://cxxr0k8g0861a" path="res://enemies/enemy.tscn" id="4_i1eo7"]
 [ext_resource type="Script" uid="uid://c1pugpvcsv5lp" path="res://enemies/spawner/marker_2d.gd" id="4_spvjk"]
 [ext_resource type="PackedScene" uid="uid://blso2d5rl1jcl" path="res://enemies/thrower enemy/thrower_enemy.tscn" id="5_gu74f"]
@@ -19,11 +20,19 @@ bg_color = Color(0.068153456, 0.28377843, 0.4890176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmo1i"]
 bg_color = Color(0.3036031, 0.60338104, 0.92077196, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nl8pl"]
+font = ExtResource("3_gu74f")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Node2D" type="Node2D" unique_id=2078986703]
 
 [node name="Player" parent="." unique_id=1088654542 node_paths=PackedStringArray("health_bar", "xp_bar") instance=ExtResource("1_gjxf3")]
 health_bar = NodePath("../CanvasLayer/HealthBar")
 xp_bar = NodePath("../CanvasLayer/XpBar")
+
+[node name="Leveling" parent="Player" index="5" unique_id=1343209801 node_paths=PackedStringArray("level_counter")]
+level_counter = NodePath("../../CanvasLayer/Level counter")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=555529656]
 
@@ -41,11 +50,13 @@ uv = PackedVector2Array(-528, 370, -262, 371, -270, 205, -333, 204, -346, 130, 7
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1083672260]
 
-[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar") instance=ExtResource("2_hyim0")]
+[node name="Skill Tree" parent="CanvasLayer" unique_id=604634100 node_paths=PackedStringArray("health_bar", "xp_bar", "level_counter") instance=ExtResource("2_hyim0")]
 visible = false
-z_index = 1
+z_index = 2
 position = Vector2(576, 320)
 health_bar = NodePath("../HealthBar")
+xp_bar = NodePath("../XpBar")
+level_counter = NodePath("../Level counter")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=107239846]
 self_modulate = Color(1, 0, 0, 1)
@@ -67,7 +78,16 @@ theme_override_styles/background = SubResource("StyleBoxFlat_spvjk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cmo1i")
 show_percentage = false
 
+[node name="Level counter" type="Label" parent="CanvasLayer" unique_id=1910755612]
+offset_left = 284.0
+offset_top = 28.0
+offset_right = 364.0
+offset_bottom = 51.0
+text = "LVL 7"
+label_settings = SubResource("LabelSettings_nl8pl")
+
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
+default_enemy = ExtResource("4_i1eo7")
 enemyChance = Dictionary[float, PackedScene]({
 15.0: ExtResource("5_gu74f"),
 70.0: ExtResource("4_i1eo7")
@@ -185,4 +205,5 @@ position_offset_x = 50.0
 position_offset_y = 225.0
 circle_marker = false
 
+[editable path="Player"]
 [editable path="Spawner"]
