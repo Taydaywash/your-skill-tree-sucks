@@ -22,6 +22,10 @@ var current_range = "harpoon"
 var harpoon_cooldown : Timer
 
 @export var audio_controller: AudioController
+@export_category("Gun")
+@export var gun_shot: PackedScene
+@export var gun_cooldown_time: float
+var gun_cooldown: Timer
 
 func _ready() -> void:
 	spear_chargeup = Timer.new()
@@ -35,6 +39,12 @@ func _ready() -> void:
 	harpoon_cooldown.autostart = false
 	harpoon_cooldown.one_shot = true
 	add_child(harpoon_cooldown)
+	
+	gun_cooldown = Timer.new()
+	gun_cooldown.wait_time = gun_cooldown_time
+	gun_cooldown.autostart = false
+	gun_cooldown.one_shot = true
+	add_child(gun_cooldown)
 	
 	EventController.connect("unlock_sword",func ():
 		current_melee = "sword"
@@ -104,6 +114,11 @@ func _input(event: InputEvent) -> void:
 				harpoon_shot_instance.hand = self
 			"gun":
 				play("gun_idle")
+				var gun_shot_instance = gun_shot.instantiate()
+				get_parent().add_sibling(gun_shot_instance)
+				gun_shot_instance.global_position = get_parent().global_position
+				gun_shot_instance.velocity = (global_position - gun_shot_instance.global_position).normalized() * gun_shot_instance.speed
+				gun_shot_instance.hand = self
 			"rock":
 				play("fist_idle")
 		if animation_player.is_playing():

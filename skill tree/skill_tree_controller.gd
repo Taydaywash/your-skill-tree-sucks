@@ -18,9 +18,8 @@ func _ready() -> void:
 	EventController.level_down.connect(level_down)
 	set_skill_points_label()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug"):
-		unpause()
+func _input(_event: InputEvent) -> void:
+	pass
 
 func level_down() -> void:
 	player.velocity = Vector2.ZERO

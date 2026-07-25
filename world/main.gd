@@ -56,3 +56,7 @@ func _ready() -> void:
 		await get_tree().create_timer(0.2).timeout
 	spawner.is_spawning = true
 	music.playing = true
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug"):
+		EventController.level_down.emit()

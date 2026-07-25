@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://gf8skwxkqrlp"]
+
+[ext_resource type="Script" uid="uid://b1wg1kub4epmn" path="res://player/range attacks/gun_bullet.gd" id="1_dkdi0"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_v6bbs"]
+[ext_resource type="PackedScene" uid="uid://ji4vbtl4prwc" path="res://player/range attacks/shrapnel.tscn" id="2_w3y8w"]
+[ext_resource type="Texture2D" uid="uid://d4dd5dnpgg331" path="res://player/range attacks/harpoon.png" id="3_w3y8w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_esfpj"]
+radius = 28.0
+
+[node name="GunShot" type="CharacterBody2D" unique_id=507203364 node_paths=PackedStringArray("damage_area", "gun_shot")]
+script = ExtResource("1_dkdi0")
+speed = 750
+damage_area = NodePath("DamageArea")
+shrapnel_scene = ExtResource("2_w3y8w")
+gun_shot = NodePath("HarpoonShot")
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=254298697]
+z_index = 2
+rotation = 0.7853982
+scale = Vector2(0.28571427, 0.28571427)
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("2_v6bbs")
+damage_amount = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1159731306]
+shape = SubResource("CircleShape2D_esfpj")
+
+[node name="HarpoonShot" type="Sprite2D" parent="." unique_id=1175004427]
+z_index = 1
+scale = Vector2(0.28571427, 0.28571427)
+texture = ExtResource("3_w3y8w")
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
