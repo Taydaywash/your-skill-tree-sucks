@@ -22,6 +22,7 @@ var player_disabled : bool = false
 @export var dash_duration : float #seconds
 var dash_timer : Timer
 var dash_direction: Vector2 = Vector2.ZERO
+var dash_enabled: bool = true
 
 var step_audio_cooldown : Timer
 @export var audio_controller: AudioController
@@ -54,6 +55,14 @@ func _ready() -> void:
 	EventController.connect("remove_chains",func():
 		move_speed = default_speed
 		)
+	
+	EventController.connect("remove_long_dash",func ():
+		dash_enabled = false
+	)
+	
+	EventController.connect("level_down", func():
+		health.heal_to_full()
+	)
 
 func _physics_process(_delta: float) -> void:
 	if not movement_disabled:
@@ -64,8 +73,8 @@ func _physics_process(_delta: float) -> void:
 		if not step_audio_cooldown.time_left:
 			step_audio_cooldown.start()
 			audio_controller.play_sound(step)
+			
 func _process(_delta: float) -> void:
-	
 	if velocity.x < 0:
 		sprite.flip_h = true
 	elif velocity.x > 0:
@@ -116,7 +125,7 @@ func _input(event: InputEvent) -> void:
 	if player_disabled:
 		return
 	
-	if event.is_action_pressed("dash"):
+	if event.is_action_pressed("dash") and dash_enabled and not player_disabled:
 		movement_disabled = true
 		#player.is_invincible = true
 		dash_direction = global_position.direction_to(get_global_mouse_position())

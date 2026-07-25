@@ -152,10 +152,10 @@ bg_color = Color(0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
 bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spvjk"]
-bg_color = Color(0.068153456, 0.28377843, 0.4890176, 1)
+bg_color = Color(0.3019608, 0.6039216, 0.92156863, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmo1i"]
-bg_color = Color(0.3036031, 0.60338104, 0.92077196, 1)
+bg_color = Color(0.06666667, 0.28235295, 0.49019608, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nl8pl"]
 font = ExtResource("3_gu74f")
@@ -398,8 +398,8 @@ health_bar = NodePath("../CanvasLayer/HealthBar")
 xp_bar = NodePath("../CanvasLayer/XpBar")
 
 [node name="Hand" parent="Player" index="2" unique_id=853776541 node_paths=PackedStringArray("audio_controller")]
-_02_chargeup = ExtResource("5_n7uhj")
 audio_controller = NodePath("../../AudioController")
+_02_chargeup = ExtResource("5_n7uhj")
 
 [node name="Leveling" parent="Player" index="5" unique_id=1343209801 node_paths=PackedStringArray("level_counter")]
 level_counter = NodePath("../../CanvasLayer/Level counter")
@@ -503,6 +503,7 @@ offset_right = 278.0
 offset_bottom = 54.0
 theme_override_styles/background = SubResource("StyleBoxFlat_spvjk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cmo1i")
+fill_mode = 1
 show_percentage = false
 
 [node name="Level counter" type="Label" parent="CanvasLayer" unique_id=1910755612]

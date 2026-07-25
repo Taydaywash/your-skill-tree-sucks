@@ -17,6 +17,7 @@ func _ready() -> void:
 func xp_orb_collected() -> void:
 	current_xp += 1
 	if current_xp >= max_xp:
+		current_xp = 0
 		level_down()
 	emit_signal("xp_changed", current_xp)
 
