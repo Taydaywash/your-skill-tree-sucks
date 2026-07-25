@@ -16,6 +16,10 @@ var spear_chargeup_cancelled : bool = false
 var spear_chargeup : Timer
 @export var _02_chargeup: AudioStreamWAV
 
+@export_category("Sword")
+
+@export_category("Fist")
+
 #Range
 var current_range = "harpoon"
 @export var harpoon_shot: PackedScene
@@ -109,7 +113,7 @@ func _input(event: InputEvent) -> void:
 			"sword":
 				animation_player.play("sword_attack")
 			"fist":
-				play("fist_idle")
+				animation_player.play("fist_attack")
 
 	if event.is_action_pressed("range_attack"):
 		match current_range:

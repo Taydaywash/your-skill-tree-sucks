@@ -23,7 +23,8 @@ var player: Player = null
 @export var enemy_die: AudioStreamWAV
 @export var enemy_death_particle: PackedScene
 
-var enemy_alive
+var enemy_alive: bool = true
+var knockback: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
@@ -60,7 +61,7 @@ func attack_loop():
 	await get_tree().create_timer(randf_range(attack_rate[0],attack_rate[1])).timeout
 	attack_loop()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if player.global_position.x < global_position.x:
 		sprite.flip_h = true
 	else:
@@ -74,6 +75,9 @@ func _physics_process(_delta):
 			velocity += direction.rotated(PI/2) * speed/3
 		else:
 			velocity = direction * -speed * 2
+		if knockback != Vector2.ZERO:
+			velocity = knockback        
+			knockback = knockback.move_toward(Vector2.ZERO, 500 * delta)
 		move_and_slide()
 
 func on_health_changed(new_health: int) -> void:
@@ -93,6 +97,7 @@ func _on_hurtbot_area_entered(area):
 	if area.pull_enemy:
 		follow_distance = 200
 		speed = 50
+	knockback = (global_position - area.global_position).normalized() * area.knockback_power
 	particle_controller.spawn_particle(enemy_death_particle)
 	audio_controller.play_sound(enemy_hit)
 	health.take_damage(area.damage_amount)

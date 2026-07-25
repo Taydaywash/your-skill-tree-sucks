@@ -24,6 +24,7 @@ var player: Player = null
 @export var hitbox: Area2D
 
 var enemy_alive :bool = true
+var knockback: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
@@ -36,7 +37,7 @@ func _ready() -> void:
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
 	
-func _physics_process(_delta):
+func _physics_process(delta):
 	if not enemy_alive:
 		return
 	if player.global_position.x < global_position.x:
@@ -46,6 +47,9 @@ func _physics_process(_delta):
 	if player: 
 		var direction: Vector2 = (player.global_position - global_position).normalized()
 		velocity = direction * speed
+		if knockback != Vector2.ZERO:
+			velocity = knockback        
+			knockback = knockback.move_toward(Vector2.ZERO, 500 * delta)
 		move_and_slide()
 
 func on_health_changed(new_health: int) -> void:
@@ -65,6 +69,7 @@ func on_death() -> void:
 func _on_hurtbot_area_entered(area):
 	if area.pull_enemy:
 		speed = default_speed * 2 + speed/5
+	knockback = (global_position - area.global_position).normalized() * area.knockback_power
 	particle_controller.spawn_particle(enemy_death_particle)
 	audio_controller.play_sound(enemy_hit)
 	health.take_damage(area.damage_amount)

@@ -19,4 +19,5 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 
 func _on_damage_area_area_entered(area):
 	if area.get_collision_layer_value(5):
+		await get_tree().create_timer(0.1).timeout
 		call_deferred("queue_free")

@@ -372,6 +372,157 @@ tracks/17/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_dx5ib"]
+resource_name = "fist_attack"
+length = 0.3333
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.008333334, 0.3333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(650, 0), Vector2(100, 0), Vector2(20, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand/Weapon:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.08, 0.17, 0.23, 0.28, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("24_55jnj"), ExtResource("25_dx5ib"), ExtResource("26_a2xo5"), ExtResource("27_art4l"), ExtResource("28_fjxoa"), null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.01, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"fist_idle", &"fist_idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Weapon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.737, 2.18)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Weapon/SwordSparkle:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.33),
+"transitions": PackedFloat32Array(2.2973988, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1), Vector2(1.04, 2.08), Vector2(0.5, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Weapon/SwordSparkle:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(2.0000005, 1),
+"update": 0,
+"values": [0.0, 4.4837508483734325]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hand/Weapon/SwordSparkle:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.07, 0.33),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.46356428), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath("Hand/Weapon/SwordHitbox:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.18),
+"transitions": PackedFloat32Array(608.8757, 4705.074, 1),
+"update": 0,
+"values": [Vector2(9999, 0), Vector2(0, 0), Vector2(9999, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Hand/Weapon:self_modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.27),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.46666667), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = false
+tracks/9/path = NodePath("Hand:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.08, 0.11, 0.17, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 1, 2, 3, 4, 5]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AudioController")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.04),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("29_jd2rm")],
+"method": &"play_sound"
+}]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Hand/Weapon/FistHitbox:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.06, 0.099999994, 0.24000001),
+"transitions": PackedFloat32Array(608.8757, 4705.074, 1),
+"update": 0,
+"values": [Vector2(9999, 0), Vector2(0, 0), Vector2(9999, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_e7oew"]
 resource_name = "range_attack"
 length = 0.2
@@ -683,6 +834,7 @@ tracks/10/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqiix"]
 _data = {
 &"RESET": SubResource("Animation_wodsf"),
+&"fist_attack": SubResource("Animation_dx5ib"),
 &"range_attack": SubResource("Animation_e7oew"),
 &"spear_attack": SubResource("Animation_32hag"),
 &"sword_attack": SubResource("Animation_gswnw")
@@ -692,6 +844,9 @@ _data = {
 size = Vector2(73.44298, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcnuv"]
+size = Vector2(57.570557, 128.44037)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx5ib"]
 size = Vector2(57.570557, 128.44037)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rajix"]
@@ -775,6 +930,19 @@ damage_amount = 25
 position = Vector2(15.475464, 0)
 scale = Vector2(0.9999999, 1)
 shape = SubResource("RectangleShape2D_xcnuv")
+
+[node name="FistHitbox" type="Area2D" parent="Hand/Weapon" unique_id=355419933]
+position = Vector2(9999, 0)
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("14_wodsf")
+damage_amount = 25
+knockback_power = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Weapon/FistHitbox" unique_id=1100564348]
+position = Vector2(15.475464, 0)
+scale = Vector2(0.9999999, 1)
+shape = SubResource("RectangleShape2D_dx5ib")
 
 [node name="SparkleEffect" type="Sprite2D" parent="Hand/Weapon" unique_id=2051917126]
 modulate = Color(1, 1, 1, 0)

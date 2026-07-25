@@ -54,8 +54,6 @@ func _ready() -> void:
 	EventController.connect("remove_chains",func():
 		move_speed = default_speed
 		)
-	
-
 
 func _physics_process(_delta: float) -> void:
 	if not movement_disabled:
