@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d0s7flavngvkg"]
 
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="1_04q08"]
 [ext_resource type="PackedScene" uid="uid://dnxeq4irevjbf" path="res://player/player.tscn" id="1_gjxf3"]
 [ext_resource type="PackedScene" uid="uid://dfpb6agb07u30" path="res://skill tree/skill_tree.tscn" id="2_hyim0"]
 [ext_resource type="PackedScene" uid="uid://dcsj55qrhqcan" path="res://enemies/spawner/spawner.tscn" id="3_4f7fj"]
@@ -26,6 +27,8 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D" unique_id=2078986703]
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("1_04q08")]
 
 [node name="Player" parent="." unique_id=1088654542 node_paths=PackedStringArray("health_bar", "xp_bar") instance=ExtResource("1_gjxf3")]
 health_bar = NodePath("../CanvasLayer/HealthBar")

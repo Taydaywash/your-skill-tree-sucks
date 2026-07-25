@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://by1jjjut24mkr"]
+
+[ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="1_00yke"]
+[ext_resource type="Script" uid="uid://0gemh34m8s33" path="res://settings_screen.gd" id="1_pfwel"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="2_b5707"]
+[ext_resource type="AudioStream" uid="uid://ikv021mbn1wu" path="res://Audio/positive.wav" id="2_pl6fm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rajix"]
+bg_color = Color(0.40578339, 0.40578339, 0.4057832, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_58i6i"]
+font = ExtResource("1_00yke")
+font_size = 22
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nl8pl"]
+font = ExtResource("1_00yke")
+font_size = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00yke"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[node name="Settings" type="Panel" unique_id=1406267981 node_paths=PackedStringArray("audio_controller")]
+offset_left = 252.0
+offset_top = 140.0
+offset_right = 896.0
+offset_bottom = 492.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rajix")
+script = ExtResource("1_pfwel")
+audio_controller = NodePath("AudioController")
+positive = ExtResource("2_pl6fm")
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("2_b5707")]
+
+[node name="SettingsTitle" type="Label" parent="." unique_id=936954643]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 39.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_58i6i")
+
+[node name="MasterLabel" type="Label" parent="." unique_id=1417964728]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 228.0
+offset_right = 94.0
+offset_bottom = 251.0
+text = "Master"
+label_settings = SubResource("LabelSettings_nl8pl")
+horizontal_alignment = 1
+
+[node name="MasterScroll" type="VScrollBar" parent="MasterLabel" unique_id=1838108156]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -12.0
+offset_right = 152.0
+offset_bottom = 148.0
+rotation = 3.1415927
+theme_override_styles/grabber = SubResource("StyleBoxFlat_00yke")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxFlat_00yke")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxFlat_00yke")
+step = 5.0
+value = 100.0
+
+[node name="SFX" type="Label" parent="." unique_id=2144078891]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 228.0
+offset_right = 190.0
+offset_bottom = 251.0
+text = "SFX"
+label_settings = SubResource("LabelSettings_nl8pl")
+horizontal_alignment = 1
+
+[node name="SfxScroll" type="VScrollBar" parent="SFX" unique_id=1616909230]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -12.0
+offset_right = 152.0
+offset_bottom = 148.0
+rotation = 3.1415927
+theme_override_styles/grabber = SubResource("StyleBoxFlat_00yke")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxFlat_00yke")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxFlat_00yke")
+step = 5.0
+value = 100.0
+
+[node name="Music" type="Label" parent="." unique_id=1626954175]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 228.0
+offset_right = 286.0
+offset_bottom = 251.0
+text = "Music"
+label_settings = SubResource("LabelSettings_nl8pl")
+horizontal_alignment = 1
+
+[node name="MusicScroll" type="VScrollBar" parent="Music" unique_id=1518226837]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -12.0
+offset_right = 152.0
+offset_bottom = 148.0
+rotation = 3.1415927
+theme_override_styles/grabber = SubResource("StyleBoxFlat_00yke")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxFlat_00yke")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxFlat_00yke")
+step = 5.0
+value = 100.0
+
+[connection signal="value_changed" from="MasterLabel/MasterScroll" to="." method="_on_master_scroll_changed"]
+[connection signal="value_changed" from="SFX/SfxScroll" to="." method="_on_sfx_scroll_changed"]
+[connection signal="value_changed" from="Music/MusicScroll" to="." method="_on_music_scroll_changed"]
