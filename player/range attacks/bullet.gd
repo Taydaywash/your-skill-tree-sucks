@@ -7,8 +7,11 @@ var collided_enemy : Node
 var hand : Node
 @export var line_2d: Line2D
 var return_to_player : bool = false
+@export var harpoon_shot: Sprite2D
 
 func _ready() -> void:
+	await get_tree().process_frame
+	harpoon_shot.look_at(velocity)
 	await get_tree().create_timer(1).timeout
 	return_to_player = true
 
