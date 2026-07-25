@@ -53,4 +53,4 @@ func _ready() -> void:
 		audio_controller.play_sound(creator_speak)
 		await get_tree().create_timer(0.2).timeout
 	spawner.is_spawning = true
-	music.playing = true
+	#music.playing = true

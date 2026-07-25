@@ -24,8 +24,6 @@ var triangles = []
 var shards = []
 
 func _ready() -> void:
-	$DeleteTimer.timeout.connect(_on_DeleteTimer_timeout)
-	
 	if get_parent() is Sprite2D:
 		var _rect = get_parent().get_rect()
 		var points = []
@@ -92,7 +90,9 @@ func shatter() -> void:
 func _on_DeleteTimer_timeout() -> void:
 	for s in shards:
 		s.queue_free()
+	triangles = []
 	shards = []
+	_ready()
 
 
 func _draw() -> void:

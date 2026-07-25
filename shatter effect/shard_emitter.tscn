@@ -9,3 +9,5 @@ min_impulse = 150.0
 max_impulse = 500.0
 
 [node name="DeleteTimer" type="Timer" parent="." unique_id=439050360]
+
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_DeleteTimer_timeout"]

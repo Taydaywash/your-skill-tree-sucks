@@ -14,6 +14,10 @@ extends Button
 @export_category("Emit Signal When Shattered")
 @export var signal_name : String
 
+@export var audio_controller: AudioController
+@export var glass_shatter: AudioStreamWAV
+
+
 var shattered := false
 var unlocked := false #For Error Prevention Only
 
@@ -80,6 +84,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		else:
 			get_parent().current_skill_points += 1
 			get_parent().set_skill_points_label()
+			
 			shattered = true
 			if signal_name:
 				EventController.emit_signal(signal_name)
@@ -88,6 +93,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			tween2.tween_property(self, "scale", Vector2(0.5,0.5), 0.03).set_ease(Tween.EASE_OUT)
 			tween2.parallel().tween_property(self, "self_modulate", Color(0.2, 0.2, 0.2, 1.0), 0.03).set_ease(Tween.EASE_IN)
 			shard_emitter.shatter()
+			audio_controller.play_sound(glass_shatter,1.0,1.0)
 	if event is InputEventMouseButton and not event.is_pressed():
 		button_hold_timer.stop()
 		button_hold_timer.timeout.emit()

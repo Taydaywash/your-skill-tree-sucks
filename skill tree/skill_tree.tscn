@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://dfpb6agb07u30"]
 
 [ext_resource type="Script" uid="uid://crwmdnktf1wmr" path="res://skill tree/skill_tree_controller.gd" id="1_fmctd"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="2_7qekd"]
 [ext_resource type="Script" uid="uid://sfoarva2jdbm" path="res://path_controller.gd" id="2_802jk"]
 [ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="3_itn7s"]
 [ext_resource type="PackedScene" uid="uid://c0mdbd7win22j" path="res://skill_tree_button.tscn" id="4_0v6ha"]
 [ext_resource type="Texture2D" uid="uid://cxg50y0swxx5w" path="res://skill tree/icons/level0_icon.png" id="5_sdnbj"]
 [ext_resource type="Texture2D" uid="uid://by2xej7sbt8vb" path="res://skill tree/icons/sword_icon.png" id="6_46aa3"]
 [ext_resource type="Texture2D" uid="uid://cv1uubiebsory" path="res://skill tree/icons/gun_icon.png" id="7_0rout"]
+[ext_resource type="AudioStream" uid="uid://cncqiwqmwyqgh" path="res://Audio/glassShatter.wav" id="7_taeg2"]
 [ext_resource type="Texture2D" uid="uid://ctl84p65gem83" path="res://skill tree/icons/dash_icon.png" id="8_lrvki"]
 [ext_resource type="Texture2D" uid="uid://122tkw7s55l4" path="res://skill tree/icons/shield_icon.png" id="9_d4sjy"]
 [ext_resource type="Texture2D" uid="uid://61r588iwssl5" path="res://skill tree/icons/spear_icon.png" id="10_cdydi"]
@@ -59,6 +61,8 @@ bg_color = Color(0, 0, 0, 0.78431374)
 script = ExtResource("1_fmctd")
 skill_point_counter = NodePath("skill point counter")
 continue_button = NodePath("ContinueButton")
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("2_7qekd")]
 
 [node name="Node" type="Node2D" parent="." unique_id=606577394]
 
@@ -262,7 +266,7 @@ offset_bottom = 424.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nl8pl")
 
-[node name="0" parent="." unique_id=1868352893 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="0" parent="." unique_id=1868352893 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
 offset_top = -32.0
 offset_right = -212.0
@@ -273,8 +277,10 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword"), NodePath("../gun")]
 title = "Level 0"
 description = "Your base form"
+audio_controller = NodePath("../AudioController")
+glass_shatter = ExtResource("7_taeg2")
 
-[node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -172.0
 offset_top = -96.0
 offset_right = -60.0
@@ -286,8 +292,9 @@ required_nodes = [NodePath("../shield"), NodePath("../spear")]
 title = "Master's Sword"
 description = "A powerful sword which can deal big damage to your foes at a distance"
 signal_name = "unlock_fist"
+audio_controller = NodePath("../AudioController")
 
-[node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
 offset_top = -96.0
 offset_right = -364.0
@@ -299,8 +306,9 @@ required_nodes = [NodePath("../dash"), NodePath("../harpoon")]
 title = "Gun of Destruction"
 description = "A powerful weapon which fires fast-moving projectiles that can damage anything."
 signal_name = "unlock_rock_throw"
+audio_controller = NodePath("../AudioController")
 
-[node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
 offset_top = -176.0
 offset_right = -292.0
@@ -312,8 +320,9 @@ required_nodes = [NodePath("../final")]
 title = "Dash of One Thousand Winds"
 description = "Supercharge your dodge with the force of One Thousand Winds, allowing you to escape your foes with minimal effort"
 signal_name = "remove_long_dash"
+audio_controller = NodePath("../AudioController")
 
-[node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
 offset_top = -176.0
 offset_right = -132.0
@@ -325,8 +334,9 @@ required_nodes = [NodePath("../final")]
 title = "Shield of Heroic Strength"
 description = "A powerful, Inudstructable defensive power that can block anything and everything."
 signal_name = "remove_shield"
+audio_controller = NodePath("../AudioController")
 
-[node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
 offset_top = -232.0
 offset_right = -12.0
@@ -338,8 +348,9 @@ required_nodes = [NodePath("../final")]
 title = "Spear Of Obliteration and Doom"
 description = "Incredibly strong weapon that can slay enemies in one powerful strike"
 signal_name = "unlock_sword"
+audio_controller = NodePath("../AudioController")
 
-[node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("4_0v6ha")]
+[node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
 offset_top = -232.0
 offset_right = -412.0
@@ -351,8 +362,9 @@ required_nodes = [NodePath("../final")]
 title = "Harpoon of Opportunity"
 description = "Beckon your foes closer for an easier strike, taking them down with ease"
 signal_name = "unlock_gun"
+audio_controller = NodePath("../AudioController")
 
-[node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel") instance=ExtResource("4_0v6ha")]
+[node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
 offset_top = -280.0
 offset_right = -212.0
@@ -363,6 +375,7 @@ info_panel = NodePath("../InfoPanel")
 title = "Lamenting Chains of Order and Chaos"
 description = "You are now granted the ultimate power of order and chaos, permanently keeping you chained in a single position. The ultimate upgrade."
 signal_name = "remove_chains"
+audio_controller = NodePath("../AudioController")
 
 [node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
