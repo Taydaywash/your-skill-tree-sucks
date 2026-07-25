@@ -362,6 +362,7 @@ expand_icon = true
 info_panel = NodePath("../InfoPanel")
 title = "Lamenting Chains of Order and Chaos"
 description = "You are now granted the ultimate power of order and chaos, permanently keeping you chained in a single position. The ultimate upgrade."
+signal_name = "remove_chains"
 
 [node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false

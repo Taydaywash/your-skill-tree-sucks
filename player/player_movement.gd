@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var move_speed : int
+var default_speed : int
 @export var sprite: AnimatedSprite2D
 @export var invincibility_timer: Timer
 @export var hurtbox: Area2D
@@ -36,6 +37,14 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_duration
 	dash_timer.one_shot = true
 	add_child(dash_timer)
+	
+	default_speed = move_speed
+	move_speed = 1
+	
+	EventController.connect("remove_chains",func():
+		move_speed = default_speed
+		)
+	
 
 
 func _physics_process(_delta: float) -> void:

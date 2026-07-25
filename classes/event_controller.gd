@@ -2,6 +2,7 @@ class_name EventHandler
 extends Node
 
 @warning_ignore_start("unused_signal")
+signal remove_chains
 signal unlock_sword
 signal unlock_fist
 signal remove_shield

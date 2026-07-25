@@ -90,7 +90,9 @@ func shatter() -> void:
 
 
 func _on_DeleteTimer_timeout() -> void:
-	get_parent().queue_free()
+	for s in shards:
+		s.queue_free()
+	shards = []
 
 
 func _draw() -> void:

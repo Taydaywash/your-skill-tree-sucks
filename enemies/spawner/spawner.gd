@@ -7,7 +7,7 @@ extends Node2D
 @export var timer_wait_time: float = 1
 
 var spawn_points: Array[Marker2D] = []
-var is_spawning: bool = true
+var is_spawning: bool = false
 
 func _ready():
 	EventController.level_down.connect(pause_enemies)
