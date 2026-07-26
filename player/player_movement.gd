@@ -20,8 +20,11 @@ var player_disabled : bool = false
 @export_category("Dash")
 @export var dash_speed : int
 @export var dash_duration : float #seconds
+@export var short_dash_duration : float #seconds
 var dash_timer : Timer
 var dash_direction: Vector2 = Vector2.ZERO
+var dash_cooldown_timer : Timer
+@export var dash_cooldown_timer_wait : float
 
 var dash_disabled: bool = false
 
@@ -45,6 +48,11 @@ func _ready() -> void:
 	dash_timer.one_shot = true
 	add_child(dash_timer)
 	
+	dash_cooldown_timer = Timer.new()
+	dash_cooldown_timer.wait_time = dash_cooldown_timer_wait
+	dash_cooldown_timer.one_shot = true
+	add_child(dash_cooldown_timer)
+	
 	step_audio_cooldown = Timer.new()
 	step_audio_cooldown.wait_time = 0.25
 	step_audio_cooldown.one_shot = true
@@ -57,7 +65,9 @@ func _ready() -> void:
 		move_speed = default_speed
 		)
 	
-	EventController.connect("remove_long_dash", disable_dash)
+	EventController.connect("remove_long_dash", func():
+		dash_timer.wait_time = short_dash_duration
+		)
 	
 	EventController.connect("level_down", func():
 		health.heal_to_full()
@@ -127,13 +137,17 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("dash") and not player_disabled:
-		if not dash_disabled:
-			movement_disabled = true
-			#player.is_invincible = true
-			dash_direction = global_position.direction_to(get_global_mouse_position())
-			velocity = dash_direction * dash_speed
-			dash_timer.start()
-			await dash_timer.timeout
-			movement_disabled = false
-			is_invincible = false
-			velocity = Vector2.ZERO
+		if dash_disabled:
+			return
+		if dash_cooldown_timer.time_left:
+			return
+		dash_cooldown_timer.start()
+		movement_disabled = true
+		#player.is_invincible = true
+		dash_direction = global_position.direction_to(get_global_mouse_position())
+		velocity = dash_direction * dash_speed
+		dash_timer.start()
+		await dash_timer.timeout
+		movement_disabled = false
+		is_invincible = false
+		velocity = Vector2.ZERO

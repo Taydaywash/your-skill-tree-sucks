@@ -866,6 +866,8 @@ health = NodePath("Health")
 leveling = NodePath("Leveling")
 dash_speed = 1500
 dash_duration = 0.5
+short_dash_duration = 0.1
+dash_cooldown_timer_wait = 0.7
 audio_controller = NodePath("AudioController")
 step = ExtResource("2_1so5t")
 

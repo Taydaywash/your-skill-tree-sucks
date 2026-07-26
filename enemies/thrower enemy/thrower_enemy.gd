@@ -35,7 +35,7 @@ var orbit_direction = 1
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	
-	#GameState.thrower_enemy_weapon = "harpoon"
+	#GameState.thrower_enemy_weapon = "harpoon"s
 	
 	default_speed = speed
 	player = get_parent().get_node("Player")
@@ -49,7 +49,7 @@ func _ready() -> void:
 	
 	match GameState.thrower_enemy_weapon:
 		"rock":
-			attack_rate = [3,4]
+			attack_rate = [1,2]
 		"gun":
 			attack_rate = [2,4]
 		"harpoon":

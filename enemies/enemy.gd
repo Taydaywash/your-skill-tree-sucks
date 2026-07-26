@@ -36,6 +36,12 @@ var follow_accuracy : float = 1
 
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
+	EventController.connect("reverse_sword",func ():
+		GameState.melee_enemy_weapon = "sword"
+	)
+	EventController.connect("reverse_spear",func ():
+		GameState.melee_enemy_weapon = "spear"
+	)
 	
 	default_speed = speed
 	player = get_parent().get_node("Player")
@@ -46,12 +52,14 @@ func _ready() -> void:
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
 	follow_accuracy = randf_range(-0.5,0.5)
+	
 	if GameState.melee_enemy_weapon == "sword":
 		if randi_range(0,100) <= 50:
 			sword.visible = true
 			sword_player_detection.set_deferred("monitoring",true)
 	if GameState.melee_enemy_weapon == "spear":
 		if randi_range(0,100) <= 50:
+			health.current_health /= 2
 			spear.visible = true
 			spear.get_child(0).set_deferred("monitorable", true)
 		elif randi_range(0,100) <= 50:
