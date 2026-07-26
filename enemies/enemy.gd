@@ -31,6 +31,7 @@ var spawner: Node2D = null
 
 var enemy_alive :bool = true
 var knockback: Vector2 = Vector2.ZERO
+var big_enemies: bool = false
 
 var follow_accuracy : float = 1
 
@@ -41,6 +42,9 @@ func _ready() -> void:
 	)
 	EventController.connect("reverse_spear",func ():
 		GameState.melee_enemy_weapon = "spear"
+	)
+	EventController.connect("reverse_shield",func ():
+		big_enemies = true
 	)
 	
 	default_speed = speed
@@ -57,6 +61,9 @@ func _ready() -> void:
 		if randi_range(0,100) <= 50:
 			sword.visible = true
 			sword_player_detection.set_deferred("monitoring",true)
+		elif randi_range(0,100) <= 50 and big_enemies:
+			health.current_health *= 2
+			scale = scale * 1.5
 	if GameState.melee_enemy_weapon == "spear":
 		if randi_range(0,100) <= 50:
 			health.current_health /= 2
@@ -65,6 +72,10 @@ func _ready() -> void:
 		elif randi_range(0,100) <= 50:
 			sword.visible = true
 			sword_player_detection.set_deferred("monitoring",true)
+		elif randi_range(0,100) <= 50 and big_enemies:
+			health.current_health *= 2
+			scale = scale * 1.5
+		
 	
 func _physics_process(delta):
 	spear.look_at(player.global_position)
