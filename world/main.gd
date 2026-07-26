@@ -29,6 +29,32 @@ const s1b4 : Dictionary = {
 
 const s1 = [s1b1,s1b2,s1b3,s1b4]
 
+#Scene 2
+const s2b1 : Dictionary = {
+	"speaker":"Player",
+	"text":"I'm Free! The Chains have been broken!"
+}
+const s2b2 : Dictionary = {
+	"speaker":"Creator",
+	"text":"You... you un-upgraded my entire skill tree. Did... Did it really suck that bad?"
+}
+const s2b3 : Dictionary = {
+	"speaker":"Player",
+	"text":"YES! Your skill tree is terrible! I'd rather have no skills at all."
+}
+const s2b4 : Dictionary = {
+	"speaker":"Creator",
+	"text":"We- well fine then! Let's see how you like not playing my game anymore :("
+}
+const s2b5 : Dictionary = {
+	"speaker":"Devs",
+	"text":"...Thanks for playing! Maybe it's time to learn some skills in real life! :)"
+}
+const s2 = [s2b1,s2b2,s2b3,s2b4,s2b5]
+
+@export var skill_tree: Node2D
+
+
 func _ready() -> void:
 	#SaveLoad.reset_game_state()
 	var game_state = SaveLoad.load_game_state()
@@ -58,6 +84,22 @@ func _ready() -> void:
 		await get_tree().create_timer(0.2).timeout
 	spawner.is_spawning = true
 	music.playing = true
+	
+	EventController.connect("reverse_chains",func():
+		spawner.is_spawning = false
+		music.playing = false
+		skill_tree.visible = false
+		await get_tree().create_timer(0.5).timeout
+		player.player_disabled = true
+		player.dash_disabled = true
+		cut_scene_animator.play("1")
+		await cut_scene_animator.animation_finished
+		dialogue.type_text(s2)
+		await dialogue.dialogue_finished
+		animation_player.play("exit_scene")
+		await animation_player.animation_finished
+		get_tree().change_scene_to_file("res://title.tscn")
+		)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug"):
