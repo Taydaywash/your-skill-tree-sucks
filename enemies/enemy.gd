@@ -27,6 +27,8 @@ var spawner: Node2D = null
 var enemy_alive :bool = true
 var knockback: Vector2 = Vector2.ZERO
 
+var follow_accuracy : float = 1
+
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	
@@ -38,6 +40,7 @@ func _ready() -> void:
 	
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
+	follow_accuracy = randf_range(-0.5,0.5)
 	
 func _physics_process(delta):
 	if not enemy_alive:
@@ -49,6 +52,7 @@ func _physics_process(delta):
 	if player: 
 		var direction: Vector2 = (player.global_position - global_position).normalized()
 		velocity = direction * speed
+		velocity += direction.rotated(PI/2) * speed * follow_accuracy
 		if knockback != Vector2.ZERO:
 			velocity = knockback        
 			knockback = knockback.move_toward(Vector2.ZERO, 500 * delta)

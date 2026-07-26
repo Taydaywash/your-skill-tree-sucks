@@ -648,7 +648,7 @@ libraries/ = SubResource("AnimationLibrary_d6btn")
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
 rotation = -0.00013811655
 enemyChance = Dictionary[float, PackedScene]({
-60.0: ExtResource("5_gu74f"),
+15.0: ExtResource("5_gu74f"),
 70.0: ExtResource("4_i1eo7")
 })
 timer_wait_time = 1.5

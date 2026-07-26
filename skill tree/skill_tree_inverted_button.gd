@@ -63,6 +63,8 @@ func _on_gui_input(event: InputEvent) -> void:
 	if unlocked:
 		return
 	if event is InputEventMouseButton and event.is_pressed():
+		if inverted_animation_player.is_playing():
+			return
 		if get_parent().current_skill_points >= 0:
 			inverted_animation_player.play("cant interact")
 			return

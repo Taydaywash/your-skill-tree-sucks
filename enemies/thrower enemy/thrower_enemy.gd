@@ -33,7 +33,7 @@ var orbit_direction = 1
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	
-	GameState.thrower_enemy_weapon = "harpoon"
+	#GameState.thrower_enemy_weapon = "harpoon"
 	
 	default_speed = speed
 	player = get_parent().get_node("Player")
@@ -70,6 +70,7 @@ func attack_loop():
 			get_tree().current_scene.call_deferred("add_child", projectile_instance)
 			projectile_instance.global_position = global_position
 			var direction: Vector2 = (player.global_position - global_position).normalized()
+			projectile_instance.position += direction * 30
 			projectile_instance.velocity = direction * projectile_instance.speed
 		"gun":
 			var projectile_instance = thrower_enemy_bullet.instantiate()
