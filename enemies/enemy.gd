@@ -13,6 +13,7 @@ var hooked : bool = false
 var default_speed : float
 
 var player: Player = null
+var spawner: Node2D = null
 
 @export var audio_controller: AudioController
 @export var enemy_hit: AudioStreamWAV
@@ -31,6 +32,7 @@ func _ready() -> void:
 	
 	default_speed = speed
 	player = get_parent().get_node("Player")
+	spawner = get_parent().get_node("Spawner")
 	health_bar.max_value = health.max_health
 	health_bar.value = health.current_health
 	
@@ -60,6 +62,7 @@ func on_health_changed(new_health: int) -> void:
 func on_death() -> void:
 	audio_controller.play_sound(enemy_die)
 	spawn_xp_orb()
+	spawner.current_enemy_count -= 1
 	hitbox.set_deferred("monitorable",false)
 	enemy_alive = false
 	visible = false

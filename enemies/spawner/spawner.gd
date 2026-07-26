@@ -8,6 +8,8 @@ extends Node2D
 
 var spawn_points: Array[Marker2D] = []
 var is_spawning: bool = false
+var max_enemy_count: int = 200
+var current_enemy_count: int = 0
 
 func _ready():
 	EventController.level_down.connect(pause_enemies)
@@ -52,7 +54,8 @@ func spawn_enemy() -> void:
 	enemy.global_position = spawn_position
 
 func _on_timer_timeout():
-	if is_spawning:
+	if is_spawning and current_enemy_count < max_enemy_count:
+		current_enemy_count += 1
 		spawn_enemy()
 		
 func pause_enemies():
@@ -60,3 +63,4 @@ func pause_enemies():
 	
 func unpause_enemies():
 	is_spawning = true
+	current_enemy_count = 0

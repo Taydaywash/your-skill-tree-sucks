@@ -28,5 +28,4 @@ func _on_xp_orb_body_entered(body):
 		EventController.emit_signal("pick_up_xp_orb")
 
 func delete_orbs() -> void:
-	print("super")
 	call_deferred("queue_free")
