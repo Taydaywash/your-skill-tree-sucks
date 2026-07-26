@@ -39,23 +39,7 @@ var dash_frequency
 
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
-	EventController.connect("reverse_sword",func ():
-		GameState.melee_enemy_weapon = "sword"
-	)
-	EventController.connect("reverse_spear",func ():
-		GameState.melee_enemy_weapon = "spear"
-	)
-	EventController.connect("reverse_shield",func ():
-		big_enemies = true
-	)
 	
-
-	EventController.connect("reverse_dash",func ():
-		GameState.dashing_enemies = true
-	)
-	EventController.connect("reverse_shield",func ():
-		GameState.shield_enemies = true
-	)
 	default_speed = speed
 	player = get_parent().get_node("Player")
 	spawner = get_parent().get_node("Spawner")
@@ -65,29 +49,28 @@ func _ready() -> void:
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
 	follow_accuracy = randf_range(-0.5,0.5)
-	
+	if GameState.dashing_enemies:
+		dash_frequency = randi_range(1,20)
+		dash_loop()
 	if GameState.melee_enemy_weapon == "sword":
 		if randi_range(0,100) <= 50:
 			sword.visible = true
 			sword_player_detection.set_deferred("monitoring",true)
-		elif randi_range(0,100) <= 50 and big_enemies:
+		elif randi_range(0,100) <= 50 and GameState.shield_enemies:
 			health.current_health *= 2
 			scale = scale * 1.5
 	if GameState.melee_enemy_weapon == "spear":
-		if randi_range(0,100) <= 50:
+		if randi_range(0,100) <= 20:
 			health.current_health /= 2
 			spear.visible = true
+			dash_frequency = 20
 			spear.get_child(0).set_deferred("monitorable", true)
 		elif randi_range(0,100) <= 50:
 			sword.visible = true
 			sword_player_detection.set_deferred("monitoring",true)
-		elif randi_range(0,100) <= 50 and big_enemies:
+		elif randi_range(0,100) <= 50 and GameState.shield_enemies:
 			health.current_health *= 2
 			scale = scale * 1.5
-		
-	if GameState.dashing_enemies:
-		dash_frequency = randi_range(1,20)
-		dash_loop()
 
 func dash_loop():
 	await get_tree().create_timer(dash_frequency).timeout

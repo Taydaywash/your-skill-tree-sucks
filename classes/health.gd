@@ -8,6 +8,10 @@ signal death
 var current_health: int
 
 func _ready() -> void: 
+	EventController.connect("level_down",func():
+		max_health += 10
+		print(max_health)
+		)
 	current_health = max_health
 
 func take_damage(amount: int) -> void: 

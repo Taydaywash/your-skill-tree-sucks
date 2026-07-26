@@ -15,19 +15,8 @@ func _ready():
 	EventController.level_down.connect(pause_enemies)
 	EventController.unpause_enemies.connect(unpause_enemies)
 	
-	EventController.connect("reverse_sword", add_time)
-	EventController.connect("reverse_shield", add_time)
-	EventController.connect("reverse_dash", add_time)
-	EventController.connect("reverse_gun", add_time)
-	EventController.connect("reverse_spear", add_time)
-	EventController.connect("reverse_harpoon", add_time)
-	EventController.connect("unlock_sword", add_time)
-	EventController.connect("unlock_fist", add_time)
-	EventController.connect("remove_shield", add_time)
-	EventController.connect("remove_long_dash", add_time)
-	EventController.connect("unlock_gun", add_time)
-	EventController.connect("unlock_rock_throw", add_time)
-	
+	EventController.connect("level_down", add_time)
+
 	timer.wait_time = timer_wait_time
 	
 	for child in get_children():
@@ -79,4 +68,4 @@ func unpause_enemies():
 	current_enemy_count = 0
 	
 func add_time():
-	timer_wait_time += 0.1
+	timer_wait_time += 0.05

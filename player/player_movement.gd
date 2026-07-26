@@ -71,6 +71,8 @@ func _ready() -> void:
 	
 	EventController.connect("level_down", func():
 		health.heal_to_full()
+		await get_tree().process_frame
+		health_bar.max_value = health.max_health
 	)
 	
 func disable_dash() -> void:

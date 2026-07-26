@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://dmw6jkoaa1upn" path="res://Audio/YourBattleThemeSucks.mp3" id="9_vrojb"]
 [ext_resource type="Script" uid="uid://dslqucek2tbxp" path="res://world/dialogue.gd" id="12_s8tpt"]
 [ext_resource type="PackedScene" uid="uid://bsxiri62dcrmy" path="res://classes/leveling system/xp_orb.tscn" id="22_wc2es"]
+[ext_resource type="Texture2D" uid="uid://cx334wg3rjqwn" path="res://world/shrub1.png" id="26_8l5dh"]
 
 [sub_resource type="Animation" id="Animation_gk3u8"]
 resource_name = "Level Down"
@@ -404,6 +405,7 @@ _02_chargeup = ExtResource("5_n7uhj")
 rock_cooldown_time = 1.0
 
 [node name="SwordHitbox" parent="Player/Hand/Weapon" parent_id_path=PackedInt32Array(1088654542, 1983645036) index="1" unique_id=712371045]
+damage_amount = 45
 knockback_power = 0.0
 
 [node name="Polygon2D" parent="Player/Hand/Shield" parent_id_path=PackedInt32Array(1088654542, 1990603787) index="0" unique_id=849740837]
@@ -820,6 +822,37 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileKiller" unique_id=191525292]
 position = Vector2(-2, 4)
 shape = SubResource("RectangleShape2D_nl8pl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1083596355]
+z_index = 2
+position = Vector2(-844, 12)
+rotation = 0.3577925
+texture = ExtResource("26_8l5dh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=980660612]
+z_index = 2
+position = Vector2(880, -264)
+rotation = -0.1134464
+texture = ExtResource("26_8l5dh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1739924119]
+z_index = 2
+position = Vector2(-456, -504)
+rotation = -2.8274333
+texture = ExtResource("26_8l5dh")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=143923265]
+z_index = 2
+position = Vector2(488.00003, -512)
+rotation = -2.9496064
+scale = Vector2(1.625, 1)
+texture = ExtResource("26_8l5dh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1755804145]
+z_index = 2
+position = Vector2(-584, 432)
+rotation = -0.53232545
+texture = ExtResource("26_8l5dh")
 
 [connection signal="pressed" from="CanvasLayer/Pause/Resume" to="CanvasLayer" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/Quit" to="CanvasLayer" method="_on_quit_pressed"]

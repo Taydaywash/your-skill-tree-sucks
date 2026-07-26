@@ -55,17 +55,12 @@ func _ready() -> void:
 		"harpoon":
 			attack_rate = [2,3]
 			
-	EventController.connect("reverse_gun",func ():
-		GameState.thrower_enemy_weapon = "gun"
-	)
-	EventController.connect("reverse_harpoon",func ():
-		GameState.thrower_enemy_weapon = "harpoon"
-	)
-	
 	follow_distance += randi_range(-100,100)
 	orbit_direction = randi_range(-1,1)
 
 func attack_loop():
+	if not visible:
+		return
 	match GameState.thrower_enemy_weapon:
 		"rock":
 			var projectile_instance = thrower_enemy_rock.instantiate()

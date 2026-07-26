@@ -56,6 +56,27 @@ const s2 = [s2b1,s2b2,s2b3,s2b4,s2b5]
 
 
 func _ready() -> void:
+	EventController.connect("reverse_sword",func ():
+		GameState.melee_enemy_weapon = "sword"
+	)
+	EventController.connect("reverse_spear",func ():
+		GameState.melee_enemy_weapon = "spear"
+	)
+	EventController.connect("reverse_shield",func ():
+		GameState.shield_enemies = true
+	)
+	EventController.connect("reverse_dash",func ():
+		GameState.dashing_enemies = true
+	)
+	EventController.connect("reverse_shield",func ():
+		GameState.shield_enemies = true
+	)
+	EventController.connect("reverse_gun",func ():
+		GameState.thrower_enemy_weapon = "gun"
+	)
+	EventController.connect("reverse_harpoon",func ():
+		GameState.thrower_enemy_weapon = "harpoon"
+	)
 	#SaveLoad.reset_game_state()
 	var game_state = SaveLoad.load_game_state()
 	for orb in cut_scene_animator.get_children():
