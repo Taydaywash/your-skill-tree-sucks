@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://crwmdnktf1wmr" path="res://skill tree/skill_tree_controller.gd" id="1_fmctd"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="2_7qekd"]
 [ext_resource type="Script" uid="uid://sfoarva2jdbm" path="res://path_controller.gd" id="2_802jk"]
+[ext_resource type="AudioStream" uid="uid://ikv021mbn1wu" path="res://Audio/positive.wav" id="2_ag5bh"]
 [ext_resource type="FontFile" uid="uid://bkrym1c0rj8l2" path="res://PressStart2P.ttf" id="3_itn7s"]
 [ext_resource type="PackedScene" uid="uid://c0mdbd7win22j" path="res://skill_tree_button.tscn" id="4_0v6ha"]
 [ext_resource type="Texture2D" uid="uid://cxg50y0swxx5w" path="res://skill tree/icons/level0_icon.png" id="5_sdnbj"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cv1uubiebsory" path="res://skill tree/icons/gun_icon.png" id="7_0rout"]
 [ext_resource type="AudioStream" uid="uid://cncqiwqmwyqgh" path="res://Audio/glassShatter.wav" id="7_taeg2"]
 [ext_resource type="Texture2D" uid="uid://ctl84p65gem83" path="res://skill tree/icons/dash_icon.png" id="8_lrvki"]
+[ext_resource type="AudioStream" uid="uid://b86mjgroosro2" path="res://Audio/reverse_cymbal.wav" id="9_cek0s"]
 [ext_resource type="Texture2D" uid="uid://122tkw7s55l4" path="res://skill tree/icons/shield_icon.png" id="9_d4sjy"]
 [ext_resource type="Texture2D" uid="uid://61r588iwssl5" path="res://skill tree/icons/spear_icon.png" id="10_cdydi"]
 [ext_resource type="Texture2D" uid="uid://jfhxbogmqaxy" path="res://skill tree/icons/harpoon_icon.png" id="11_4cf1k"]
@@ -57,10 +59,12 @@ bg_color = Color(0.05197096, 0.051970966, 0.051970914, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qekd"]
 bg_color = Color(0, 0, 0, 0.78431374)
 
-[node name="Skill Tree" type="Node2D" unique_id=604634100 node_paths=PackedStringArray("skill_point_counter", "continue_button")]
+[node name="Skill Tree" type="Node2D" unique_id=604634100 node_paths=PackedStringArray("skill_point_counter", "continue_button", "audio_controller")]
 script = ExtResource("1_fmctd")
 skill_point_counter = NodePath("skill point counter")
 continue_button = NodePath("ContinueButton")
+audio_controller = NodePath("AudioController")
+positive = ExtResource("2_ag5bh")
 
 [node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("2_7qekd")]
 
@@ -279,6 +283,7 @@ title = "Level 0"
 description = "Your base form"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="sword" parent="." unique_id=2123755487 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -172.0
@@ -294,6 +299,7 @@ description = "A powerful sword which can deal big damage to your foes at a dist
 signal_name = "unlock_fist"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="gun" parent="." unique_id=674653445 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -476.0
@@ -309,6 +315,7 @@ description = "A powerful weapon which fires fast-moving projectiles that can da
 signal_name = "unlock_rock_throw"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="dash" parent="." unique_id=587108644 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -404.0
@@ -324,6 +331,7 @@ description = "Supercharge your dodge with the force of One Thousand Winds, allo
 signal_name = "remove_long_dash"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="shield" parent="." unique_id=737432396 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -244.0
@@ -339,6 +347,7 @@ description = "A powerful, Inudstructable defensive power that can block anythin
 signal_name = "remove_shield"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="spear" parent="." unique_id=702021512 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -124.0
@@ -354,6 +363,7 @@ description = "Incredibly strong weapon that can slay enemies in one powerful st
 signal_name = "unlock_sword"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="harpoon" parent="." unique_id=1804277764 node_paths=PackedStringArray("info_panel", "required_nodes", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -524.0
@@ -369,6 +379,7 @@ description = "Beckon your foes closer for an easier strike, taking them down wi
 signal_name = "unlock_gun"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="final" parent="." unique_id=1629203100 node_paths=PackedStringArray("info_panel", "audio_controller") instance=ExtResource("4_0v6ha")]
 offset_left = -324.0
@@ -383,6 +394,7 @@ description = "You are now granted the ultimate power of order and chaos, perman
 signal_name = "remove_chains"
 audio_controller = NodePath("../AudioController")
 glass_shatter = ExtResource("7_taeg2")
+reverse_cymbal = ExtResource("9_cek0s")
 
 [node name="gun_neg" parent="." unique_id=1033491040 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false

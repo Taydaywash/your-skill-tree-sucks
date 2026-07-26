@@ -23,6 +23,9 @@ var unlocked := false #For Error Prevention Only
 
 var button_hold_timer : Timer
 
+@export var reverse_cymbal: AudioStreamWAV
+
+
 func _ready() -> void:
 	button_hold_timer = Timer.new()
 	add_child(button_hold_timer)
@@ -74,6 +77,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "scale", Vector2(0.9,0.9), button_hold_duration - 0.05).set_ease(Tween.EASE_IN)
 		tween.parallel().tween_property(self, "self_modulate", Color(1,1,1), button_hold_duration - 0.05).set_ease(Tween.EASE_IN)
+		audio_controller.play_sound(reverse_cymbal,1,1)
 		await button_hold_timer.timeout
 		if tween.is_running():
 			tween.kill()

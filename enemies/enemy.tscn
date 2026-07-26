@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://rmhmvehbms4r" path="res://Audio/enemy_die.wav" id="4_ymuxt"]
 [ext_resource type="Texture2D" uid="uid://dyaah8ucr3ltr" path="res://enemies/enemyAnimation/walk0002.png" id="5_grymm"]
 [ext_resource type="PackedScene" uid="uid://dggajlbuvq5b1" path="res://player/enemy_death_particle.tscn" id="5_xvjrt"]
+[ext_resource type="AudioStream" uid="uid://bgqffkmyi568t" path="res://player/swipe/attack.wav" id="6_d8eyj"]
 [ext_resource type="Texture2D" uid="uid://cwxpqxd2x56rg" path="res://enemies/enemyAnimation/walk0003.png" id="6_ymuxt"]
 [ext_resource type="Texture2D" uid="uid://b3n0prnsoii6n" path="res://enemies/enemyAnimation/walk0004.png" id="7_2dcpb"]
 [ext_resource type="Texture2D" uid="uid://cgf2mv55wbixr" path="res://enemies/enemyAnimation/walk0005.png" id="8_xvjrt"]
@@ -117,7 +118,7 @@ size = Vector2(162.5, 300)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rajix"]
 size = Vector2(350, 425)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "audio_controller", "particle_controller", "spear", "sword", "sword_damage_area", "sword_player_detection", "hitbox") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "audio_controller", "particle_controller", "spear", "sword", "sword_damage_area", "sword_player_detection", "hitbox", "hurtbot") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_7frlh")
@@ -133,6 +134,8 @@ sword = NodePath("Sword")
 sword_damage_area = NodePath("Sword/SwordDamageArea")
 sword_player_detection = NodePath("Sword/SwordPlayerDetection")
 hitbox = NodePath("Hitbox")
+hurtbot = NodePath("Hurtbot")
+attack = ExtResource("6_d8eyj")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=677219279]
 position = Vector2(-4.7683716e-07, -4.172325e-07)

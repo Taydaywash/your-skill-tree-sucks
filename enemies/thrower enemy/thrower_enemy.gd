@@ -31,6 +31,10 @@ var spawner: Node2D = null
 var enemy_alive: bool = true
 var knockback: Vector2 = Vector2.ZERO
 var orbit_direction = 1
+@export var hurtbot: Area2D
+@export var enemy_throw: AudioStreamWAV
+@export var shot: AudioStreamWAV
+
 
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
@@ -45,7 +49,6 @@ func _ready() -> void:
 	
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
-	attack_loop()
 	
 	match GameState.thrower_enemy_weapon:
 		"rock":
@@ -57,6 +60,8 @@ func _ready() -> void:
 			
 	follow_distance += randi_range(-100,100)
 	orbit_direction = randi_range(-1,1)
+	await get_tree().create_timer(randf_range(attack_rate[0],attack_rate[1])).timeout
+	attack_loop()
 
 func attack_loop():
 	if not visible:
@@ -69,12 +74,14 @@ func attack_loop():
 			var direction: Vector2 = (player.global_position - global_position).normalized()
 			projectile_instance.position += direction * 30
 			projectile_instance.velocity = direction * projectile_instance.speed
+			audio_controller.play_sound(enemy_throw)
 		"gun":
 			var projectile_instance = thrower_enemy_bullet.instantiate()
 			get_tree().current_scene.call_deferred("add_child", projectile_instance)
 			projectile_instance.global_position = global_position
 			var direction: Vector2 = (player.global_position - global_position).normalized()
 			projectile_instance.velocity = direction * projectile_instance.speed
+			audio_controller.play_sound(shot,1.1,1.3)
 		"harpoon":
 			if not harpoon_hooked:
 				var projectile_instance = thrower_enemy_harpoon.instantiate()
@@ -83,8 +90,10 @@ func attack_loop():
 				projectile_instance.global_position = global_position
 				var direction: Vector2 = (player.global_position - global_position).normalized()
 				projectile_instance.velocity = direction * projectile_instance.speed
+				audio_controller.play_sound(shot,1.1,1.3)
 			elif harpoon_timer.is_stopped(): 
 				harpoon_timer.start()
+	
 	await get_tree().create_timer(randf_range(attack_rate[0],attack_rate[1])).timeout
 	attack_loop()
 
@@ -120,6 +129,7 @@ func on_health_changed(new_health: int) -> void:
 func on_death() -> void:
 	audio_controller.play_sound(enemy_die)
 	spawn_xp_orb()
+	hurtbot.set_deferred("monitoring",false)
 	spawner.current_enemy_count -= 1
 	enemy_alive = false
 	visible = false
@@ -141,4 +151,12 @@ func spawn_xp_orb() -> void:
 	xp_orb.global_position = global_position
 
 func kill_all_enemies() -> void:
+	if not visible:
+		return
+	spawner.current_enemy_count -= 1
+	particle_controller.spawn_particle(enemy_death_particle)
+	hurtbot.set_deferred("monitoring",false)
+	enemy_alive = false
+	visible = false
+	await get_tree().create_timer(0.5).timeout
 	call_deferred("queue_free")

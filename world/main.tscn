@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://by1jjjut24mkr" path="res://settings_screen.tscn" id="7_vid1e"]
 [ext_resource type="AudioStream" uid="uid://dmw6jkoaa1upn" path="res://Audio/YourBattleThemeSucks.mp3" id="9_vrojb"]
 [ext_resource type="Script" uid="uid://dslqucek2tbxp" path="res://world/dialogue.gd" id="12_s8tpt"]
+[ext_resource type="AudioStream" uid="uid://d0scg22r6vrq" path="res://Audio/dev_talk.wav" id="20_6lvsd"]
 [ext_resource type="PackedScene" uid="uid://bsxiri62dcrmy" path="res://classes/leveling system/xp_orb.tscn" id="22_wc2es"]
 [ext_resource type="Texture2D" uid="uid://cx334wg3rjqwn" path="res://world/shrub1.png" id="26_8l5dh"]
 
@@ -620,7 +621,7 @@ audio_controller = NodePath("../../AudioController")
 creator_speak = ExtResource("2_h1iki")
 player_speak = ExtResource("3_nikgi")
 continue_carat = NodePath("ContinueCarat")
-time_between_letters = 0.025
+dev_talk = ExtResource("20_6lvsd")
 
 [node name="Speaker" type="Label" parent="CanvasLayer/Dialogue" unique_id=833115976]
 layout_mode = 0

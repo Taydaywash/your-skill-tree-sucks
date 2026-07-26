@@ -8,7 +8,7 @@ extends Node2D
 
 var spawn_points: Array[Marker2D] = []
 var is_spawning: bool = false
-var max_enemy_count: int = 200
+var max_enemy_count: int = 30
 var current_enemy_count: int = 0
 
 func _ready():

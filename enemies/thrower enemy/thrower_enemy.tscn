@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://dggajlbuvq5b1" path="res://player/enemy_death_particle.tscn" id="8_htjbh"]
 [ext_resource type="Texture2D" uid="uid://b3n0prnsoii6n" path="res://enemies/enemyAnimation/walk0004.png" id="8_liu8p"]
 [ext_resource type="Texture2D" uid="uid://cgf2mv55wbixr" path="res://enemies/enemyAnimation/walk0005.png" id="9_kme2j"]
+[ext_resource type="AudioStream" uid="uid://p7mgmkt0kqv0" path="res://Audio/enemy_throw.wav" id="9_wyukb"]
+[ext_resource type="AudioStream" uid="uid://c8ikrg2wn4a0j" path="res://Audio/shot.wav" id="10_d2pty"]
 [ext_resource type="Texture2D" uid="uid://ded4utiq8uw4g" path="res://enemies/enemyAnimation/walk0006.png" id="10_rps2g"]
 [ext_resource type="Texture2D" uid="uid://c7u4e8sqnc48b" path="res://enemies/enemyAnimation/walk0007.png" id="11_q2i0n"]
 [ext_resource type="Texture2D" uid="uid://clafhfhmnj4n1" path="res://enemies/enemyAnimation/walk0008.png" id="12_ivtog"]
@@ -74,7 +76,7 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
 radius = 16.0
 
-[node name="ThrowerEnemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "particle_controller", "audio_controller", "harpoon_timer") groups=["Enemy"]]
+[node name="ThrowerEnemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "particle_controller", "audio_controller", "harpoon_timer", "hurtbot") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_lxcb4")
@@ -91,6 +93,9 @@ enemy_die = ExtResource("7_ivtog")
 enemy_death_particle = ExtResource("8_htjbh")
 harpoon_timer = NodePath("HarpoonTimer")
 harpoon_pull_strength = 200.0
+hurtbot = NodePath("Hurtbot")
+enemy_throw = ExtResource("9_wyukb")
+shot = ExtResource("10_d2pty")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=50671031]
 modulate = Color(0.33014193, 3.8147569, 0, 1)

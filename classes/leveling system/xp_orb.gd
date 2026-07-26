@@ -5,6 +5,9 @@ var moving_toward_player: bool = false
 var player: Node2D = null
 
 var starting_position
+@export var audio_controller: AudioController
+@export var evil_xp: AudioStreamWAV
+@export var xp_orb: Area2D
 
 func _ready() -> void:
 	EventController.level_down.connect(delete_orbs)
@@ -24,6 +27,9 @@ func _on_attraction_area_body_exited(body):
 
 func _on_xp_orb_body_entered(body):
 	if body is Player:
+		audio_controller.play_sound(evil_xp)
+		xp_orb.set_deferred("monitoring",false)
+		await get_tree().create_timer(0.1).timeout
 		call_deferred("queue_free")
 		EventController.emit_signal("pick_up_xp_orb")
 

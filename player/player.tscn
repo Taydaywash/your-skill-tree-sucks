@@ -35,10 +35,13 @@
 [ext_resource type="Texture2D" uid="uid://xfkao64bpc6k" path="res://player/swipe/frame0002.png" id="25_dx5ib"]
 [ext_resource type="PackedScene" uid="uid://blnv6ssfdlncj" path="res://player/spear_particle.tscn" id="25_pnw6m"]
 [ext_resource type="Texture2D" uid="uid://ce3ejakqbgm2j" path="res://player/swipe/frame0003.png" id="26_a2xo5"]
+[ext_resource type="AudioStream" uid="uid://c8ikrg2wn4a0j" path="res://Audio/shot.wav" id="26_fjxoa"]
 [ext_resource type="Texture2D" uid="uid://c8mip1x2ji7h4" path="res://player/swipe/frame0004.png" id="27_art4l"]
+[ext_resource type="AudioStream" uid="uid://p7mgmkt0kqv0" path="res://Audio/enemy_throw.wav" id="27_gswnw"]
 [ext_resource type="Texture2D" uid="uid://cn20f0jobs76w" path="res://player/swipe/frame0005.png" id="28_fjxoa"]
 [ext_resource type="AudioStream" uid="uid://bgqffkmyi568t" path="res://player/swipe/attack.wav" id="29_jd2rm"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="34_q28gw"]
+[ext_resource type="Texture2D" uid="uid://chcjl5b8ixhgi" path="res://player/damageArea.png" id="36_a2xo5"]
 [ext_resource type="PackedScene" uid="uid://bqxq7axrrfho5" path="res://player/particle_controller.tscn" id="38_1so5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
@@ -371,6 +374,42 @@ tracks/17/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Hand/Weapon/SparkleEffect2:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Hand/Weapon/SparkleEffect2:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Hand/Weapon/FistHitbox:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9999, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_dx5ib"]
 resource_name = "fist_attack"
@@ -422,7 +461,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.737, 2.18)]
+"values": [Vector2(3.632, 2.18)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -610,10 +649,10 @@ tracks/5/path = NodePath("Hand/Weapon/SparkleEffect:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.06666667),
+"times": PackedFloat32Array(0, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 2.9269171555944915]
+"values": [0.0, 4.497713482389388]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -634,7 +673,7 @@ tracks/7/path = NodePath("Hand/Weapon/SparkleEffect:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.06666667),
+"times": PackedFloat32Array(0, 0.33),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -690,6 +729,30 @@ tracks/11/keys = {
 "args": [ExtResource("25_pnw6m")],
 "method": &"spawn_particle"
 }]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Hand/Weapon/SparkleEffect2:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.33),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1), Vector2(0.5, 6.44), Vector2(0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Hand/Weapon/SparkleEffect2:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 5.913175505756787]
 }
 
 [sub_resource type="Animation" id="Animation_gswnw"]
@@ -847,7 +910,7 @@ size = Vector2(73.44298, 40)
 size = Vector2(57.570557, 128.44037)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx5ib"]
-size = Vector2(57.570557, 128.44037)
+size = Vector2(32.745857, 128.44037)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rajix"]
 radius = 29.999996
@@ -902,6 +965,8 @@ rock_cooldown_time = 0.8
 shield_raycast = NodePath("Shield/ShieldRaycast")
 shield_raycast_3 = NodePath("Shield/ShieldRaycast3")
 shield_raycast_2 = NodePath("Shield/ShieldRaycast2")
+shot = ExtResource("26_fjxoa")
+enemy_throw = ExtResource("27_gswnw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1328636621]
 root_node = NodePath("../..")
@@ -940,6 +1005,7 @@ shape = SubResource("RectangleShape2D_xcnuv")
 
 [node name="FistHitbox" type="Area2D" parent="Hand/Weapon" unique_id=355419933]
 position = Vector2(9999, 0)
+scale = Vector2(2.2665544, 1)
 collision_layer = 34
 collision_mask = 8
 script = ExtResource("14_wodsf")
@@ -947,8 +1013,7 @@ damage_amount = 35
 knockback_power = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Weapon/FistHitbox" unique_id=1100564348]
-position = Vector2(15.475464, 0)
-scale = Vector2(0.9999999, 1)
+position = Vector2(3.0631218, 0)
 shape = SubResource("RectangleShape2D_dx5ib")
 
 [node name="SparkleEffect" type="Sprite2D" parent="Hand/Weapon" unique_id=2051917126]
@@ -956,6 +1021,13 @@ modulate = Color(1, 1, 1, 0)
 z_index = 2
 position = Vector2(474.31946, 0)
 scale = Vector2(0.62575835, 1)
+texture = ExtResource("36_a2xo5")
+
+[node name="SparkleEffect2" type="Sprite2D" parent="Hand/Weapon" unique_id=1667649642]
+modulate = Color(18.892, 18.892, 18.892, 1)
+z_index = 1
+position = Vector2(474.31946, 0)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("15_32hag")
 
 [node name="SwordSparkle" type="Sprite2D" parent="Hand/Weapon" unique_id=56938816]

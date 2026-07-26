@@ -11,6 +11,9 @@ extends Node2D
 @export var level_down_text: Sprite2D
 @export var projectile_killer: Area2D
 
+@export var audio_controller: AudioController
+@export var positive: AudioStreamWAV
+
 
 var current_skill_points: int = -0
 
@@ -54,4 +57,5 @@ func unpause() -> void:
 	player.movement_disabled = false
 
 func _on_continue_button_pressed():
+	audio_controller.play_sound(positive,0.7,0.9)
 	unpause()

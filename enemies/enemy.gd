@@ -28,10 +28,13 @@ var spawner: Node2D = null
 @export var sword_player_detection: Area2D
 
 @export var hitbox: Area2D
+@export var hurtbot: Area2D
+
 
 var enemy_alive :bool = true
 var knockback: Vector2 = Vector2.ZERO
 var big_enemies: bool = false
+@export var attack: AudioStreamWAV
 
 var follow_accuracy : float = 1
 
@@ -109,6 +112,7 @@ func on_death() -> void:
 	spawn_xp_orb()
 	spawner.current_enemy_count -= 1
 	hitbox.set_deferred("monitorable",false)
+	hurtbot.set_deferred("monitoring",false)
 	enemy_alive = false
 	visible = false
 	await get_tree().create_timer(0.5).timeout
@@ -128,10 +132,17 @@ func spawn_xp_orb() -> void:
 	xp_orb.global_position = global_position
 
 func kill_all_enemies() -> void:
+	spawner.current_enemy_count -= 1
+	particle_controller.spawn_particle(enemy_death_particle)
+	hitbox.set_deferred("monitorable",false)
+	hitbox.set_deferred("monitoring",false)
+	enemy_alive = false
+	visible = false
+	await get_tree().create_timer(0.5).timeout
 	call_deferred("queue_free")
 
 func _on_sword_player_detection_body_entered(_body: Node2D) -> void:
-	print("attack")
+	audio_controller.play_sound(attack)
 	sword.play("default")
 	sword_damage_area.position = Vector2.ZERO
 	await get_tree().create_timer(0.2).timeout

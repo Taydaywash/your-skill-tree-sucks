@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bsxiri62dcrmy"]
 
 [ext_resource type="Script" uid="uid://dinvoibbhkgao" path="res://classes/leveling system/xp_orb.gd" id="1_rsvh8"]
+[ext_resource type="AudioStream" uid="uid://dr3nowapy46ne" path="res://Audio/evil_xp.wav" id="2_f7el3"]
 [ext_resource type="Texture2D" uid="uid://dbg5n5v1qp47j" path="res://skill tree/xp.png" id="2_rsvh8"]
 [ext_resource type="Texture2D" uid="uid://bwbxp2ifmttxf" path="res://skill tree/xp_flicker.png" id="3_ibsfh"]
+[ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="3_jt53q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
 radius = 100.0
@@ -24,11 +26,17 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="AttractionArea" type="Area2D" unique_id=977865216]
+[node name="AttractionArea" type="Area2D" unique_id=977865216 node_paths=PackedStringArray("audio_controller", "xp_orb")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_rsvh8")
 speed = 150.0
+audio_controller = NodePath("AudioController")
+evil_xp = ExtResource("2_f7el3")
+xp_orb = NodePath("XpOrb")
+
+[node name="AudioController" parent="." unique_id=152850687 instance=ExtResource("3_jt53q")]
+position = Vector2(224.46552, 32.37407)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256044944]
 shape = SubResource("CircleShape2D_b1lth")

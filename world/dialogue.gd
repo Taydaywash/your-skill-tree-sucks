@@ -12,6 +12,8 @@ signal dialogue_finished
 @export var continue_carat: Label
 @export var time_between_letters : float = 0.05
 
+@export var dev_talk: AudioStreamWAV
+
 func type_text(dialogue : Array):
 	for box in dialogue:
 		continue_carat.visible = false
@@ -27,6 +29,8 @@ func type_text(dialogue : Array):
 					audio_controller.play_sound(player_speak,0.5,0.5)
 				"Creator":
 					audio_controller.play_sound(creator_speak,1,1)
+				"Devs":
+					audio_controller.play_sound(dev_talk,1,1)
 			if dialogue_text.text[i] == "?" or dialogue_text.text[i] == "." or dialogue_text.text[i] == "!":
 				await get_tree().create_timer(0.2).timeout
 			if dialogue_text.text[i] == "-":

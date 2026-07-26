@@ -46,6 +46,10 @@ var rock_cooldown: Timer
 @export var shield_raycast_3: RayCast2D
 @export var shield_raycast_2: RayCast2D
 
+@export var shot: AudioStreamWAV
+@export var enemy_throw: AudioStreamWAV
+
+
 func _ready() -> void:
 	spear_chargeup = Timer.new()
 	spear_chargeup.wait_time = spear_chargeup_time
@@ -172,6 +176,7 @@ func _input(event: InputEvent) -> void:
 				harpoon_shot_instance.global_position = get_parent().global_position
 				harpoon_shot_instance.velocity = (global_position - harpoon_shot_instance.global_position).normalized() * harpoon_shot_instance.speed
 				harpoon_shot_instance.hand = self
+				audio_controller.play_sound(shot)
 			"gun":
 				if gun_cooldown.time_left:
 					return
@@ -182,6 +187,7 @@ func _input(event: InputEvent) -> void:
 				gun_shot_instance.global_position = get_parent().global_position
 				gun_shot_instance.velocity = (global_position - gun_shot_instance.global_position).normalized() * gun_shot_instance.speed
 				gun_shot_instance.hand = self
+				audio_controller.play_sound(shot)
 			"rock":
 				if rock_cooldown.time_left:
 					return
@@ -192,6 +198,7 @@ func _input(event: InputEvent) -> void:
 				rock_shot_instance.global_position = get_parent().global_position
 				rock_shot_instance.velocity = (global_position - rock_shot_instance.global_position).normalized() * rock_shot_instance.speed
 				rock_shot_instance.hand = self
+				audio_controller.play_sound(enemy_throw)
 		if animation_player.is_playing():
 			await animation_player.animation_finished
 		animation_player.play("range_attack")
