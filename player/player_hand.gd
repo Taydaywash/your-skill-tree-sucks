@@ -5,6 +5,10 @@ extends AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 @export var audio_controller: AudioController
 
+@export_category("Shield")
+@export var shield: CharacterBody2D
+var shield_distance: float = 120
+
 #Melee
 var current_melee = "spear"
 
@@ -78,6 +82,11 @@ func _ready() -> void:
 		play("fist_idle")
 	)
 	
+	if shield:
+		shield.get_parent().remove_child(shield)
+		shield.scale = Vector2(0.2, 0.2) 
+		get_tree().current_scene.call_deferred("add_child", shield)
+	
 func _process(_delta: float) -> void:
 	if spear_raycast.is_colliding() and not player.movement_disabled:
 		player.movement_disabled = true
@@ -98,6 +107,17 @@ func _process(_delta: float) -> void:
 		"sword":
 			look_at(get_parent().global_position)
 			rotate(PI)
+
+func _physics_process(delta) -> void:
+	var global_mouse_pos = get_global_mouse_position()
+	var direction_to_mouse = (global_mouse_pos - global_position).normalized()
+	
+	var target_global_position = global_position + (direction_to_mouse * shield_distance)
+
+	shield.global_rotation = direction_to_mouse.angle()
+		
+	shield.velocity = (target_global_position - shield.global_position) / delta
+	shield.move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if player.player_disabled:

@@ -9,10 +9,10 @@ radius = 28.0
 
 [node name="ThrowerEnemyHarpoon" type="CharacterBody2D" unique_id=1733184217 node_paths=PackedStringArray("damage_area", "line_2d", "harpoon_shot")]
 script = ExtResource("1_wok0i")
+speed = 500
 damage_area = NodePath("DamageArea")
 line_2d = NodePath("Line2D")
 harpoon_shot = NodePath("HarpoonShot")
-speed = 500
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1422843978]
 z_index = 2
@@ -21,7 +21,7 @@ scale = Vector2(0.28571427, 0.28571427)
 collision_layer = 8
 collision_mask = 37
 script = ExtResource("2_7o2nh")
-damage_amount = 10
+damage_amount = 1
 pull_enemy = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1662118529]

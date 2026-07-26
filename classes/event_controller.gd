@@ -13,7 +13,7 @@ signal unlock_rock_throw
 signal reverse_gun
 signal reverse_sword
 signal reverse_dash
-signal reverse_sheild
+signal reverse_shield
 signal reverse_spear
 signal reverse_harpoon
 signal reverse_chains

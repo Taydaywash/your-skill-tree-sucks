@@ -424,7 +424,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
 title = "sɥᴉǝlp"
 description = "?"
-signal_name = "reverse_sheild"
+signal_name = "reverse_shield"
 
 [node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false

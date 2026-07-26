@@ -879,7 +879,7 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_nl8pl")
 animation = &"walk"
 
-[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "audio_controller", "spear_raycast")]
+[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "audio_controller", "shield", "spear_raycast")]
 position = Vector2(19.999998, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_58i6i")
@@ -888,6 +888,7 @@ script = ExtResource("12_606se")
 player = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 audio_controller = NodePath("../AudioController")
+shield = NodePath("Shield")
 spear_chargeup_time = 0.2
 spear_raycast = NodePath("Weapon/SpearRaycast")
 harpoon_shot = ExtResource("15_65viv")
@@ -971,6 +972,18 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D" unique_id=195259210]
 shape = SubResource("CircleShape2D_rajix")
+
+[node name="Shield" type="CharacterBody2D" parent="Hand" unique_id=1990603787]
+position = Vector2(120, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Hand/Shield" unique_id=849740837]
+position = Vector2(0, 99.99999)
+scale = Vector2(0.99999994, 0.99999994)
+polygon = PackedVector2Array(0, 40, 0, -239.99997, 40.00003, -159.99998, 40.00003, -59.999992)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand/Shield" unique_id=408519721]
+position = Vector2(0, 99.999985)
+polygon = PackedVector2Array(0, 40, 0, -239.99997, 40.00003, -159.99998, 40.00003, -59.999992)
 
 [node name="PlayerHurtbox" type="Area2D" parent="." unique_id=945928895]
 collision_layer = 4
