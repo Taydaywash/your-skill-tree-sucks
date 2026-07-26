@@ -22,7 +22,6 @@ scale = Vector2(0.28571427, 0.28571427)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("2_v6bbs")
-damage_amount = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1159731306]
 shape = SubResource("CircleShape2D_esfpj")

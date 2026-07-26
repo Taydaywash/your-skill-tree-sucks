@@ -400,6 +400,10 @@ xp_bar = NodePath("../CanvasLayer/XpBar")
 [node name="Hand" parent="Player" index="2" unique_id=853776541 node_paths=PackedStringArray("audio_controller")]
 audio_controller = NodePath("../../AudioController")
 _02_chargeup = ExtResource("5_n7uhj")
+rock_cooldown_time = 1.0
+
+[node name="SwordHitbox" parent="Player/Hand/Weapon" parent_id_path=PackedInt32Array(1088654542, 1983645036) index="1" unique_id=712371045]
+knockback_power = 0.0
 
 [node name="Leveling" parent="Player" index="5" unique_id=1343209801 node_paths=PackedStringArray("level_counter")]
 level_counter = NodePath("../../CanvasLayer/Level counter")
@@ -642,9 +646,9 @@ label_settings = SubResource("LabelSettings_16fuh")
 libraries/ = SubResource("AnimationLibrary_d6btn")
 
 [node name="Spawner" parent="." unique_id=2040356687 instance=ExtResource("3_4f7fj")]
-default_enemy = ExtResource("4_i1eo7")
+rotation = -0.00013811655
 enemyChance = Dictionary[float, PackedScene]({
-15.0: ExtResource("5_gu74f"),
+60.0: ExtResource("5_gu74f"),
 70.0: ExtResource("4_i1eo7")
 })
 timer_wait_time = 1.5

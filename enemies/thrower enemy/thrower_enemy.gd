@@ -28,6 +28,7 @@ var spawner: Node2D = null
 
 var enemy_alive: bool = true
 var knockback: Vector2 = Vector2.ZERO
+var orbit_direction = 1
 
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
@@ -58,6 +59,9 @@ func _ready() -> void:
 	EventController.connect("reverse_harpoon",func ():
 		GameState.thrower_enemy_weapon = "harpoon"
 	)
+	
+	follow_distance += randi_range(-100,100)
+	orbit_direction = randi_range(-1,1)
 
 func attack_loop():
 	match GameState.thrower_enemy_weapon:
@@ -92,9 +96,9 @@ func _physics_process(delta):
 		var direction: Vector2 = (player.global_position - global_position).normalized()
 		if (player.global_position - global_position).length() > follow_distance:
 			velocity = direction * speed
-		elif (player.global_position - global_position).length() < (follow_distance - 50):
+		elif (player.global_position - global_position).length() > (follow_distance - 100):
 			velocity = Vector2.ZERO
-			velocity += direction.rotated(PI/2) * speed/3
+			velocity += direction.rotated(PI/2) * speed * orbit_direction
 		else:
 			velocity = direction * -speed * 2
 		if knockback != Vector2.ZERO:

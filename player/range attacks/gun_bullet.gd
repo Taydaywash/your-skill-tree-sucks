@@ -35,13 +35,13 @@ func spawn_shrapnel() -> void:
 	var spawn_logic = (func() -> void:
 		var backwards_direction = -velocity.normalized()
 		
-		for i in range(3):
+		for i in range(6):
 			var shrapnel_piece = shrapnel_scene.instantiate()
 			get_tree().current_scene.call_deferred("add_child", shrapnel_piece)
 			print("spawn")
 			shrapnel_piece.global_position = global_position
 			
-			var angle = randf_range(-0.30, 0.30)
+			var angle = randf_range(-0.60, 0.60)
 			var direction = backwards_direction.rotated(angle)
 			
 			shrapnel_piece.velocity = direction * shrapnel_piece.speed
