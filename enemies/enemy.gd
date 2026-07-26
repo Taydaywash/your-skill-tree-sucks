@@ -35,6 +35,8 @@ var big_enemies: bool = false
 
 var follow_accuracy : float = 1
 
+var dash_frequency
+
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	EventController.connect("reverse_sword",func ():
@@ -47,6 +49,13 @@ func _ready() -> void:
 		big_enemies = true
 	)
 	
+
+	EventController.connect("reverse_dash",func ():
+		GameState.dashing_enemies = true
+	)
+	EventController.connect("reverse_shield",func ():
+		GameState.shield_enemies = true
+	)
 	default_speed = speed
 	player = get_parent().get_node("Player")
 	spawner = get_parent().get_node("Spawner")
@@ -76,7 +85,17 @@ func _ready() -> void:
 			health.current_health *= 2
 			scale = scale * 1.5
 		
-	
+	if GameState.dashing_enemies:
+		dash_frequency = randi_range(1,20)
+		dash_loop()
+
+func dash_loop():
+	await get_tree().create_timer(dash_frequency).timeout
+	speed *= 10
+	await get_tree().create_timer(0.1).timeout
+	speed /= 10
+	dash_loop()
+
 func _physics_process(delta):
 	spear.look_at(player.global_position)
 	spear.rotate(deg_to_rad(82.0))

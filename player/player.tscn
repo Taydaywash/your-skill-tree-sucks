@@ -881,7 +881,7 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_nl8pl")
 animation = &"walk"
 
-[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "audio_controller", "shield", "spear_raycast")]
+[node name="Hand" type="AnimatedSprite2D" parent="." unique_id=853776541 node_paths=PackedStringArray("player", "animation_player", "audio_controller", "shield", "spear_raycast", "shield_raycast", "shield_raycast_3", "shield_raycast_2")]
 position = Vector2(19.999998, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_58i6i")
@@ -899,6 +899,9 @@ gun_shot = ExtResource("23_5ejfk")
 gun_cooldown_time = 0.5
 rock_shot = ExtResource("25_a2xo5")
 rock_cooldown_time = 0.8
+shield_raycast = NodePath("Shield/ShieldRaycast")
+shield_raycast_3 = NodePath("Shield/ShieldRaycast3")
+shield_raycast_2 = NodePath("Shield/ShieldRaycast2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1328636621]
 root_node = NodePath("../..")
@@ -987,6 +990,20 @@ polygon = PackedVector2Array(0, 40, 0, -239.99997, 40.00003, -159.99998, 40.0000
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand/Shield" unique_id=408519721]
 position = Vector2(0, 99.999985)
 polygon = PackedVector2Array(0, 40, 0, -239.99997, 40.00003, -159.99998, 40.00003, -59.999992)
+
+[node name="ShieldRaycast" type="RayCast2D" parent="Hand/Shield" unique_id=481707575]
+position = Vector2(0, -139.99998)
+target_position = Vector2(179.99998, 0)
+collision_mask = 2
+
+[node name="ShieldRaycast3" type="RayCast2D" parent="Hand/Shield" unique_id=1774851150]
+target_position = Vector2(179.99998, 0)
+collision_mask = 2
+
+[node name="ShieldRaycast2" type="RayCast2D" parent="Hand/Shield" unique_id=783946355]
+position = Vector2(0, 139.99998)
+target_position = Vector2(179.99998, 0)
+collision_mask = 2
 
 [node name="PlayerHurtbox" type="Area2D" parent="." unique_id=945928895]
 collision_layer = 4
