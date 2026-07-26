@@ -42,6 +42,10 @@ var gun_cooldown: Timer
 @export var rock_cooldown_time: float = 1
 var rock_cooldown: Timer
 
+@export var shield_raycast: RayCast2D
+@export var shield_raycast_3: RayCast2D
+@export var shield_raycast_2: RayCast2D
+
 func _ready() -> void:
 	spear_chargeup = Timer.new()
 	spear_chargeup.wait_time = spear_chargeup_time
@@ -134,8 +138,9 @@ func _physics_process(delta) -> void:
 	
 	var target_global_position = player.global_position + (Vector2.RIGHT.rotated(angle) * shield_distance)
 	
-	
 	shield.velocity = (target_global_position - shield.global_position) * shield_follow_speed
+	if shield_raycast.is_colliding() or shield_raycast_2.is_colliding() or shield_raycast_3.is_colliding():
+		shield.global_rotation += 10
 	shield.move_and_slide()
 
 func _input(event: InputEvent) -> void:
