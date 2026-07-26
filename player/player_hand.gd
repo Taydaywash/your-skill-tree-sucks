@@ -8,6 +8,8 @@ extends AnimatedSprite2D
 @export_category("Shield")
 @export var shield: CharacterBody2D
 var shield_distance: float = 120
+var shield_follow_speed: float = 3
+var shield_direction: Vector2 = Vector2.RIGHT
 
 #Melee
 var current_melee = "spear"
@@ -82,6 +84,10 @@ func _ready() -> void:
 		play("fist_idle")
 	)
 	
+	EventController.connect("remove_shield",func ():
+		shield.get_parent().remove_child(shield)
+	)
+	
 	if shield:
 		shield.get_parent().remove_child(shield)
 		shield.scale = Vector2(0.2, 0.2) 
@@ -109,14 +115,27 @@ func _process(_delta: float) -> void:
 			rotate(PI)
 
 func _physics_process(delta) -> void:
-	var global_mouse_pos = get_global_mouse_position()
-	var direction_to_mouse = (global_mouse_pos - global_position).normalized()
+	#var mouse_pos = get_global_mouse_position()
+	#var target_angle = (mouse_pos - global_position).angle()
+	#
+	#var current_angle = (shield.global_position - global_position).angle()
+	#var new_angle = lerp_angle(current_angle, target_angle, shield_follow_speed * delta)
+	#
+	#var desired_offset = Vector2.RIGHT.rotated(new_angle) * shield_distance
+	#var target_global_position = global_position + desired_offset
+	#
+	#shield.global_rotation = new_angle
+	if player.velocity!= Vector2.ZERO:
+		shield_direction = player.velocity.normalized()
 	
-	var target_global_position = global_position + (direction_to_mouse * shield_distance)
-
-	shield.global_rotation = direction_to_mouse.angle()
-		
-	shield.velocity = (target_global_position - shield.global_position) / delta
+	var target_angle = shield_direction.angle()
+	var angle = lerp_angle(shield.global_rotation, target_angle, shield_follow_speed * delta)
+	shield.global_rotation = angle
+	
+	var target_global_position = player.global_position + (Vector2.RIGHT.rotated(angle) * shield_distance)
+	
+	
+	shield.velocity = (target_global_position - shield.global_position) * shield_follow_speed
 	shield.move_and_slide()
 
 func _input(event: InputEvent) -> void:

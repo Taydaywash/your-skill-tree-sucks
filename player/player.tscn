@@ -979,6 +979,7 @@ shape = SubResource("CircleShape2D_rajix")
 position = Vector2(120, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="Hand/Shield" unique_id=849740837]
+self_modulate = Color(0.20581472, 0.3624113, 0.34868735, 1)
 position = Vector2(0, 99.99999)
 scale = Vector2(0.99999994, 0.99999994)
 polygon = PackedVector2Array(0, 40, 0, -239.99997, 40.00003, -159.99998, 40.00003, -59.999992)
