@@ -396,6 +396,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../0")]
 title = "ƃnu"
 description = "?"
+signal_name = "reverse_gun"
 
 [node name="sword_neg" parent="." unique_id=437368073 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -409,6 +410,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../0")]
 title = "sʍoɹp"
 description = "?"
+signal_name = "reverse_sword"
 
 [node name="shield_neg" parent="." unique_id=1958150389 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -422,6 +424,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
 title = "sɥᴉǝlp"
 description = "?"
+signal_name = "reverse_sheild"
 
 [node name="dash_neg" parent="." unique_id=1819825900 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -435,6 +438,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../gun_neg")]
 title = "pɐsɥ"
 description = "?"
+signal_name = "reverse_dash"
 
 [node name="harpoon_neg" parent="." unique_id=2083797914 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -448,6 +452,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../gun_neg")]
 title = "ɥɐɹdoou"
 description = "?"
+signal_name = "reverse_harpoon"
 
 [node name="spear_neg" parent="." unique_id=126980460 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -461,6 +466,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../sword_neg")]
 title = "sdǝɐɹ"
 description = "?"
+signal_name = "reverse_spear"
 
 [node name="final_neg" parent="." unique_id=1911817242 node_paths=PackedStringArray("info_panel", "required_nodes") instance=ExtResource("13_nq7ri")]
 visible = false
@@ -474,6 +480,7 @@ info_panel = NodePath("../InfoPanel")
 required_nodes = [NodePath("../harpoon_neg"), NodePath("../dash_neg"), NodePath("../shield_neg"), NodePath("../spear_neg")]
 title = "Break your chains"
 description = "Become Free"
+signal_name = "reverse_chains"
 
 [node name="InfoPanel" type="Panel" parent="." unique_id=481681843 node_paths=PackedStringArray("skill_name", "skill_description")]
 offset_left = 40.0

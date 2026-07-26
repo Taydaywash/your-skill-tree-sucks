@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bob3e4mdl15p7" path="res://enemies/thrower enemy/ThrowerEnemyRock.tscn" id="3_8ls1y"]
 [ext_resource type="Texture2D" uid="uid://gaf34tra68y3" path="res://enemies/enemyAnimation/walk0000.png" id="4_c6wkf"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="4_kme2j"]
+[ext_resource type="PackedScene" uid="uid://bskvhbvyxrf2t" path="res://enemies/thrower enemy/thrower_enemy_gun_bullet.tscn" id="4_rps2g"]
 [ext_resource type="PackedScene" uid="uid://7wfciibhva15" path="res://classes/health.tscn" id="5_5vrno"]
 [ext_resource type="Texture2D" uid="uid://chhg1h4u0hr84" path="res://enemies/enemyAnimation/walk0001.png" id="5_gqvs7"]
+[ext_resource type="PackedScene" uid="uid://bc0dhoh724cok" path="res://enemies/thrower enemy/thrower_enemy_harpoon.tscn" id="5_q2i0n"]
 [ext_resource type="PackedScene" uid="uid://bqxq7axrrfho5" path="res://player/particle_controller.tscn" id="5_rps2g"]
 [ext_resource type="Texture2D" uid="uid://dyaah8ucr3ltr" path="res://enemies/enemyAnimation/walk0002.png" id="6_hvqvj"]
 [ext_resource type="AudioStream" uid="uid://iari5040daqn" path="res://Audio/enemy_hit.wav" id="6_q2i0n"]
@@ -20,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://clafhfhmnj4n1" path="res://enemies/enemyAnimation/walk0008.png" id="12_ivtog"]
 [ext_resource type="Texture2D" uid="uid://bgxd6wmlmm6tv" path="res://enemies/enemyAnimation/walk0009.png" id="13_htjbh"]
 [ext_resource type="Texture2D" uid="uid://dgxbwpvpo7soj" path="res://enemies/enemyAnimation/walk0010.png" id="14_wyukb"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="20_ivtog"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nl8pl"]
 animations = [{
@@ -65,16 +68,21 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7frlh"]
 radius = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_htjbh"]
+radius = 16.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
 radius = 16.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "particle_controller", "audio_controller") groups=["Enemy"]]
+[node name="ThrowerEnemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "particle_controller", "audio_controller") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_lxcb4")
 speed = 150.0
 xp_orb_scene = ExtResource("2_kumiv")
 thrower_enemy_rock = ExtResource("3_8ls1y")
+thrower_enemy_bullet = ExtResource("4_rps2g")
+thrower_enemy_harpoon = ExtResource("5_q2i0n")
 sprite = NodePath("Sprite")
 particle_controller = NodePath("ParticleController")
 audio_controller = NodePath("AudioController")
@@ -93,6 +101,15 @@ offset = Vector2(0, -46)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598867225]
 shape = SubResource("CircleShape2D_7frlh")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=164681980]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("20_ivtog")
+damage_amount = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=87516251]
+shape = SubResource("CircleShape2D_htjbh")
 
 [node name="Hurtbot" type="Area2D" parent="." unique_id=843263733]
 collision_layer = 16

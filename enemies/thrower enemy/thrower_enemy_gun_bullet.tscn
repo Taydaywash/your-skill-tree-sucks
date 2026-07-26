@@ -1,16 +1,15 @@
-[gd_scene format=3 uid="uid://bob3e4mdl15p7"]
+[gd_scene format=3 uid="uid://bskvhbvyxrf2t"]
 
-[ext_resource type="Script" uid="uid://3dxtq7vq2kkh" path="res://enemies/thrower enemy/enemy_bullet.gd" id="1_w1tm8"]
-[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_thkn1"]
-[ext_resource type="Texture2D" uid="uid://cuuyi7winatub" path="res://enemies/thrower enemy/enemy_rock.png" id="3_thkn1"]
+[ext_resource type="Script" uid="uid://3dxtq7vq2kkh" path="res://enemies/thrower enemy/enemy_bullet.gd" id="1_f50oj"]
+[ext_resource type="Script" uid="uid://bdoq1oct2nan7" path="res://player/damage_box.gd" id="2_7dse5"]
+[ext_resource type="Texture2D" uid="uid://cuuyi7winatub" path="res://enemies/thrower enemy/enemy_rock.png" id="3_3tenk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6ymq"]
 radius = 28.0
 
-[node name="ThrowerEnemyRock" type="CharacterBody2D" unique_id=1637516504]
-script = ExtResource("1_w1tm8")
-speed = 200
-rotation_enabled = true
+[node name="ThrowerEnemyBullet" type="CharacterBody2D" unique_id=1637516504]
+script = ExtResource("1_f50oj")
+speed = 750
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1810409952]
 z_index = 2
@@ -18,15 +17,16 @@ rotation = 0.7853982
 scale = Vector2(0.28571427, 0.28571427)
 collision_layer = 8
 collision_mask = 37
-script = ExtResource("2_thkn1")
-damage_amount = 10
+script = ExtResource("2_7dse5")
+damage_amount = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=259976302]
 shape = SubResource("CircleShape2D_i6ymq")
 
 [node name="HarpoonShot" type="Sprite2D" parent="." unique_id=1151652233]
+self_modulate = Color(0.4295645, 0.3905896, 1, 1)
 z_index = 1
-texture = ExtResource("3_thkn1")
+texture = ExtResource("3_3tenk")
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

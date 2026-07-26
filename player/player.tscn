@@ -925,6 +925,7 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("14_wodsf")
 damage_amount = 25
+knockback_power = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Weapon/SwordHitbox" unique_id=1904425984]
 position = Vector2(15.475464, 0)
@@ -933,7 +934,7 @@ shape = SubResource("RectangleShape2D_xcnuv")
 
 [node name="FistHitbox" type="Area2D" parent="Hand/Weapon" unique_id=355419933]
 position = Vector2(9999, 0)
-collision_layer = 2
+collision_layer = 34
 collision_mask = 8
 script = ExtResource("14_wodsf")
 damage_amount = 25

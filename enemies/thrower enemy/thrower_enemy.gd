@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var follow_distance : int = 400
 @export var attack_rate : Array[int] = [3,4]
 @export var thrower_enemy_rock: PackedScene
+@export var thrower_enemy_bullet: PackedScene
+@export var thrower_enemy_harpoon: PackedScene
 @export var sprite: AnimatedSprite2D
 
 @onready var health: Health = $Health
@@ -30,6 +32,8 @@ var knockback: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	
+	GameState.thrower_enemy_weapon = "harpoon"
+	
 	default_speed = speed
 	player = get_parent().get_node("Player")
 	spawner = get_parent().get_node("Spawner")
@@ -47,6 +51,13 @@ func _ready() -> void:
 			attack_rate = [2,4]
 		"harpoon":
 			attack_rate = [2,3]
+			
+	EventController.connect("reverse_gun",func ():
+		GameState.thrower_enemy_weapon = "gun"
+	)
+	EventController.connect("reverse_harpoon",func ():
+		GameState.thrower_enemy_weapon = "harpoon"
+	)
 
 func attack_loop():
 	match GameState.thrower_enemy_weapon:
@@ -57,9 +68,18 @@ func attack_loop():
 			var direction: Vector2 = (player.global_position - global_position).normalized()
 			projectile_instance.velocity = direction * projectile_instance.speed
 		"gun":
-			pass
+			var projectile_instance = thrower_enemy_bullet.instantiate()
+			get_tree().current_scene.call_deferred("add_child", projectile_instance)
+			projectile_instance.global_position = global_position
+			var direction: Vector2 = (player.global_position - global_position).normalized()
+			projectile_instance.velocity = direction * projectile_instance.speed
 		"harpoon":
-			pass
+			var projectile_instance = thrower_enemy_harpoon.instantiate()
+			projectile_instance.parent_enemy = self
+			get_tree().current_scene.call_deferred("add_child", projectile_instance)
+			projectile_instance.global_position = global_position
+			var direction: Vector2 = (player.global_position - global_position).normalized()
+			projectile_instance.velocity = direction * projectile_instance.speed
 	await get_tree().create_timer(randf_range(attack_rate[0],attack_rate[1])).timeout
 	attack_loop()
 

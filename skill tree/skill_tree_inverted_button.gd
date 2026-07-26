@@ -12,6 +12,9 @@ extends Button
 var shattered := false #For Error Prevention Only
 var unlocked := false
 
+@export_category("Emit Signal When Fixed")
+@export var signal_name : String
+
 var button_hold_timer : Timer
 
 func _ready() -> void:
@@ -80,6 +83,8 @@ func _on_gui_input(event: InputEvent) -> void:
 			get_parent().current_skill_points += 1
 			get_parent().set_skill_points_label()
 			unlocked = true
+			if signal_name:
+				EventController.emit_signal(signal_name)
 			inverted_animation_player.play("RESET")
 			var tween2 = get_tree().create_tween()
 			tween2.tween_property(self, "scale", Vector2(0.5,0.5), 0.03).set_ease(Tween.EASE_OUT)
