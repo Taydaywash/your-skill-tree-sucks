@@ -34,6 +34,8 @@ var knockback: Vector2 = Vector2.ZERO
 
 var follow_accuracy : float = 1
 
+var dash_frequency
+
 func _ready() -> void:
 	EventController.level_down.connect(kill_all_enemies)
 	EventController.connect("reverse_sword",func ():
@@ -42,7 +44,12 @@ func _ready() -> void:
 	EventController.connect("reverse_spear",func ():
 		GameState.melee_enemy_weapon = "spear"
 	)
-	
+	EventController.connect("reverse_dash",func ():
+		GameState.dashing_enemies = true
+	)
+	EventController.connect("reverse_shield",func ():
+		GameState.shield_enemies = true
+	)
 	default_speed = speed
 	player = get_parent().get_node("Player")
 	spawner = get_parent().get_node("Spawner")
@@ -65,7 +72,16 @@ func _ready() -> void:
 		elif randi_range(0,100) <= 50:
 			sword.visible = true
 			sword_player_detection.set_deferred("monitoring",true)
-	
+	if GameState.dashing_enemies:
+		dash_frequency = randi_range(1,20)
+		dash_loop()
+
+func dash_loop():
+	await get_tree().create_timer(dash_frequency).timeout
+	speed *= 10
+	await get_tree().create_timer(0.1).timeout
+	speed /= 10
+	dash_loop()
 func _physics_process(delta):
 	spear.look_at(player.global_position)
 	spear.rotate(deg_to_rad(82.0))
