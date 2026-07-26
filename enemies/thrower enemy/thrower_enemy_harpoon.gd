@@ -50,6 +50,7 @@ func _on_damage_area_area_entered_for_harpoon(area: Node2D) -> void:
 	if area.get_collision_layer_value(6):
 		queue_free()
 	if area.get_collision_layer_value(3):
+		parent_enemy.harpoon_hooked = true
 		damage_area.set_deferred("monitorable", false)
 		damage_area.set_deferred("monitoring", false)
 		velocity = Vector2.ZERO

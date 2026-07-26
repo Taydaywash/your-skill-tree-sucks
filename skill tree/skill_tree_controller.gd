@@ -25,7 +25,6 @@ func level_down() -> void:
 	player.velocity = Vector2.ZERO
 	player.player_disabled = true
 	player.movement_disabled = true
-	player.dash_enabled = false
 	projectile_killer.position = Vector2.ZERO
 	level_down_text.global_position = player.global_position + Vector2(-88,-49.72)
 	level_down_animator.play("Level Down")
@@ -53,7 +52,6 @@ func unpause() -> void:
 	projectile_killer.position = Vector2(0,1100)
 	player.player_disabled = false
 	player.movement_disabled = false
-	player.dash_enabled = true
 
 func _on_continue_button_pressed():
 	unpause()

@@ -39,6 +39,7 @@ func _ready() -> void:
 	if not game_state.cutscene_watched:
 		await get_tree().create_timer(2).timeout
 		player.player_disabled = true
+		player.dash_disabled = true
 		cut_scene_animator.play("1")
 		await cut_scene_animator.animation_finished
 		dialogue.type_text(s1)
@@ -46,6 +47,7 @@ func _ready() -> void:
 		cut_scene_animator.play("2")
 		await cut_scene_animator.animation_finished
 		player.player_disabled = false
+		player.dash_disabled = false
 		SaveLoad.save_game_state({
 			"cutscene_watched": true,
 		})

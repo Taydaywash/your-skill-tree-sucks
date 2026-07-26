@@ -38,7 +38,6 @@ func spawn_shrapnel() -> void:
 		for i in range(6):
 			var shrapnel_piece = shrapnel_scene.instantiate()
 			get_tree().current_scene.call_deferred("add_child", shrapnel_piece)
-			print("spawn")
 			shrapnel_piece.global_position = global_position
 			
 			var angle = randf_range(-0.60, 0.60)

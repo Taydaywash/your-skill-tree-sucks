@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $Health/HealthBar
 
-var hooked : bool = false
+var harpoon_hooked : bool = false
 
 var default_speed : float
 
@@ -25,6 +25,8 @@ var spawner: Node2D = null
 @export var enemy_hit: AudioStreamWAV
 @export var enemy_die: AudioStreamWAV
 @export var enemy_death_particle: PackedScene
+@export var harpoon_timer: Timer
+@export var harpoon_pull_strength: float = 100
 
 var enemy_alive: bool = true
 var knockback: Vector2 = Vector2.ZERO
@@ -79,16 +81,24 @@ func attack_loop():
 			var direction: Vector2 = (player.global_position - global_position).normalized()
 			projectile_instance.velocity = direction * projectile_instance.speed
 		"harpoon":
-			var projectile_instance = thrower_enemy_harpoon.instantiate()
-			projectile_instance.parent_enemy = self
-			get_tree().current_scene.call_deferred("add_child", projectile_instance)
-			projectile_instance.global_position = global_position
-			var direction: Vector2 = (player.global_position - global_position).normalized()
-			projectile_instance.velocity = direction * projectile_instance.speed
+			if not harpoon_hooked:
+				var projectile_instance = thrower_enemy_harpoon.instantiate()
+				projectile_instance.parent_enemy = self
+				get_tree().current_scene.call_deferred("add_child", projectile_instance)
+				projectile_instance.global_position = global_position
+				var direction: Vector2 = (player.global_position - global_position).normalized()
+				projectile_instance.velocity = direction * projectile_instance.speed
+			elif harpoon_timer.is_stopped(): 
+				harpoon_timer.start()
 	await get_tree().create_timer(randf_range(attack_rate[0],attack_rate[1])).timeout
 	attack_loop()
 
 func _physics_process(delta):
+	if harpoon_timer.time_left > 0:
+		var pull_direction = player.global_position.direction_to(global_position)
+		player.velocity = pull_direction * harpoon_pull_strength
+		player.move_and_slide()
+	
 	if player.global_position.x < global_position.x:
 		sprite.flip_h = true
 	else:
