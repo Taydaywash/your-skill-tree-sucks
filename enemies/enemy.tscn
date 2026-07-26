@@ -20,6 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://dgxbwpvpo7soj" path="res://enemies/enemyAnimation/walk0010.png" id="13_5hpbo"]
 [ext_resource type="PackedScene" uid="uid://wypxxkwrijrw" path="res://Audio Controller/AudioController.tscn" id="17_ymuxt"]
 [ext_resource type="PackedScene" uid="uid://bqxq7axrrfho5" path="res://player/particle_controller.tscn" id="19_2dcpb"]
+[ext_resource type="Texture2D" uid="uid://61r588iwssl5" path="res://skill tree/icons/spear_icon.png" id="21_kg1no"]
+[ext_resource type="Texture2D" uid="uid://bbvx3po4t6wff" path="res://player/swipe/sword_swing0000.png" id="22_o6wa6"]
+[ext_resource type="Texture2D" uid="uid://bjgg1o5cp21hp" path="res://player/swipe/sword_swing0001.png" id="23_d8eyj"]
+[ext_resource type="Texture2D" uid="uid://cvmnvc81g3l1m" path="res://player/swipe/sword_swing0002.png" id="24_6krve"]
+[ext_resource type="Texture2D" uid="uid://btab520ayw4d1" path="res://player/swipe/sword_swing0003.png" id="25_0mknq"]
+[ext_resource type="Texture2D" uid="uid://c1fmc7fqp7afc" path="res://player/swipe/sword_swing0004.png" id="26_0dc0p"]
+[ext_resource type="Texture2D" uid="uid://c60l563nv4l8n" path="res://player/swipe/sword_swing0005.png" id="27_bsw4q"]
+[ext_resource type="Texture2D" uid="uid://y55vd44c6q5w" path="res://player/swipe/sword_swing0006.png" id="28_hvri8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nl8pl"]
 animations = [{
@@ -71,7 +79,45 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1lth"]
 radius = 16.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "audio_controller", "particle_controller", "hitbox") groups=["Enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58i6i"]
+size = Vector2(100, 4.000001)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58i6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_o6wa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_d8eyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_6krve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_0mknq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_0dc0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_bsw4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_hvri8")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nl8pl"]
+size = Vector2(162.5, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rajix"]
+size = Vector2(350, 425)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1569434064 node_paths=PackedStringArray("sprite", "audio_controller", "particle_controller", "spear", "sword", "sword_damage_area", "sword_player_detection", "hitbox") groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_7frlh")
@@ -82,6 +128,10 @@ enemy_hit = ExtResource("3_grymm")
 enemy_die = ExtResource("4_ymuxt")
 enemy_death_particle = ExtResource("5_xvjrt")
 particle_controller = NodePath("ParticleController")
+spear = NodePath("Spear")
+sword = NodePath("Sword")
+sword_damage_area = NodePath("Sword/SwordDamageArea")
+sword_player_detection = NodePath("Sword/SwordPlayerDetection")
 hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=677219279]
@@ -131,4 +181,58 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ParticleController" parent="." unique_id=1587575907 instance=ExtResource("19_2dcpb")]
 
+[node name="Spear" type="Sprite2D" parent="." unique_id=659408143]
+visible = false
+z_index = -1
+position = Vector2(0.020355225, 0.010246754)
+rotation = 1.43117
+scale = Vector2(0.355, 2.5)
+texture = ExtResource("21_kg1no")
+offset = Vector2(20.349358, -20.590086)
+
+[node name="Area2D" type="Area2D" parent="Spear" unique_id=1147503206]
+position = Vector2(-0.007976532, 0.00806427)
+rotation = -0.79056257
+scale = Vector2(0.5573095, 2.7900429)
+skew = -0.7602798
+collision_layer = 8
+collision_mask = 0
+monitorable = false
+script = ExtResource("3_a6vjd")
+damage_amount = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spear/Area2D" unique_id=1069322626]
+position = Vector2(62.000004, -0.010246565)
+shape = SubResource("RectangleShape2D_58i6i")
+
+[node name="Sword" type="AnimatedSprite2D" parent="." unique_id=1070281793]
+visible = false
+modulate = Color(1.7999877, 0, 0, 1)
+scale = Vector2(0.16, 0.16)
+sprite_frames = SubResource("SpriteFrames_58i6i")
+frame = 6
+frame_progress = 1.0
+offset = Vector2(150, 12.5)
+
+[node name="SwordDamageArea" type="Area2D" parent="Sword" unique_id=1824337895]
+position = Vector2(99999, 99999)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_a6vjd")
+damage_amount = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/SwordDamageArea" unique_id=1109506213]
+position = Vector2(193.75, -12.500002)
+shape = SubResource("RectangleShape2D_nl8pl")
+
+[node name="SwordPlayerDetection" type="Area2D" parent="Sword" unique_id=1022504498]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/SwordPlayerDetection" unique_id=140474769]
+position = Vector2(287.5, -12.5)
+shape = SubResource("RectangleShape2D_rajix")
+
 [connection signal="area_entered" from="Hurtbot" to="." method="_on_hurtbot_area_entered"]
+[connection signal="area_entered" from="Sword/SwordPlayerDetection" to="." method="_on_sword_player_detection_body_entered"]

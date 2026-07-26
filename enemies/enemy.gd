@@ -21,6 +21,11 @@ var spawner: Node2D = null
 @export var enemy_death_particle: PackedScene
 @export var particle_controller: Node2D
 
+@export var spear: Sprite2D
+
+@export var sword: AnimatedSprite2D
+@export var sword_damage_area: Area2D
+@export var sword_player_detection: Area2D
 
 @export var hitbox: Area2D
 
@@ -41,8 +46,23 @@ func _ready() -> void:
 	health.health_changed.connect(on_health_changed)
 	health.death.connect(on_death)
 	follow_accuracy = randf_range(-0.5,0.5)
+	if GameState.melee_enemy_weapon == "sword":
+		if randi_range(0,100) <= 50:
+			sword.visible = true
+			sword_player_detection.set_deferred("monitoring",true)
+	if GameState.melee_enemy_weapon == "spear":
+		if randi_range(0,100) <= 50:
+			spear.visible = true
+			spear.get_child(0).set_deferred("monitorable", true)
+		elif randi_range(0,100) <= 50:
+			sword.visible = true
+			sword_player_detection.set_deferred("monitoring",true)
 	
 func _physics_process(delta):
+	spear.look_at(player.global_position)
+	spear.rotate(deg_to_rad(82.0))
+	sword.look_at(player.global_position)
+	
 	if not enemy_alive:
 		return
 	if player.global_position.x < global_position.x:
@@ -85,7 +105,13 @@ func spawn_xp_orb() -> void:
 	var xp_orb = xp_orb_scene.instantiate()
 	get_tree().current_scene.call_deferred("add_child", xp_orb)
 	xp_orb.global_position = global_position
-	
 
 func kill_all_enemies() -> void:
 	call_deferred("queue_free")
+
+func _on_sword_player_detection_body_entered(_body: Node2D) -> void:
+	print("attack")
+	sword.play("default")
+	sword_damage_area.position = Vector2.ZERO
+	await get_tree().create_timer(0.2).timeout
+	sword_damage_area.position = Vector2.INF
