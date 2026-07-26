@@ -22,7 +22,8 @@ var player_disabled : bool = false
 @export var dash_duration : float #seconds
 var dash_timer : Timer
 var dash_direction: Vector2 = Vector2.ZERO
-var dash_enabled: bool = true
+
+var dash_disabled: bool = false
 
 var step_audio_cooldown : Timer
 @export var audio_controller: AudioController
@@ -56,13 +57,14 @@ func _ready() -> void:
 		move_speed = default_speed
 		)
 	
-	EventController.connect("remove_long_dash",func ():
-		dash_enabled = false
-	)
+	EventController.connect("remove_long_dash", disable_dash)
 	
 	EventController.connect("level_down", func():
 		health.heal_to_full()
 	)
+	
+func disable_dash() -> void:
+	dash_disabled = true
 
 func _physics_process(_delta: float) -> void:
 	if not movement_disabled:
@@ -95,7 +97,6 @@ func _on_player_hurtbox_area_entered(area):
 
 func take_damage(amount: int) -> void:
 	if not is_invincible: 
-		print("taken damage ", amount)
 		health.take_damage(amount)
 		start_invincibility()
 
@@ -125,13 +126,14 @@ func _input(event: InputEvent) -> void:
 	if player_disabled:
 		return
 	
-	if event.is_action_pressed("dash") and dash_enabled and not player_disabled:
-		movement_disabled = true
-		#player.is_invincible = true
-		dash_direction = global_position.direction_to(get_global_mouse_position())
-		velocity = dash_direction * dash_speed
-		dash_timer.start()
-		await dash_timer.timeout
-		movement_disabled = false
-		is_invincible = false
-		velocity = Vector2.ZERO
+	if event.is_action_pressed("dash") and not player_disabled:
+		if not dash_disabled:
+			movement_disabled = true
+			#player.is_invincible = true
+			dash_direction = global_position.direction_to(get_global_mouse_position())
+			velocity = dash_direction * dash_speed
+			dash_timer.start()
+			await dash_timer.timeout
+			movement_disabled = false
+			is_invincible = false
+			velocity = Vector2.ZERO
